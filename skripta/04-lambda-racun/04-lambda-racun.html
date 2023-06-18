@@ -1,0 +1,803 @@
+
+<!DOCTYPE html>
+
+<html lang="sl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4. λ-račun &#8212; Principi programskih jezikov</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css%3Fdigest=c3fdc42140077d1ad13ad2f1588a4309.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Abecedni seznam" href="../genindex.html" />
+    <link rel="search" title="Išči" href="../search.html" />
+    <link rel="next" title="5. Deklarativno programiranje" href="../05-deklarativno-programiranje/05-deklarativno-programiranje.html" />
+    <link rel="prev" title="3. Dokazovanje pravilnosti programov" href="../03-dokazovanje-pravilnosti/03-dokazovanje-pravilnosti.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="sl">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Principi programskih jezikov</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Poiščite to knjigo ..." aria-label="Poiščite to knjigo ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-uvod.html">
+   Uvod
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-aritmeticni-izrazi/01-aritmeticni-izrazi.html">
+   1. O programskih jezikih in aritmetičnih izrazih
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-ukazni-programski-jezik/02-ukazni-programski-jezik.html">
+   2. Ukazni programski jezik
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-dokazovanje-pravilnosti/03-dokazovanje-pravilnosti.html">
+   3. Dokazovanje pravilnosti programov
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="04-lambda-racun.html#">
+   4. λ-račun
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-deklarativno-programiranje/05-deklarativno-programiranje.html">
+   5. Deklarativno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-rekurzija/06-rekurzija.html">
+   6. Rekurzija in rekurzivni tipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07-izpeljava-tipov/07-izpeljava-tipov.html">
+   7. Izpeljava tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08-abstrakcija/08-abstrakcija.html">
+   8. Specifikacija, implementacija, abstrakcija
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09-logicno-programiranje/09-logicno-programiranje.html">
+   9. Logično programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10-programiranje-z-omejitvami/10-programiranje-z-omejitvami.html">
+   10. Logično programiranje z omejitvami
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11-podtipi/11-podtipi.html">
+   11. Podtipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12-objektno-programiranje/12-objektno-programiranje.html">
+   12. Objektno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-haskell-in-razredi-tipov/14-haskell-in-razredi-tipov.html">
+   13. Haskell in razredi tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-monade/15-monade.html">
+   14. Monade in računski učinki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-ucinki-in-prestrezniki/13-ucinki-in-prestrezniki.html">
+   15. Učinki in prestrezniki
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Preklopi navigacijo" aria-controls="site-navigation"
+                title="Preklopi navigacijo" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Prenesite to stran"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/04-lambda-racun/04-lambda-racun.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Prenesite izvorno datoteko" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Natisni v PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Celozaslonski način"
+        title="Celozaslonski način"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Vsebina
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="04-lambda-racun.html#funkcijski-predpis">
+   4.1. Funkcijski predpis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#vezane-in-proste-spremenljivke">
+     4.1.1. Vezane in proste spremenljivke
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#substitucija-ali-zamenjava">
+     4.1.2. Substitucija ali zamenjava
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#racunsko-pravilo-ali-redukcija">
+     4.1.3. Računsko pravilo ali β-redukcija
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#gnezdeni-funkcijski-predpisi">
+     4.1.4. Gnezdeni funkcijski predpisi
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="04-lambda-racun.html#id1">
+   4.2. λ-račun
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#evalvacijske-strategije">
+     4.2.1. Evalvacijske strategije
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="04-lambda-racun.html#programiranje-v-racunu">
+   4.3. Programiranje v λ-računu
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#boolove-vrednosti-in-pogojni-stavek">
+     4.3.1. Boolove vrednosti in pogojni stavek
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#urejeni-pari">
+     4.3.2. Urejeni pari
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#zahtevnejsi-primeri">
+     4.3.3. Zahtevnejši primeri
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>λ-račun</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Vsebina </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="04-lambda-racun.html#funkcijski-predpis">
+   4.1. Funkcijski predpis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#vezane-in-proste-spremenljivke">
+     4.1.1. Vezane in proste spremenljivke
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#substitucija-ali-zamenjava">
+     4.1.2. Substitucija ali zamenjava
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#racunsko-pravilo-ali-redukcija">
+     4.1.3. Računsko pravilo ali β-redukcija
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#gnezdeni-funkcijski-predpisi">
+     4.1.4. Gnezdeni funkcijski predpisi
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="04-lambda-racun.html#id1">
+   4.2. λ-račun
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#evalvacijske-strategije">
+     4.2.1. Evalvacijske strategije
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="04-lambda-racun.html#programiranje-v-racunu">
+   4.3. Programiranje v λ-računu
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#boolove-vrednosti-in-pogojni-stavek">
+     4.3.1. Boolove vrednosti in pogojni stavek
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#urejeni-pari">
+     4.3.2. Urejeni pari
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="04-lambda-racun.html#zahtevnejsi-primeri">
+     4.3.3. Zahtevnejši primeri
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="racun">
+<h1><span class="section-number">4. </span>λ-račun<a class="headerlink" href="04-lambda-racun.html#racun" title="Povezava na naslov">¶</a></h1>
+<p>V začetku 20. stoletja so se logiki spraševali, kako bi natančno opredelili pojem »računski postopek«. Leta 1936 je Alan
+Turing podal pojem stroja, ki še danes velja za standard. A pred Turingom je Alonzo Church podal svojo razlago
+računanja, ki jo je poimenoval <strong>λ-račun</strong>. Kasneje se je izkazalo, da sta oba pojma ekvivalentna, vsaj kar se tiče
+računanja s števili.</p>
+<p>Kasneje je <span class="math notranslate nohighlight">\(λ\)</span>-račun pomembno vplival na razvoj programskih jezikov, zato je prav da ga spoznamo bolj podrobno. Poleg tega je
+programiranje v λ-računu dobra vaja iz razumevanja osnovnih principov funkcijskega programiranja. Seveda čistega λ-računa, ki ga bomo
+uporabljati, nihče ne uporablja v praksi, tako kot tudi ne Turingovih strojev.</p>
+<p>Danes bomo spoznali <strong>λ-račun brez tipov</strong>, v poglavju o deklarativnem programiranju pa še λ-račun s tipi.</p>
+<div class="section" id="funkcijski-predpis">
+<h2><span class="section-number">4.1. </span>Funkcijski predpis<a class="headerlink" href="04-lambda-racun.html#funkcijski-predpis" title="Povezava na naslov">¶</a></h2>
+<p>V matematiki poznamo zapis za <strong>funkcijski predpis</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x ↦ e
+</pre></div>
+</div>
+<p>To preberemo »<code class="docutils literal notranslate"><span class="pre">x</span></code> se slika v <code class="docutils literal notranslate"><span class="pre">e</span></code>«, pri čemer je <code class="docutils literal notranslate"><span class="pre">e</span></code> izraz, ki lahko vsebuje <code class="docutils literal notranslate"><span class="pre">x</span></code>. Primer:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x ↦ x² + 3·x + 7
+</pre></div>
+</div>
+<p>Funkcijske predpise včasih imenujemo tudi <strong>anonimne funkcije</strong>, ker se razlikujejo od običajnih definicij funkcij, ki
+le-te poimenujejo:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>f(x) := x² + 3·x + 7
+</pre></div>
+</div>
+<p>Hkrati smo podali funkcijo in jo poimenovali <code class="docutils literal notranslate"><span class="pre">f</span></code>. Če poimenovanje in podajanje predpisa razstavimo, lahko zgornjo definicijo podamo tudi takole:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>f := (x ↦ x² + 3·x + 7)
+</pre></div>
+</div>
+<p>Torej so funkcijski predpisi <em>bolj splošni</em> kot imenovane funkcije.</p>
+<p>Funkcijski predpis lahko <strong>uporabimo</strong> na argumentu. Na primer, zgornji <code class="docutils literal notranslate"><span class="pre">f</span></code> lahko uporabimo na <code class="docutils literal notranslate"><span class="pre">3</span></code>
+in dobimo izraz <code class="docutils literal notranslate"><span class="pre">f(3)</span></code>, ki mu pravimo <strong>aplikacija</strong>.</p>
+<p>Dejstvo, da je funkcija poimenovana <code class="docutils literal notranslate"><span class="pre">f</span></code>, nima nobene zveze z aplikacijo. Prav lahko bi pisali neposredno</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(x ↦ x² + 3·x + 7)(3)
+</pre></div>
+</div>
+<p>To se morda zdi nenavadno, a je lahko koristno v programiranju (kot bomo videli kasneje).
+Nekateri programski jeziki imajo funkcijske predpise:</p>
+<ul class="simple">
+<li><p>Python: <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">x**2</span> <span class="pre">+</span> <span class="pre">3*x</span> <span class="pre">+</span> <span class="pre">7</span></code></p></li>
+<li><p>Haskell: <code class="docutils literal notranslate"><span class="pre">\x</span> <span class="pre">-&gt;</span> <span class="pre">x**2</span> <span class="pre">+</span> <span class="pre">3*x</span> <span class="pre">+</span> <span class="pre">7</span></code></p></li>
+<li><p>OCaml: <code class="docutils literal notranslate"><span class="pre">fun</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">x*x</span> <span class="pre">+</span> <span class="pre">3*x</span> <span class="pre">+</span> <span class="pre">7</span></code></p></li>
+<li><p>Racket: <code class="docutils literal notranslate"><span class="pre">(lambda</span> <span class="pre">(x)</span> <span class="pre">(+</span> <span class="pre">(*</span> <span class="pre">x</span> <span class="pre">x)</span> <span class="pre">(*</span> <span class="pre">3</span> <span class="pre">x)</span> <span class="pre">7))</span></code></p></li>
+<li><p>Mathematica: <code class="docutils literal notranslate"><span class="pre">#²</span> <span class="pre">+</span> <span class="pre">3*#</span> <span class="pre">+</span> <span class="pre">7</span> <span class="pre">&amp;</span></code> ali <code class="docutils literal notranslate"><span class="pre">Function[x,</span> <span class="pre">x²</span> <span class="pre">+</span> <span class="pre">3*x</span> <span class="pre">+</span> <span class="pre">7]</span></code></p></li>
+</ul>
+<div class="section" id="vezane-in-proste-spremenljivke">
+<h3><span class="section-number">4.1.1. </span>Vezane in proste spremenljivke<a class="headerlink" href="04-lambda-racun.html#vezane-in-proste-spremenljivke" title="Povezava na naslov">¶</a></h3>
+<p>V funkcijskem predpisu</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x ↦ x² + 3·x + 7
+</pre></div>
+</div>
+<p>se <code class="docutils literal notranslate"><span class="pre">x</span></code> imenuje <strong>vezana spremenljivka</strong>. S tem želimo povedati, da je <code class="docutils literal notranslate"><span class="pre">x</span></code> veljavna samo
+znotraj funkcijskega predpisa, je kot neke vrste lokalna spremenljivka. Če jo
+preimenujemo, se funkcijski zapis ne spremeni:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>a ↦ a² + 3·a + 7
+</pre></div>
+</div>
+<p>Poudarimo, da štejemo funkcijska predpisa za enaka, če se razlikujeta le po tem, kateri
+simbol je uporabljen za vezano spremenljivko.</p>
+<p>V funkcijskem predpisu lahko nastopa tudi kaka dodatna spremenljivka, ki ni vezana.
+Pravimo ji <strong>prosta spremenljivka</strong>, na primer:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x ↦ a·x² + b·x + c
+</pre></div>
+</div>
+<p>Tu so <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code> in <code class="docutils literal notranslate"><span class="pre">c</span></code> proste spremenljivke. Teh ne smemo preimenovati, ker bi se pomen
+izraza spremenil, če bi to storili.
+(Pravzaprav bi lahko rekli, da imamo še dodatne proste spremenljivke <code class="docutils literal notranslate"><span class="pre">·</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code> in <code class="docutils literal notranslate"><span class="pre">²</span></code>.)</p>
+<p>Vezane in proste spremenljivke se pojavljajo tudi drugje v matematiki in računalništvu:</p>
+<ul>
+<li><p>v integralu <span class="math notranslate nohighlight">\(\int x^2 + a \cdot x \, d x\)</span> je <span class="math notranslate nohighlight">\(x\)</span> vezana spremenljivka in <span class="math notranslate nohighlight">\(a\)</span> prosta</p></li>
+<li><p>v vsoti <span class="math notranslate nohighlight">\(\sum_{i=1}^n i · (i + k)\)</span> je <span class="math notranslate nohighlight">\(i\)</span> vezana spremenljivka, <span class="math notranslate nohighlight">\(n\)</span> in <span class="math notranslate nohighlight">\(k\)</span> sta prosti</p></li>
+<li><p>v limiti <span class="math notranslate nohighlight">\(\lim_{x \to a} (x - a)/(x + a)\)</span> je <span class="math notranslate nohighlight">\(x\)</span> vezana spremenljivka, <span class="math notranslate nohighlight">\(a\)</span> je prosta</p></li>
+<li><p>v formuli <span class="math notranslate nohighlight">\(\exists x \in \mathbb{R} \,.\, x^3 = y\)</span> je <span class="math notranslate nohighlight">\(x\)</span> vezana spremenljivka, <span class="math notranslate nohighlight">\(y\)</span> je prosta</p></li>
+<li><p>v programu</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  for (int i = 0; i &lt; 10; i++) {
+      s += i;
+  }
+</pre></div>
+</div>
+<p>je <code class="docutils literal notranslate"><span class="pre">i</span></code> vezana spremenljivka, <code class="docutils literal notranslate"><span class="pre">s</span></code> je prosta.</p>
+</li>
+<li><p>v programu</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  if (false) {
+     int s = 0 ;
+     for (int i = 0; i &lt; 10; i++) {
+        s += i;
+     }
+  }
+</pre></div>
+</div>
+</li>
+</ul>
+<p>sta <code class="docutils literal notranslate"><span class="pre">s</span></code> in <code class="docutils literal notranslate"><span class="pre">i</span></code> vezani spremenljivki.</p>
+<p>Proste in vezane spremenljivke je treba pravilno razumeti. Na primer, <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">↦</span> <span class="pre">a</span> <span class="pre">+</span> <span class="pre">y</span></code> lahko preberemo »prištej <code class="docutils literal notranslate"><span class="pre">a</span></code>«, kar je
+različno od <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">↦</span> <span class="pre">a</span> <span class="pre">+</span> <span class="pre">y</span></code>, kar preberemo »prištej <code class="docutils literal notranslate"><span class="pre">y</span></code>«.</p>
+</div>
+<div class="section" id="substitucija-ali-zamenjava">
+<h3><span class="section-number">4.1.2. </span>Substitucija ali zamenjava<a class="headerlink" href="04-lambda-racun.html#substitucija-ali-zamenjava" title="Povezava na naslov">¶</a></h3>
+<p>Operacija, ki v izrazu prosto spremenljivko zamenja z izrazom, se imenuje <strong>zamenjava</strong> ali <strong>substitucija</strong>.
+Zapišemo jo</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>e [e&#39;/x]
+</pre></div>
+</div>
+<p>in preberemo »v <code class="docutils literal notranslate"><span class="pre">e</span></code> zamenjaj <code class="docutils literal notranslate"><span class="pre">x</span></code> z <code class="docutils literal notranslate"><span class="pre">e'</span></code>«.</p>
+<p>Primeri:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(x²</span> <span class="pre">+</span> <span class="pre">3·x</span> <span class="pre">+</span> <span class="pre">7)[3/x]</span></code> je enako <code class="docutils literal notranslate"><span class="pre">3²</span> <span class="pre">+</span> <span class="pre">3·3</span> <span class="pre">+</span> <span class="pre">7</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f(a</span> <span class="pre">+</span> <span class="pre">b)[(b</span> <span class="pre">+</span> <span class="pre">1)/a]</span></code> je enako <code class="docutils literal notranslate"><span class="pre">f((b</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">b)</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f(a</span> <span class="pre">+</span> <span class="pre">b)[(x</span> <span class="pre">↦</span> <span class="pre">x²)/f]</span></code> je enako <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">↦</span> <span class="pre">x²)((b</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">b)</span></code>.</p></li>
+</ul>
+<p>Ko napravimo substitucijo, moramo paziti, da se prosta spremenljivka ne »ujame«. S tem želimo povedati, da bi prosto
+spremenljivko vstavili v podizraz, v katerem je že veljavna enako poimenovana vezana spremenljivka, s čimer bi prišlo do
+zmede med obema spremenljivkama. Na primer, če v integralu</p>
+<div class="math notranslate nohighlight">
+\[\int_0^1 x^2 + b \, d x\]</div>
+<p>prosto spremenljivo <span class="math notranslate nohighlight">\(b\)</span> naivno zamenjamo z izrazom <span class="math notranslate nohighlight">\(x + a\)</span>, dobimo</p>
+<div class="math notranslate nohighlight">
+\[\int_0^1 x^2 + x + a \, d x\]</div>
+<p>To ni prav, saj je je <span class="math notranslate nohighlight">\(x\)</span> iz <span class="math notranslate nohighlight">\(x + a\)</span> ujel v integralu. Pravilen rezultat dobimo, če vezano spremenljivko v integralu
+najprej preimenujemo,</p>
+<div class="math notranslate nohighlight">
+\[\int_0^1 x^2 + b \, d x = \int_0^1 t^2 + b \, d t,\]</div>
+<p>in šele nato za <span class="math notranslate nohighlight">\(b\)</span> vstavimo <span class="math notranslate nohighlight">\(x + a\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\int_0^1 t^2 + x + a \, d t.\]</div>
+</div>
+<div class="section" id="racunsko-pravilo-ali-redukcija">
+<h3><span class="section-number">4.1.3. </span>Računsko pravilo ali β-redukcija<a class="headerlink" href="04-lambda-racun.html#racunsko-pravilo-ali-redukcija" title="Povezava na naslov">¶</a></h3>
+<p>Vsi znamo računati s funkcijskimi predpisi in aplikacijami, čeprav se tega morda ne
+zavedamo. Računsko pravilo, ki se iz zgodovinski razlogov imenuje <strong>β-redukcija</strong>, pravi</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(x ↦ e₁)(e₂)  =  e₁[e₂/x]
+</pre></div>
+</div>
+<p>in ga preberemo:</p>
+<blockquote>
+<div><p><em>Če uporabimo funkcijski predpis <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">↦</span> <span class="pre">e₁</span></code> na argumentu <code class="docutils literal notranslate"><span class="pre">e₂</span></code>, dobimo izraz <code class="docutils literal notranslate"><span class="pre">e₁</span></code>, v katerem <code class="docutils literal notranslate"><span class="pre">x</span></code> zamenjamo z <code class="docutils literal notranslate"><span class="pre">e₂</span></code>.</em></p>
+</div></blockquote>
+<p>Primer uporabe β-redukcije:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(x ↦ x² + 3·x + 7)(3)  =  3² + 3·3 + 7
+</pre></div>
+</div>
+<p>Pozor, pravilo za funkcijski zapis <em>ne</em> trdi <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">↦</span> <span class="pre">x²</span> <span class="pre">+</span> <span class="pre">3·x</span> <span class="pre">+</span> <span class="pre">7)(3)</span> <span class="pre">=</span> <span class="pre">25</span></code>, ampak le, da lahko <code class="docutils literal notranslate"><span class="pre">x</span></code> zamenjamo s <code class="docutils literal notranslate"><span class="pre">3</span></code> in
+dobimo <code class="docutils literal notranslate"><span class="pre">3²</span> <span class="pre">+</span> <span class="pre">3·3</span> <span class="pre">+</span> <span class="pre">7</span></code>. Če želimo od <code class="docutils literal notranslate"><span class="pre">3²</span> <span class="pre">+</span> <span class="pre">3·3</span> <span class="pre">+</span> <span class="pre">7</span></code> preiti na <code class="docutils literal notranslate"><span class="pre">25</span></code>, moramo uporabiti še dodatna računska pravila, za
+aritmetične operacije.</p>
+</div>
+<div class="section" id="gnezdeni-funkcijski-predpisi">
+<h3><span class="section-number">4.1.4. </span>Gnezdeni funkcijski predpisi<a class="headerlink" href="04-lambda-racun.html#gnezdeni-funkcijski-predpisi" title="Povezava na naslov">¶</a></h3>
+<p>Funkcijske predpise lahko gnezdimo, ali jih uporabljamo kot argumente. Primeri:</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">↦</span> <span class="pre">(y</span> <span class="pre">↦</span> <span class="pre">x</span> <span class="pre">·</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">y))(42)</span>&#160; <span class="pre">=</span>&#160; <span class="pre">(y</span> <span class="pre">↦</span> <span class="pre">42</span> <span class="pre">·</span> <span class="pre">42</span> <span class="pre">+</span> <span class="pre">y)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">((x</span> <span class="pre">↦</span> <span class="pre">(y</span> <span class="pre">↦</span> <span class="pre">x</span> <span class="pre">·</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">y))(42))(1)</span>&#160; <span class="pre">=</span>&#160; <span class="pre">(y</span> <span class="pre">↦</span> <span class="pre">42</span> <span class="pre">·</span> <span class="pre">42</span> <span class="pre">+</span> <span class="pre">y)(1)</span> <span class="pre">=</span>&#160; <span class="pre">42</span> <span class="pre">·</span> <span class="pre">42</span> <span class="pre">+</span> <span class="pre">1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(f</span> <span class="pre">↦</span> <span class="pre">f</span> <span class="pre">(f</span> <span class="pre">(3)))</span> <span class="pre">(n</span> <span class="pre">↦</span> <span class="pre">n</span> <span class="pre">·</span> <span class="pre">n</span> <span class="pre">+</span> <span class="pre">1)</span>&#160; <span class="pre">=</span>&#160; <span class="pre">(n</span> <span class="pre">↦</span> <span class="pre">n</span> <span class="pre">·</span> <span class="pre">n</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">((n</span> <span class="pre">↦</span> <span class="pre">n</span> <span class="pre">·</span> <span class="pre">n</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">(3))</span> <span class="pre">=</span>&#160; <span class="pre">(n</span> <span class="pre">↦</span> <span class="pre">n</span> <span class="pre">·</span> <span class="pre">n</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">(3</span> <span class="pre">·</span> <span class="pre">3</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">=</span> <span class="pre">(3</span> <span class="pre">·</span> <span class="pre">3</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">·</span> <span class="pre">(3</span> <span class="pre">·</span> <span class="pre">3</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">1</span></code></p></li>
+</ol>
+<p>Podobno kot pri integralih, je treba pred vstavljanjem izraza v funkcijski predpis po potrebi preimenovati vezano
+spremenljivko:</p>
+<ul class="simple">
+<li><p>pravilno: <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">↦</span> <span class="pre">(y</span> <span class="pre">↦</span> <span class="pre">x</span> <span class="pre">·</span> <span class="pre">y²))</span> <span class="pre">(z</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">=</span> <span class="pre">(y</span> <span class="pre">↦</span> <span class="pre">(z</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">·</span> <span class="pre">y²)</span></code></p></li>
+<li><p>narobe:   <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">↦</span> <span class="pre">(y</span> <span class="pre">↦</span> <span class="pre">x</span> <span class="pre">·</span> <span class="pre">y²))</span> <span class="pre">(y</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">=</span> <span class="pre">(y</span> <span class="pre">↦</span> <span class="pre">(y</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">·</span> <span class="pre">y²)</span></code></p></li>
+<li><p>pravilno: <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">↦</span> <span class="pre">(y</span> <span class="pre">↦</span> <span class="pre">x</span> <span class="pre">·</span> <span class="pre">y²))</span> <span class="pre">(y</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">=</span> <span class="pre">(x</span> <span class="pre">↦</span> <span class="pre">(a</span> <span class="pre">↦</span> <span class="pre">x</span> <span class="pre">·</span> <span class="pre">a²))</span> <span class="pre">(y</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">=</span> <span class="pre">(a</span> <span class="pre">↦</span> <span class="pre">(y</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">·</span> <span class="pre">a²)</span></code></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id1">
+<h2><span class="section-number">4.2. </span>λ-račun<a class="headerlink" href="04-lambda-racun.html#id1" title="Povezava na naslov">¶</a></h2>
+<p>Zapis <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">↦</span> <span class="pre">e</span></code> postane dolgovezen, ko funkcijske zapise gnezdimo, zato bomo uporabili starejši zapis</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>λ x . e
+</pre></div>
+</div>
+<p>To je prvotni zapis funkcijskih predpisov, kot ga je zapisal Alonzo Church, vaš akademski
+praded! Temu zapisu pravimo <strong>abstrakcija</strong> izraza <code class="docutils literal notranslate"><span class="pre">e</span></code> glede na spremenljivko <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<p>Poleg tega bomo aplikacijo <code class="docutils literal notranslate"><span class="pre">f(x)</span></code> pisali brez oklepajev <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">x</span></code>. Seveda pa oklepaje
+dodamo, kadar bi lahko prišlo do zmede. Dogovorimo se, da je aplikacija <em>levo
+asociativna</em>, torej</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>e₁ e₂ e₃  =  (e₁ e₂) e₃
+</pre></div>
+</div>
+<p>V abstrakciji <code class="docutils literal notranslate"><span class="pre">λ</span></code> vedno veže največ, kolikor lahko. Torej je <code class="docutils literal notranslate"><span class="pre">λ</span> <span class="pre">x</span> <span class="pre">.</span> <span class="pre">e₁</span> <span class="pre">e₂</span> <span class="pre">e₃</span></code> je enako <code class="docutils literal notranslate"><span class="pre">λ</span> <span class="pre">x</span> <span class="pre">.</span> <span class="pre">(e₁</span> <span class="pre">e₂</span> <span class="pre">e₃)</span></code> in ni enako <code class="docutils literal notranslate"><span class="pre">(λ</span> <span class="pre">x</span> <span class="pre">.</span> <span class="pre">e₁)</span> <span class="pre">e₂</span> <span class="pre">e₃</span></code>.</p>
+<p>Abstraktna sintaksa λ-računa je nadvse preprosta:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>⟨izraz⟩ ::= ⟨spremenljivka⟩
+          | ⟨izraz⟩ ⟨izraz⟩
+          | λ ⟨spremenljivka⟩ . ⟨izraz⟩
+</pre></div>
+</div>
+<p>Kadar imamo gnezdene abstrakcije</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>λ x . λ y . λ z . e
+</pre></div>
+</div>
+<p>jih gnezdimo <code class="docutils literal notranslate"><span class="pre">λ</span> <span class="pre">x</span> <span class="pre">.</span> <span class="pre">(λ</span> <span class="pre">y</span> <span class="pre">.</span> <span class="pre">(λ</span> <span class="pre">z</span> <span class="pre">.</span> <span class="pre">e))</span></code>. Dogovorimo se še, da lahko tako gnezdeno abstrakcijo
+krajše zapišemo</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>λ x y z . e
+</pre></div>
+</div>
+<div class="section" id="evalvacijske-strategije">
+<h3><span class="section-number">4.2.1. </span>Evalvacijske strategije<a class="headerlink" href="04-lambda-racun.html#evalvacijske-strategije" title="Povezava na naslov">¶</a></h3>
+<p>Pravilo za računanje lahko uporabimo na različne načine. Primer:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(λ x . (λ f . f x) (λ y . y)) ((λ z . g z) u)
+</pre></div>
+</div>
+<p>je enak</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(λ x . (λ f . f x) (λ y . y)) (g u)
+</pre></div>
+</div>
+<p>in prav tako</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(λ x . (λ y . y) x) ((λ z . g z) u)
+</pre></div>
+</div>
+<p>Vendar pa je λ-račun <strong>konfluenten</strong>, kar pomeni, da vrstni red računanja ni pomemben.
+Natančneje, če ima <code class="docutils literal notranslate"><span class="pre">e</span></code> dva možna računska koraka, <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">↦</span> <span class="pre">e₁</span></code> in <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">↦</span> <span class="pre">e₂</span></code>, potem lahko v <code class="docutils literal notranslate"><span class="pre">e₁</span></code>
+in v <code class="docutils literal notranslate"><span class="pre">e₂</span></code> izvedemo take računske korake, da se bosta pretvorila v isti izraz.</p>
+<p>V zgornjem primeru:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(λ x . (λ f . f x) (λ y . y)) (g u) =
+(λ x . (λ y . y) x) (g u)  =
+(λ x . x) (g u) =
+g u
+</pre></div>
+</div>
+<p>in</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(λ x . (λ y . y) x) ((λ z . g z) u) =
+(λ x . x) ((λ z . g z) u) =
+(λ z . g z) u =
+g u
+</pre></div>
+</div>
+<p>Dobili smo izraz, v katerem ne moremo več narediti računskega koraka. Pravimo, da je tak
+izraz v <strong>normalni obliki</strong>.</p>
+<p>Postavi se vprašanje, kako sistematično računati. Poznamo nekaj strategij:</p>
+<ul class="simple">
+<li><p><strong>Neučakana (eager evaluation):</strong> v izrazu <code class="docutils literal notranslate"><span class="pre">e₁</span> <span class="pre">e₂</span></code> najprej do konca izračunamo <code class="docutils literal notranslate"><span class="pre">e₁</span></code> da
+dobimo <code class="docutils literal notranslate"><span class="pre">λ</span> <span class="pre">x</span> <span class="pre">.</span> <span class="pre">e</span></code>, nato do konca izračunamo <code class="docutils literal notranslate"><span class="pre">e₂</span></code>, da dobimo <code class="docutils literal notranslate"><span class="pre">e₂'</span></code> in šele nato vstavimo
+<code class="docutils literal notranslate"><span class="pre">e₂'</span></code> v <code class="docutils literal notranslate"><span class="pre">e</span></code>.</p></li>
+<li><p><strong>Lena (lazy evaluation):</strong> v izrazu <code class="docutils literal notranslate"><span class="pre">e₁</span> <span class="pre">e₂</span></code> najprej izračunamo <code class="docutils literal notranslate"><span class="pre">e₁</span></code>, da dobimo <code class="docutils literal notranslate"><span class="pre">λ</span> <span class="pre">x</span> <span class="pre">.</span> <span class="pre">e</span></code>, nato pa takoj vstavimo <code class="docutils literal notranslate"><span class="pre">e₂</span></code> v <code class="docutils literal notranslate"><span class="pre">e</span></code>.</p></li>
+</ul>
+<p>Poleg tega lahko računamo znotraj abstrakcij ali ne. Programski jeziki znotraj abstrakcij
+ne računajo (to bi pomenilo, da se računa telo funkcije, še preden smo funkcijo
+poklicali).</p>
+</div>
+</div>
+<div class="section" id="programiranje-v-racunu">
+<h2><span class="section-number">4.3. </span>Programiranje v λ-računu<a class="headerlink" href="04-lambda-racun.html#programiranje-v-racunu" title="Povezava na naslov">¶</a></h2>
+<p>λ-račun je splošen programski jezik, ki je po moči ekvivalenten Turingovim strojem.</p>
+<p>Začnimo z osnovnimi preslikavami. <strong>Identiteta</strong> je preslikava <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">↦</span> <span class="pre">x</span></code>, ki jo zapišemo tudi kot</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>id := λ x . x
+</pre></div>
+</div>
+<p>Bolj zanimiva je <strong>kompozicija</strong> preslikav:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>compose := λ f g x . f (g x)
+</pre></div>
+</div>
+<p>Tudi konstantne funkcije ni težko definirati:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>const := λ c x . c
+</pre></div>
+</div>
+<p>Izraz <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">e</span></code> je funkcija, ki vedno vrne <code class="docutils literal notranslate"><span class="pre">e</span></code>.</p>
+<div class="section" id="boolove-vrednosti-in-pogojni-stavek">
+<h3><span class="section-number">4.3.1. </span>Boolove vrednosti in pogojni stavek<a class="headerlink" href="04-lambda-racun.html#boolove-vrednosti-in-pogojni-stavek" title="Povezava na naslov">¶</a></h3>
+<p>Kako pa lahko dobimo Boolove vrednosti in pogojni stavek? Iščemo λ-izraze <code class="docutils literal notranslate"><span class="pre">true</span></code>, <code class="docutils literal notranslate"><span class="pre">false</span></code>, in <code class="docutils literal notranslate"><span class="pre">if</span></code>, za katere velja</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>if true x y = x
+if false x y = y
+</pre></div>
+</div>
+<p>V λ-računu ustrezne izraze definiramo takole:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>true := λ x y . x
+false := λ x y . y
+if := λ b t e . b t e
+</pre></div>
+</div>
+</div>
+<div class="section" id="urejeni-pari">
+<h3><span class="section-number">4.3.2. </span>Urejeni pari<a class="headerlink" href="04-lambda-racun.html#urejeni-pari" title="Povezava na naslov">¶</a></h3>
+<p>Tu je kodiranje urejenih parov:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pair := λ a b . λp . p a b
+first := λ p . p (λx y . x)
+second := λ p . p (λx y. y)
+</pre></div>
+</div>
+<p>Na predavanjih bomo pojasnili, kako to deluje.</p>
+</div>
+<div class="section" id="zahtevnejsi-primeri">
+<h3><span class="section-number">4.3.3. </span>Zahtevnejši primeri<a class="headerlink" href="04-lambda-racun.html#zahtevnejsi-primeri" title="Povezava na naslov">¶</a></h3>
+<p>Zahtevnejše primere, kot so naravna števila in seznami, zapišimo v programskem jeziku <code class="docutils literal notranslate"><span class="pre">lambda</span></code> iz <a class="reference external" href="http://plzoo.andrej.com/">PL
+Zoo</a>. Da ohranimo kompatibilnost z računalniki iz leta 1968, se izognemo simbolu <code class="docutils literal notranslate"><span class="pre">λ</span></code> in ga
+nadomestimo z <code class="docutils literal notranslate"><span class="pre">^</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-- Urejeni pari
+
+pair := ^ a b . ^p . p a b ;
+first := ^ p . p (^ x y . x) ;
+second := ^ p . p (^ x y. y) ;
+
+-- Konstantna funkcija
+
+K := ^ x y . x ;
+
+-- Boolove vrednosti
+
+true  := ^ x y . x ;
+false := ^ x y . y ;
+if    := ^ p x y . p x y ;
+
+and := ^ x y . if x y false ;
+
+-- Churchova števila
+
+0  := ^ f x . x ;
+1  := ^ f x . f x ;
+2  := ^ f x . f (f x) ;
+3  := ^ f x . f (f (f x)) ;
+4  := ^ f x . f (f (f (f x))) ;
+5  := ^ f x . f (f (f (f (f x)))) ;
+6  := ^ f x . f (f (f (f (f (f x))))) ;
+7  := ^ f x . f (f (f (f (f (f (f x)))))) ;
+8  := ^ f x . f (f (f (f (f (f (f (f x))))))) ;
+9  := ^ f x . f (f (f (f (f (f (f (f (f x)))))))) ;
+10 := ^ f x . f (f (f (f (f (f (f (f (f (f x))))))))) ;
+
+-- Church-Scottova
+
+0&#39; := ^ f x . x ;
+1&#39; := ^ f x . f 0&#39; x ;
+2&#39; := ^ f x . f 1&#39; (f 0&#39; x) ;
+3&#39; := ^ f x . f 2&#39; (f 1&#39; (f 0&#39; x)) ;
+4&#39; := ^ f x . f 3&#39; (f 2&#39; (f 1&#39; (f 0&#39; x)))
+
+succ := ^n f x . f (n f x) ;
+
++ := ^n m f x . (n f) ((m f) x) ;
+
+iszero := ^n . n (K false) true ;
+
+pred := ^n . second (n (^p. pair (succ (first p)) (first p)) (pair 0 0)) ;
+
+&lt;= := ^m n . iszero (n pred m) ;
+
+&gt;= := ^m n . iszero (m pred n) ;
+
+&lt; := ^m n . &lt;= (succ m) n ;
+
+&gt; := ^m n . &gt;= m (succ n) ;
+</pre></div>
+</div>
+<p>Na voljo je <a class="reference external" href="../../../ISRM-PPJ-2022/lambda/index.html">spletni vmesnik</a> za <code class="docutils literal notranslate"><span class="pre">lambda</span></code>. Kogar zanima, kako se
+naredi tak vmesnik, si lahko ogleda repozitorij <a class="reference external" href="https://github.com/andrejbauer/repl-in-browser"><code class="docutils literal notranslate"><span class="pre">repl-in-browser</span></code></a>).</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./04-lambda-racun"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../03-dokazovanje-pravilnosti/03-dokazovanje-pravilnosti.html" title="nazaj page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">nazaj</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Dokazovanje pravilnosti programov</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../05-deklarativno-programiranje/05-deklarativno-programiranje.html" title="naprej page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">naprej</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Deklarativno programiranje</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Avtor Andrej Bauer<br/>
+    
+        &copy; avtorske pravice 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

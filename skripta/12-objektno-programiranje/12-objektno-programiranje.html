@@ -1,0 +1,749 @@
+
+<!DOCTYPE html>
+
+<html lang="sl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12. Objektno programiranje &#8212; Principi programskih jezikov</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css%3Fdigest=c3fdc42140077d1ad13ad2f1588a4309.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Abecedni seznam" href="../genindex.html" />
+    <link rel="search" title="Išči" href="../search.html" />
+    <link rel="next" title="13. Haskell in razredi tipov" href="../14-haskell-in-razredi-tipov/14-haskell-in-razredi-tipov.html" />
+    <link rel="prev" title="11. Podtipi" href="../11-podtipi/11-podtipi.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="sl">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Principi programskih jezikov</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Poiščite to knjigo ..." aria-label="Poiščite to knjigo ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-uvod.html">
+   Uvod
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-aritmeticni-izrazi/01-aritmeticni-izrazi.html">
+   1. O programskih jezikih in aritmetičnih izrazih
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-ukazni-programski-jezik/02-ukazni-programski-jezik.html">
+   2. Ukazni programski jezik
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-dokazovanje-pravilnosti/03-dokazovanje-pravilnosti.html">
+   3. Dokazovanje pravilnosti programov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-lambda-racun/04-lambda-racun.html">
+   4. λ-račun
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-deklarativno-programiranje/05-deklarativno-programiranje.html">
+   5. Deklarativno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-rekurzija/06-rekurzija.html">
+   6. Rekurzija in rekurzivni tipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07-izpeljava-tipov/07-izpeljava-tipov.html">
+   7. Izpeljava tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08-abstrakcija/08-abstrakcija.html">
+   8. Specifikacija, implementacija, abstrakcija
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09-logicno-programiranje/09-logicno-programiranje.html">
+   9. Logično programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10-programiranje-z-omejitvami/10-programiranje-z-omejitvami.html">
+   10. Logično programiranje z omejitvami
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11-podtipi/11-podtipi.html">
+   11. Podtipi
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="12-objektno-programiranje.html#">
+   12. Objektno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-haskell-in-razredi-tipov/14-haskell-in-razredi-tipov.html">
+   13. Haskell in razredi tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-monade/15-monade.html">
+   14. Monade in računski učinki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-ucinki-in-prestrezniki/13-ucinki-in-prestrezniki.html">
+   15. Učinki in prestrezniki
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Preklopi navigacijo" aria-controls="site-navigation"
+                title="Preklopi navigacijo" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Prenesite to stran"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/12-objektno-programiranje/12-objektno-programiranje.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Prenesite izvorno datoteko" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Natisni v PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Celozaslonski način"
+        title="Celozaslonski način"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Vsebina
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="12-objektno-programiranje.html#objekti">
+   12.1. Objekti
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#objekti-v-ocamlu">
+     12.1.1. Objekti v OCamlu
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="12-objektno-programiranje.html#objektno-programiranje-z-razredi">
+   12.2. Objektno programiranje z razredi
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#enkapsulacija">
+     12.2.1. Enkapsulacija
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#konstruktor">
+     12.2.2. Konstruktor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#dedovanje">
+     12.2.3. Dedovanje
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#vmesniki">
+     12.2.4. Vmesniki
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#prekrivanje">
+     12.2.5. Prekrivanje
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#preobtezevanje">
+     12.2.6. Preobteževanje
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#genericne-metode-in-razredi">
+     12.2.7. Generične metode in razredi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#abstraktne-metode-in-razredi">
+     12.2.8. Abstraktne metode in razredi
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Objektno programiranje</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Vsebina </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="12-objektno-programiranje.html#objekti">
+   12.1. Objekti
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#objekti-v-ocamlu">
+     12.1.1. Objekti v OCamlu
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="12-objektno-programiranje.html#objektno-programiranje-z-razredi">
+   12.2. Objektno programiranje z razredi
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#enkapsulacija">
+     12.2.1. Enkapsulacija
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#konstruktor">
+     12.2.2. Konstruktor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#dedovanje">
+     12.2.3. Dedovanje
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#vmesniki">
+     12.2.4. Vmesniki
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#prekrivanje">
+     12.2.5. Prekrivanje
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#preobtezevanje">
+     12.2.6. Preobteževanje
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#genericne-metode-in-razredi">
+     12.2.7. Generične metode in razredi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="12-objektno-programiranje.html#abstraktne-metode-in-razredi">
+     12.2.8. Abstraktne metode in razredi
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="objektno-programiranje">
+<h1><span class="section-number">12. </span>Objektno programiranje<a class="headerlink" href="12-objektno-programiranje.html#objektno-programiranje" title="Povezava na naslov">¶</a></h1>
+<div class="section" id="objekti">
+<h2><span class="section-number">12.1. </span>Objekti<a class="headerlink" href="12-objektno-programiranje.html#objekti" title="Povezava na naslov">¶</a></h2>
+<p>Objekti so podobni zapisom, le da imajo atribute in metode. Metode se lahko
+sklicujejo na atribute, kakor tudi na druge metode (z uporabo <code class="docutils literal notranslate"><span class="pre">this</span></code> ali <code class="docutils literal notranslate"><span class="pre">self</span></code>).</p>
+<p>Torej so objekti neke vrste <strong>rekurzivni zapisi</strong>. Rekurzivni, ker se lahko
+objekt skliče sam nase.</p>
+<div class="section" id="objekti-v-ocamlu">
+<h3><span class="section-number">12.1.1. </span>Objekti v OCamlu<a class="headerlink" href="12-objektno-programiranje.html#objekti-v-ocamlu" title="Povezava na naslov">¶</a></h3>
+<p>V OCamlu in nekaterih drugih lahko objekte naredimo neposredno</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">object</span> <span class="o">(</span><span class="n">this</span><span class="o">)</span>
+   <span class="k">val</span> <span class="n">x</span> <span class="o">=</span> <span class="o">...</span>
+   <span class="k">val</span> <span class="n">y</span> <span class="o">=</span> <span class="o">...</span>
+   <span class="k">method</span> <span class="n">f</span> <span class="o">=</span> <span class="o">...</span>
+   <span class="k">method</span> <span class="n">g</span> <span class="o">=</span> <span class="o">...</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Funkcionalnost objekta (njegove metode) opišemo s tipom zapisa. S podtipi lahko
+objekte umeščamo v hierarhijo.</p>
+<p>Več primerov bomo obdelali na vajah, poglejmo primere:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="c">(* Objekt lahko definiramo neposredno tako, da podamo njegove</span>
+<span class="c">   atribute in metode. *)</span>
+<span class="k">let</span> <span class="n">p</span> <span class="o">=</span>
+  <span class="k">object</span>
+    <span class="c">(* atributi, v OCamlu se imenujejo &quot;instance variable&quot; *)</span>
+    <span class="k">val</span> <span class="k">mutable</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">val</span> <span class="k">mutable</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span>
+
+    <span class="c">(* metode *)</span>
+    <span class="k">method</span> <span class="n">get_x</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="k">method</span> <span class="n">get_y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="k">method</span> <span class="n">move</span> <span class="n">dx</span> <span class="n">dy</span> <span class="o">=</span>
+      <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dx</span> <span class="o">;</span>
+      <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span>
+  <span class="k">end</span>
+
+<span class="c">(* Če želimo klicati eno eno metodo iz druge, moramo podati tudi ime,</span>
+<span class="c">   s katerim se objekt sklicuje sam nase. *)</span>
+<span class="k">let</span> <span class="n">q</span> <span class="o">=</span>
+  <span class="k">object</span> <span class="o">(</span><span class="n">this</span><span class="o">)</span> <span class="c">(* namesto &quot;this&quot; bi lahko uporabili kako drugo ime *)</span>
+    <span class="k">val</span> <span class="k">mutable</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">val</span> <span class="k">mutable</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span>
+
+    <span class="k">method</span> <span class="n">get_x</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="k">method</span> <span class="n">get_y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="k">method</span> <span class="n">move</span> <span class="n">dx</span> <span class="n">dy</span> <span class="o">=</span>
+      <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">this</span><span class="o">#</span><span class="n">get_x</span> <span class="o">+</span> <span class="n">dx</span> <span class="o">;</span>  <span class="c">(* tu se sklicujemo na metodo get_x *)</span>
+      <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span>
+  <span class="k">end</span>
+
+<span class="c">(* Funkcija, ki sprejme začetni vrednosti atributov x in y ter</span>
+<span class="c">   vrne ustrezno inicializiran objekt. To je zelo podobno konstruktorjem</span>
+<span class="c">   v Javi, a je le funkcija. *)</span>
+<span class="k">let</span> <span class="n">make_point</span> <span class="n">x0</span> <span class="n">y0</span> <span class="o">=</span>
+  <span class="k">object</span>
+    <span class="k">val</span> <span class="k">mutable</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="k">val</span> <span class="k">mutable</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y0</span>
+
+    <span class="k">method</span> <span class="n">get_x</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="k">method</span> <span class="n">get_y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="k">method</span> <span class="n">move</span> <span class="n">dx</span> <span class="n">dy</span> <span class="o">=</span>
+      <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dx</span> <span class="o">;</span>
+      <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span>
+  <span class="k">end</span>
+
+<span class="c">(* S tako funkcijo naredimo nov objekt. *)</span>
+<span class="k">let</span> <span class="n">r</span> <span class="o">=</span> <span class="n">make_point</span> <span class="mi">1</span> <span class="mi">3</span>
+
+<span class="c">(* OCaml pozna tudi razrede, ki jih definiramo, kot da bi bili funkcije, ki</span>
+<span class="c">   vračajo objekte (vendar to niso). *)</span>
+<span class="k">class</span> <span class="n">point</span> <span class="n">x0</span> <span class="n">y0</span> <span class="o">=</span>
+  <span class="k">object</span>
+    <span class="k">val</span> <span class="k">mutable</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="k">val</span> <span class="k">mutable</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y0</span>
+
+    <span class="k">method</span> <span class="n">get_x</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="k">method</span> <span class="n">get_y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="k">method</span> <span class="n">move</span> <span class="n">dx</span> <span class="n">dy</span> <span class="o">=</span>
+      <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dx</span> <span class="o">;</span>
+      <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span>
+  <span class="k">end</span>
+
+<span class="c">(* Z &quot;new&quot; naredimo nov objekt danega razreda. *)</span>
+<span class="k">let</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">point</span> <span class="mi">1</span> <span class="mi">3</span>
+
+<span class="c">(* Primerjajmo tipa objektov r in s:</span>
+
+<span class="c">   r : &lt; get_x : int; get_y : int; move : int -&gt; int -&gt; unit &gt;</span>
+<span class="c">   s : point</span>
+
+<span class="c">   Tip r je podoben tipu zapisa, saj našteje metode (ne pa atributov, ki so</span>
+<span class="c">   popolnoma skriti). Tip s je kar ime razreda, ki mu s pripada.</span>
+
+<span class="c">   Ker razred point definira natanko iste metode, kot tip r, sta r in s</span>
+<span class="c">   pravzaprav istega tipa, &quot;point&quot; je samo okrajšava.</span>
+<span class="c">*)</span>
+
+<span class="c">(* Poglejmo še, kako deluje dedovanje in podrazredi. *)</span>
+
+<span class="k">type</span> <span class="n">color</span> <span class="o">=</span> <span class="o">{</span> <span class="n">r</span> <span class="o">:</span> <span class="kt">float</span><span class="o">;</span> <span class="n">g</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">;</span> <span class="n">b</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">}</span>
+
+<span class="k">let</span> <span class="n">pink</span> <span class="o">=</span> <span class="o">{</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="o">;</span> <span class="n">g</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.</span><span class="mi">75</span><span class="o">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.</span><span class="mi">75</span> <span class="o">}</span>
+
+<span class="c">(* Razred color_point podeduje razred point. *)</span>
+<span class="k">class</span> <span class="n">color_point</span> <span class="n">x0</span> <span class="n">y0</span> <span class="o">(</span><span class="n">c0</span> <span class="o">:</span> <span class="n">color</span><span class="o">)</span> <span class="o">=</span>
+<span class="k">object</span>
+  <span class="k">inherit</span> <span class="n">point</span> <span class="n">x0</span> <span class="n">y0</span> <span class="c">(* dedovanje *)</span>
+
+  <span class="k">val</span> <span class="n">color</span> <span class="o">=</span> <span class="n">c0</span>
+
+  <span class="k">method</span> <span class="n">get_color</span> <span class="o">=</span> <span class="n">color</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Poglej Tudi</p>
+<p>OCaml ima zelo bogat nabor konstrukcij za objektno programiranje, več o njih preberite
+v dokumentaciji <a class="reference external" href="https://v2.ocaml.org/manual/objectexamples.html">Objects in OCaml</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="objektno-programiranje-z-razredi">
+<h2><span class="section-number">12.2. </span>Objektno programiranje z razredi<a class="headerlink" href="12-objektno-programiranje.html#objektno-programiranje-z-razredi" title="Povezava na naslov">¶</a></h2>
+<p>Mnogi objektni jeziki pa poznajo mehanizem <strong>razredov</strong> (Java, C++, C#).
+Poglejmo še enkrat primer točke:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="n">p</span> <span class="o">=</span>
+  <span class="k">object</span>
+    <span class="k">val</span> <span class="k">mutable</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">val</span> <span class="k">mutable</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span>
+
+    <span class="k">method</span> <span class="n">get_x</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="k">method</span> <span class="n">get_y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="k">method</span> <span class="n">move</span> <span class="n">dx</span> <span class="n">dy</span> <span class="o">=</span>
+      <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dx</span> <span class="o">;</span>
+      <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span>
+  <span class="k">end</span>
+</pre></div>
+</div>
+<p>Zgornja koda naredi le <em>eno</em> točko. Če želimo narediti več točk, lahko napišemo
+funkcijo, ki sprejme začetno pozicijo in vrne objekt. Lahko pa definiramo razred, na
+primer v Javi:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Point</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">x</span> <span class="p">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">y</span> <span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Point</span><span class="p">(</span><span class="kt">int</span> <span class="n">x0</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">x0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">y0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">get_x</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">x</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">get_y</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">y</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">move</span><span class="p">(</span><span class="kt">int</span> <span class="n">dx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dy</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">x</span> <span class="o">+=</span> <span class="n">dx</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">y</span> <span class="o">+=</span> <span class="n">dy</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Sedaj tvorimo nove točke s <em>konstruktorjem</em>: <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Point(10,</span> <span class="pre">20)</span></code>.</p>
+<p>Tudi v OCamlu lahko definiramo razred:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="n">point</span> <span class="n">x0</span> <span class="n">y0</span> <span class="o">=</span>
+  <span class="k">object</span>
+    <span class="k">val</span> <span class="k">mutable</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="k">val</span> <span class="k">mutable</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y0</span>
+
+    <span class="k">method</span> <span class="n">get_x</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="k">method</span> <span class="n">get_y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="k">method</span> <span class="n">move</span> <span class="n">dx</span> <span class="n">dy</span> <span class="o">=</span>
+      <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dx</span> <span class="o">;</span>
+      <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span>
+  <span class="k">end</span>
+</pre></div>
+</div>
+<p>In tvorimo novo točko s konstruktorjem: <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">point</span> <span class="pre">10</span> <span class="pre">20</span></code>.</p>
+<p>Razredi niso samo bližnjica za konstruktorje, ampak omogočajo še mnoge druge
+mehanizme:</p>
+<ul class="simple">
+<li><p>enkapsulacija</p></li>
+<li><p>konstruktor</p></li>
+<li><p>dedovanje</p></li>
+<li><p>vmesniki</p></li>
+<li><p>prekrivanje metod</p></li>
+<li><p>preobteževanje metod</p></li>
+<li><p>generične metode in razredi</p></li>
+<li><p>abstrakne metode in razredi</p></li>
+<li><p>⋯</p></li>
+</ul>
+<p>Vsi ti mehanizmi lahko delo z razredi naredijo precej zapleteno. Verjetno je eden
+od razlogov za kompleksnost ta, da programski jeziki kot so Java, C# in C++
+<em>vse</em> mehanizme za organizacijo kode izražajo s pomočjo razredov. Tako Java ne
+pozna modulov in funktorjev, algebrajskih podatkovnih tipov, ali parametričnega
+polimorfizma – vse to nadomešča z razredi.</p>
+<p>Naredimo kratek pregled osnovnih mehanizmov objektnega programiranja z razredi
+in jih primerjajmo s koncepti, ki smo jih spoznali do sedaj.</p>
+<div class="section" id="enkapsulacija">
+<h3><span class="section-number">12.2.1. </span>Enkapsulacija<a class="headerlink" href="12-objektno-programiranje.html#enkapsulacija" title="Povezava na naslov">¶</a></h3>
+<p>Enkapsulacija je skrivanje stanja objekta, se pravi, da naredimo atribute (lahko
+pa tudi metode) nedostopne zunaj razreda. V Javi to naredimo z določilom
+<code class="docutils literal notranslate"><span class="pre">private</span></code>.</p>
+<p>V OCamlu so atributi vedno privatni. Metodo naredimo privatno z določilom
+<code class="docutils literal notranslate"><span class="pre">private</span></code>.</p>
+<p>Pojem <em>enkapsulacija</em> včasih zajema tudi idejo, da objekt poleg stanja
+(atributov) s seboj nosi tudi metode za delo z njimi.</p>
+<p>Skrivanje definicij lahko implementiramo tudi z lokalnimi definicijami in
+signaturami, ki zakrijejo implementacijo.</p>
+</div>
+<div class="section" id="konstruktor">
+<h3><span class="section-number">12.2.2. </span>Konstruktor<a class="headerlink" href="12-objektno-programiranje.html#konstruktor" title="Povezava na naslov">¶</a></h3>
+<p>Konstruktor je del kode, ki nastavi začetne vrednosti atributov objekta.
+Običajno konstruktor sprejme argumente, se pravi, da je to funkcija.</p>
+<p>V Javi je ime konstruktorja enako imenu razreda, prav tako v C++ in OCamlu.</p>
+</div>
+<div class="section" id="dedovanje">
+<h3><span class="section-number">12.2.3. </span>Dedovanje<a class="headerlink" href="12-objektno-programiranje.html#dedovanje" title="Povezava na naslov">¶</a></h3>
+<p>En razred lahko <em>deduje</em> od drugega:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">A</span> <span class="kd">extends</span> <span class="n">B</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>To pomeni, da ima <code class="docutils literal notranslate"><span class="pre">A</span></code> vse, kar ima <code class="docutils literal notranslate"><span class="pre">B</span></code> (torej atribute in metode).</p>
+<p>OCaml dopušča <a class="reference external" href="https://v2.ocaml.org/manual/objectexamples.html#s%3Amultiple-inheritance">večkratno dedovanje</a>,
+ko en razred deduje hkrati od več nadrazredov.</p>
+</div>
+<div class="section" id="vmesniki">
+<h3><span class="section-number">12.2.4. </span>Vmesniki<a class="headerlink" href="12-objektno-programiranje.html#vmesniki" title="Povezava na naslov">¶</a></h3>
+<p>Vmesniki predpisujejo funkcionalnost, ki jo mora imeti objekt. V Javi vmesnik
+definiramo z</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nc">I</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>in od razreda zahtevamo, da zadosti vmesniku <code class="docutils literal notranslate"><span class="pre">I</span></code> (lahko tudi več)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">C</span> <span class="n">implements</span> <span class="n">I</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>O vmesnikih smo že govorili.</p>
+</div>
+<div class="section" id="prekrivanje">
+<h3><span class="section-number">12.2.5. </span>Prekrivanje<a class="headerlink" href="12-objektno-programiranje.html#prekrivanje" title="Povezava na naslov">¶</a></h3>
+<p>Razred lahko nekatere od podedovanih metod <em>prekrije</em> z lastnimi definicijami.</p>
+<p>Tu se pojavi vprašanje, kako dostopati do prekritih metod, saj jih včasih
+potrebujemo. V Javi to naredimo s <code class="docutils literal notranslate"><span class="pre">super.imeMetode(⋯)</span></code>. Podobno vprašanje se
+pojavi pri konstruktorjih: kako iz konstruktorja pokličemo konstruktor iz
+nadrazreda?</p>
+</div>
+<div class="section" id="preobtezevanje">
+<h3><span class="section-number">12.2.6. </span>Preobteževanje<a class="headerlink" href="12-objektno-programiranje.html#preobtezevanje" title="Povezava na naslov">¶</a></h3>
+<p>Če imamo več metod z istim imenom <code class="docutils literal notranslate"><span class="pre">f</span></code>, pravimo, da smo <code class="docutils literal notranslate"><span class="pre">f</span></code> <em>preobtežili</em> (angl.
+overload). Metode se morajo med seboj razlikovati po števili argumentov ali
+njihovih tipih, sicer iz klice metode ne moremo razbrati, katero različico
+želimo.</p>
+<p>OCaml ne pozna preobteževanja. Lahko pa uporabimo module in jih odpremo lokalno
+z <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">open</span> <span class="pre">M</span> <span class="pre">in</span> <span class="pre">⋯</span></code> ali <code class="docutils literal notranslate"><span class="pre">M.(⋯)</span></code>.</p>
+</div>
+<div class="section" id="genericne-metode-in-razredi">
+<h3><span class="section-number">12.2.7. </span>Generične metode in razredi<a class="headerlink" href="12-objektno-programiranje.html#genericne-metode-in-razredi" title="Povezava na naslov">¶</a></h3>
+<p>Generične metode in razredi so parametrizirani z razredi ali vmesniki, takole:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>public class A&lt;B&gt; {
+  ⋯
+}
+</pre></div>
+</div>
+<p>Definicija razreda <code class="docutils literal notranslate"><span class="pre">A</span></code> je <em>parametrizirana</em> z razredom <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+<p>V C++ v ta namen uporabljamo predloge (angl. templates).</p>
+<p>V OCaml poznamo tri mehanizme za generično programiranje: parametrični
+polimorfizem, moduli in <a class="reference external" href="https://v2.ocaml.org/manual/objectexamples.html#s%3Aparameterized-classes">parametrizirani razredi</a>.</p>
+</div>
+<div class="section" id="abstraktne-metode-in-razredi">
+<h3><span class="section-number">12.2.8. </span>Abstraktne metode in razredi<a class="headerlink" href="12-objektno-programiranje.html#abstraktne-metode-in-razredi" title="Povezava na naslov">¶</a></h3>
+<p><em>Abstraktne</em> (v C++ se imenujejo <em>virtualne</em>) so metode, ki jih ne
+implementiramo, ampak samo deklariramo. Se pravi, povemo njihov tip ne pa tudi
+implementacije.</p>
+<p>Če razred vsebuje abstraktno metodo, mora biti tudi sam deklariran kot
+abstrakten. Objektov abstraktnega razreda ne moremo ustvarjati z <code class="docutils literal notranslate"><span class="pre">new</span></code>, saj so
+neke vrste „nedokončani“ razredi.</p>
+<p>Abstraktni razred je neke vrste mešanica implementacije in speficikacije
+(specifikacija sestoji iz abstraktnih metod).</p>
+<p>Razredi v OCamlu so lahko abstraktni, pravi se jim <a class="reference external" href="https://v2.ocaml.org/manual/objectexamples.html#s%3Avirtual-methods">virtualni razredi</a>.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./12-objektno-programiranje"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../11-podtipi/11-podtipi.html" title="nazaj page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">nazaj</p>
+            <p class="prev-next-title"><span class="section-number">11. </span>Podtipi</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../14-haskell-in-razredi-tipov/14-haskell-in-razredi-tipov.html" title="naprej page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">naprej</p>
+        <p class="prev-next-title"><span class="section-number">13. </span>Haskell in razredi tipov</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Avtor Andrej Bauer<br/>
+    
+        &copy; avtorske pravice 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

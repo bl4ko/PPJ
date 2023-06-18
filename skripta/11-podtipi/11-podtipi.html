@@ -1,0 +1,712 @@
+
+<!DOCTYPE html>
+
+<html lang="sl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>11. Podtipi &#8212; Principi programskih jezikov</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css%3Fdigest=c3fdc42140077d1ad13ad2f1588a4309.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Abecedni seznam" href="../genindex.html" />
+    <link rel="search" title="Išči" href="../search.html" />
+    <link rel="next" title="12. Objektno programiranje" href="../12-objektno-programiranje/12-objektno-programiranje.html" />
+    <link rel="prev" title="10. Logično programiranje z omejitvami" href="../10-programiranje-z-omejitvami/10-programiranje-z-omejitvami.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="sl">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Principi programskih jezikov</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Poiščite to knjigo ..." aria-label="Poiščite to knjigo ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-uvod.html">
+   Uvod
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-aritmeticni-izrazi/01-aritmeticni-izrazi.html">
+   1. O programskih jezikih in aritmetičnih izrazih
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-ukazni-programski-jezik/02-ukazni-programski-jezik.html">
+   2. Ukazni programski jezik
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-dokazovanje-pravilnosti/03-dokazovanje-pravilnosti.html">
+   3. Dokazovanje pravilnosti programov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-lambda-racun/04-lambda-racun.html">
+   4. λ-račun
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-deklarativno-programiranje/05-deklarativno-programiranje.html">
+   5. Deklarativno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-rekurzija/06-rekurzija.html">
+   6. Rekurzija in rekurzivni tipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07-izpeljava-tipov/07-izpeljava-tipov.html">
+   7. Izpeljava tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08-abstrakcija/08-abstrakcija.html">
+   8. Specifikacija, implementacija, abstrakcija
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09-logicno-programiranje/09-logicno-programiranje.html">
+   9. Logično programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10-programiranje-z-omejitvami/10-programiranje-z-omejitvami.html">
+   10. Logično programiranje z omejitvami
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="11-podtipi.html#">
+   11. Podtipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12-objektno-programiranje/12-objektno-programiranje.html">
+   12. Objektno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-haskell-in-razredi-tipov/14-haskell-in-razredi-tipov.html">
+   13. Haskell in razredi tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-monade/15-monade.html">
+   14. Monade in računski učinki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-ucinki-in-prestrezniki/13-ucinki-in-prestrezniki.html">
+   15. Učinki in prestrezniki
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Preklopi navigacijo" aria-controls="site-navigation"
+                title="Preklopi navigacijo" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Prenesite to stran"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/11-podtipi/11-podtipi.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Prenesite izvorno datoteko" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Natisni v PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Celozaslonski način"
+        title="Celozaslonski način"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Vsebina
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="11-podtipi.html#relacija-podtip-a-b">
+   11.1. Relacija podtip
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     A
+    </span>
+    <span class="pre">
+     ≤
+    </span>
+    <span class="pre">
+     B
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="11-podtipi.html#podtipi-zapisov">
+   11.2. Podtipi zapisov
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="11-podtipi.html#podtipi-zapisov-v-sirino">
+     11.2.1. Podtipi zapisov v širino
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="11-podtipi.html#podtipi-zapisov-v-globino">
+     11.2.2. Podtipi zapisov v globino
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="11-podtipi.html#zapisi-s-spremenljivimi-polji">
+     11.2.3. Zapisi s spremenljivimi polji
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="11-podtipi.html#problem-koherentnosti">
+     11.2.4. Problem koherentnosti
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="11-podtipi.html#podtipi-na-nivoju-struktur">
+   11.3. Podtipi na nivoju struktur
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Podtipi</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Vsebina </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="11-podtipi.html#relacija-podtip-a-b">
+   11.1. Relacija podtip
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     A
+    </span>
+    <span class="pre">
+     ≤
+    </span>
+    <span class="pre">
+     B
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="11-podtipi.html#podtipi-zapisov">
+   11.2. Podtipi zapisov
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="11-podtipi.html#podtipi-zapisov-v-sirino">
+     11.2.1. Podtipi zapisov v širino
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="11-podtipi.html#podtipi-zapisov-v-globino">
+     11.2.2. Podtipi zapisov v globino
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="11-podtipi.html#zapisi-s-spremenljivimi-polji">
+     11.2.3. Zapisi s spremenljivimi polji
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="11-podtipi.html#problem-koherentnosti">
+     11.2.4. Problem koherentnosti
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="11-podtipi.html#podtipi-na-nivoju-struktur">
+   11.3. Podtipi na nivoju struktur
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="podtipi">
+<h1><span class="section-number">11. </span>Podtipi<a class="headerlink" href="11-podtipi.html#podtipi" title="Povezava na naslov">¶</a></h1>
+<p>Spoznali smo že <em>polimorfizem</em>, to je lastnost, da ima lahko izraz več kot en
+tip. Na primer, v OCamlu ima preslikava</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fun (x, y) -&gt; (y, x)
+</pre></div>
+</div>
+<p>tip <code class="docutils literal notranslate"><span class="pre">α</span> <span class="pre">×</span> <span class="pre">β</span> <span class="pre">→</span> <span class="pre">β</span> <span class="pre">×</span> <span class="pre">α</span></code>, kjer sta <code class="docutils literal notranslate"><span class="pre">α</span></code> in <code class="docutils literal notranslate"><span class="pre">β</span></code> poljubna tipa. Danes bomo spoznali
+<strong>podtipe</strong>, ki delujejo podobno: če ima izraz <code class="docutils literal notranslate"><span class="pre">e</span></code> tip <code class="docutils literal notranslate"><span class="pre">t</span></code>, ga lahko
+uporabljamo, kot da bi imel tudi vse nadtipe tipa <code class="docutils literal notranslate"><span class="pre">t</span></code>.</p>
+<p>Na primer, v nekaterih programskih jezikih lahko izraz <code class="docutils literal notranslate"><span class="pre">e</span></code> tipa <code class="docutils literal notranslate"><span class="pre">int</span></code> vedno
+uporabimo, kot da bi ime tip <code class="docutils literal notranslate"><span class="pre">float</span></code>, saj bo jezik samo pretvoril <code class="docutils literal notranslate"><span class="pre">e</span></code>.</p>
+<p>V Javi poznamo <em>podrazrede</em>, ki so tudi vrsta podtipov, a jih bomo obravnavali
+prihodnjič.</p>
+<div class="section" id="relacija-podtip-a-b">
+<h2><span class="section-number">11.1. </span>Relacija podtip <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">≤</span> <span class="pre">B</span></code><a class="headerlink" href="11-podtipi.html#relacija-podtip-a-b" title="Povezava na naslov">¶</a></h2>
+<p>Najprej se dogovorimo za zapis relacije „podtip“. Za tipa <span class="math notranslate nohighlight">\(A\)</span> in <span class="math notranslate nohighlight">\(B\)</span> zapis</p>
+<div class="math notranslate nohighlight">
+\[
+A \leq B
+\]</div>
+<p>preberemo »<span class="math notranslate nohighlight">\(A\)</span> je podtip <span class="math notranslate nohighlight">\(B\)</span>« ali »<span class="math notranslate nohighlight">\(B\)</span> je nadtip <span class="math notranslate nohighlight">\(A\)</span>«. Sledimo naslednjemu
+osnovnemu načelu:</p>
+<div class="admonition important">
+<p class="admonition-title">Pomembno</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> je podtip <span class="math notranslate nohighlight">\(B\)</span>, če lahko vrednosti tipa <span class="math notranslate nohighlight">\(A\)</span> uporabljamo, kot da bi imele
+tip <span class="math notranslate nohighlight">\(B\)</span>.</p>
+</div>
+<p>Pravilo sklepanja, ki izraža zgornje načelo je</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{e : A \qquad A \leq B}{e : B}
+\]</div>
+<p>in preberemo: »Če ima <span class="math notranslate nohighlight">\(e\)</span> tip <span class="math notranslate nohighlight">\(A\)</span> in je <span class="math notranslate nohighlight">\(A\)</span> podtip <span class="math notranslate nohighlight">\(B\)</span>, potem ima <span class="math notranslate nohighlight">\(e\)</span> tudi tip <span class="math notranslate nohighlight">\(B\)</span>.«</p>
+<div class="admonition warning">
+<p class="admonition-title">Opozorilo</p>
+<p>Zmotno bi si bilo predstavljati, da je <span class="math notranslate nohighlight">\(A \leq B\)</span> isto kot <span class="math notranslate nohighlight">\(A \subseteq B\)</span>, se
+pravi, da je podtip ista reč kot podmnožica. V razdelku o podtipih zapisov bomo
+namreč spoznali podtipe, ki se razlikujejo od relacije podmnožica.</p>
+</div>
+<p>Zapišimo pravila, ki izražajo pričakovane lastnosti relacije <span class="math notranslate nohighlight">\(\leq\)</span>. Vsekakor je relacija <em>refleksivna</em> in <em>tranzitivna</em> (taki relaciji pravimo <em>šibka urejenost</em>):</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{ }{A \leq A}
+\qquad
+\frac{A \leq B \quad B \leq C}{A \leq C}
+\]</div>
+<p>Kaj pa antisimetričnost: če <span class="math notranslate nohighlight">\(A \leq B\)</span> in <span class="math notranslate nohighlight">\(B \leq A\)</span>, potem <span class="math notranslate nohighlight">\(A = B\)</span>? Ne, kasneje
+bomo videli protiprimer, torej <span class="math notranslate nohighlight">\(\leq\)</span> ni <em>delna urejenost</em>.</p>
+<p>Nadalje zapišemo še pravila, ki opredeljujejo, kako se obnašajo podtipi za razne
+operacije. Kartezični produkti delujejo po pričakovanjih:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{A_1 \leq B_1 \quad A_2 \leq B_2}{A_1 \times A_2 \leq B_1 \times B_2}
+\]</div>
+<p>Pravilo za funkcijske tipe je bolj zanimivo, pozorno ga preberite:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{B_1 \leq a_1 \quad A_2 \leq B_2}{A_1 \to A_2 \leq B_1 \leq B_2}
+\]</div>
+<p>Obrnili smo vrsti red v domeni! Pravimo, da je <span class="math notranslate nohighlight">\(\to\)</span> <strong>kontravarianten</strong> (obrača
+smer) v prvem argumentu in <strong>kovarianten</strong> (ohranja smer) v drugem. Skupaj
+premislimo, zakaj pričakujemo tako pravilo.</p>
+<p>Kaj pa osnovni tipi? Ali je na primer <span class="math notranslate nohighlight">\(\mathtt{int} \leq \mathtt{float}\)</span>? To je odvisno od
+programskega jezika: Java samodejno pretvori celo število v realno, zato bi
+lahko rekli, da v javi velja <span class="math notranslate nohighlight">\(\mathtt{int} \leq \mathtt{float}\)</span>. V OCamlu to ne drži, saj mora
+programer sam pretvoriti celoštevilsko vrednost v realno s funkcijo <span class="math notranslate nohighlight">\(\mathtt{float}\)</span>.</p>
+<p>Lahko se celo zgodi, da v programskem jeziku velja <span class="math notranslate nohighlight">\(\mathtt{int} \leq \mathtt{float}\)</span> <em>in hkrati</em>
+<span class="math notranslate nohighlight">\(\mathtt{float} \leq \mathtt{int}\)</span>, na primer, če jezik samodejno zaokroži realno vrednost, kadar
+potrebuje celoštevilsko. A takih jezikov in veliko.</p>
+</div>
+<div class="section" id="podtipi-zapisov">
+<h2><span class="section-number">11.2. </span>Podtipi zapisov<a class="headerlink" href="11-podtipi.html#podtipi-zapisov" title="Povezava na naslov">¶</a></h2>
+<p>Spoznali smo že zapise, to so nabori polj s poimenovanimi komponentami. Na
+primer, točke v ravnini lahko predstavimo z vrednostmi tipa zapisov</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">{</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">float</span><span class="o">;</span> <span class="n">y</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">}</span>
+</pre></div>
+</div>
+<p>Primer vrednosti tega tipa je zapis <code class="docutils literal notranslate"><span class="pre">{x</span> <span class="pre">=</span> <span class="pre">3.14;</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">2.78}</span></code>.</p>
+<p>V splošnem je tip zapisa</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{ ℓ₁ : A₁; ℓ₂ : A₂; …; ℓ_n : A_n }
+</pre></div>
+</div>
+<p>njegove vrednosti pa so oblike</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{ ℓ₁ = e₁; ℓ₂ = e₂; …; ℓ_n = e_n }
+</pre></div>
+</div>
+<p>kjer mora veljati <span class="math notranslate nohighlight">\(e_i : A_i\)</span> za vse <span class="math notranslate nohighlight">\(1 \leq i \leq n\)</span> Zahtevamo še, da so imena polj <code class="docutils literal notranslate"><span class="pre">ℓ₁</span></code>, …, <code class="docutils literal notranslate"><span class="pre">ℓ_n</span></code> med
+seboj paroma različna.</p>
+<p>Če je <code class="docutils literal notranslate"><span class="pre">v</span></code> zapis tipa <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">ℓ₁</span> <span class="pre">:</span> <span class="pre">A₁;</span> <span class="pre">ℓ₂</span> <span class="pre">:</span> <span class="pre">A₂;</span> <span class="pre">…;</span> <span class="pre">ℓ_n</span> <span class="pre">:</span> <span class="pre">A_n</span> <span class="pre">}</span></code>, potem je <code class="docutils literal notranslate"><span class="pre">v.ℓᵢ</span></code>
+vrednost njegove <code class="docutils literal notranslate"><span class="pre">i</span></code>-te komponente, ki ima tip <code class="docutils literal notranslate"><span class="pre">Aᵢ</span></code>.</p>
+<p>V zapisu vrstni red polj ni pomemben, to je, <code class="docutils literal notranslate"><span class="pre">{x</span> <span class="pre">=</span> <span class="pre">3.14;</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">2.78}</span></code> in <code class="docutils literal notranslate"><span class="pre">{y</span> <span class="pre">=</span> <span class="pre">2.78;</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">3.14}</span></code> sta enaki vrednosti.</p>
+<p>Zapisi so uporaben podatkovni tip, ne samo v programiranju, ampak tudi na drugih
+področjih računalništva, kjer želimo predstviti strukturirane podatke. Na
+primer, vrstica v tabeli podatkovne baze ni nič drugega kot zapis (in shema za
+tabelo tip zapisa).</p>
+<p>Tudi objekti nas nekoliko spominjajo na zapise, le da vsebujejo poleg polj
+(atributov) še metode:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Point</span> <span class="p">{</span>
+       <span class="kt">float</span> <span class="n">x</span><span class="p">;</span>
+       <span class="kt">float</span> <span class="n">y</span>
+       <span class="p">...</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="podtipi-zapisov-v-sirino">
+<h3><span class="section-number">11.2.1. </span>Podtipi zapisov v širino<a class="headerlink" href="11-podtipi.html#podtipi-zapisov-v-sirino" title="Povezava na naslov">¶</a></h3>
+<p>Zapisi tipov imajo zanimivo relacijo <span class="math notranslate nohighlight">\(\leq\)</span>. Obravnavajmo primer. Na primer, da imamo tipa zapisov</p>
+<div class="math notranslate nohighlight">
+\[
+A = \{ x : \mathtt{float}; y : \mathtt{float} \}
+\]</div>
+<p>in</p>
+<div class="math notranslate nohighlight">
+\[
+B = \{ x : \mathtt{float}; y : \mathtt{float} ; z : \mathtt{float} \}
+\]</div>
+<p>Ali morda velja <span class="math notranslate nohighlight">\(A \leq B\)</span> in <span class="math notranslate nohighlight">\(B \leq A\)</span>?</p>
+<p>Najprej, <span class="math notranslate nohighlight">\(A \leq B\)</span> <em>ne</em> velja. Izraz <span class="math notranslate nohighlight">\(a = \{x = 3.14; y = 2.78\}\)</span> ima tip <span class="math notranslate nohighlight">\(A\)</span>. Če bi
+ga lahko uporabljali, kot da ima tip <span class="math notranslate nohighlight">\(B\)</span>, potem bi smeli pisati <span class="math notranslate nohighlight">\(a.z\)</span>, kar
+seveda ne gre, saj <span class="math notranslate nohighlight">\(a\)</span> nima polja <span class="math notranslate nohighlight">\(z\)</span>.</p>
+<p>Velja pa <span class="math notranslate nohighlight">\(B \leq A\)</span>! Izraz <span class="math notranslate nohighlight">\(b = \{x = 3.14; y = 2.78; z = 1.0\}\)</span> ima tip <span class="math notranslate nohighlight">\(B\)</span> in res
+ga lahko uporabimo, kot da bi imel tip <span class="math notranslate nohighlight">\(A\)</span>, saj smemo pisati <span class="math notranslate nohighlight">\(b.x\)</span> in <span class="math notranslate nohighlight">\(b.y\)</span>.
+Dejstvo, da <code class="docutils literal notranslate"><span class="pre">b</span></code> vsebuje še polje <code class="docutils literal notranslate"><span class="pre">z</span></code> nas pri tem nič ne moti.</p>
+<p>Zapišimo pravilo za podtipe zapisov, ki izhaja iz zgornjega razmisleka:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{
+\text{za vsaj $j \leq m$ obstaja $i \leq n$, da je $\ell_i = k_j$ in $A_i = B_j$}
+}{
+\{ \ell_1 : A_1; \ldots; \ell_n : A_n \} \leq \{ k_1 : B_1; \ldots; k_m : B_m \}
+}
+\]</div>
+<p>Povedano z besedami, prvi tip zapisa je podtip drugega, če se vsako polje <span class="math notranslate nohighlight">\(k_j :
+B_j\)</span> iz drugega zapisa pojavi v prvem. Tej vrsti podtipov pravimo <strong>podtip zapisa
+po širini</strong>, ker je podtip »širši« (ima več polj) kot njegov podtip.</p>
+<p>Velja torej:</p>
+<div class="math notranslate nohighlight">
+\[
+\{ z : \mathtt{float}; x : \mathtt{float}; y : \mathtt{float} \} \leq \{ x : \mathtt{float}; y : \mathtt{float} \}
+\]</div>
+<div class="admonition-vaja admonition">
+<p class="admonition-title">Vaja</p>
+<p>Ali obstaja tip zapisa, ki je podtip vseh ostalih tipov zapisov? Kaj
+pa tip zapisa, ki je nadtip vseh ostalih tipov zapisov?</p>
+</div>
+</div>
+<div class="section" id="podtipi-zapisov-v-globino">
+<h3><span class="section-number">11.2.2. </span>Podtipi zapisov v globino<a class="headerlink" href="11-podtipi.html#podtipi-zapisov-v-globino" title="Povezava na naslov">¶</a></h3>
+<p>Poznamo še <strong>podtipe zapisov v globino</strong>. Spet poglejmo primer, pri čemer
+predpostavimo, da velja <span class="math notranslate nohighlight">\(\mathtt{int} \leq \mathtt{float}\)</span>. Zapis</p>
+<div class="math notranslate nohighlight">
+\[
+v = \{ x = 3; y = 5 \}
+\]</div>
+<p>ima tip <span class="math notranslate nohighlight">\(\{x : \mathtt{int}; y : \mathtt{int}\}\)</span>. Ali ga lahko uporabljamo, kot da bi imel tudi tip
+<span class="math notranslate nohighlight">\(\{x : \mathtt{float}; y : \mathtt{float}\}\)</span>? Da, saj lahko njegovi komponenti <span class="math notranslate nohighlight">\(v.x\)</span> in <span class="math notranslate nohighlight">\(v.y\)</span>
+uporabljamo, kot da bi imeli tip <span class="math notranslate nohighlight">\(\mathtt{float}\)</span>, zahvaljujoč <span class="math notranslate nohighlight">\(\mathtt{int} \leq \mathtt{float}\)</span>.</p>
+<p>Pravilo, za podtipe zapisov v globino se glasi:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{
+A_1 \leq B_1 \quad
+A_2 \leq B_2 \quad
+\cdots \quad
+A_n \leq B_n
+}{
+\{ \ell_1 : A_1; \ldots; \ell_n : A_n \} \leq \{ \ell_1 : B_1; \ldots; \ell_n : B_n \}
+}
+\]</div>
+<p>Obe pravili, za širino in globino, lahko združimo v eno kombinirano pravilo:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{
+\text{za vsak $j \leq m$ obstaja $i \leq n$, da je $\ell_i = k_j$ in $A_i \leq B_j$}
+}{
+\{ \ell_1 : A_1; \ldots; \ell_n : A_n \} \leq \{ k_1 : B_1; …; k_m : B_m \}
+}
+\]</div>
+</div>
+<div class="section" id="zapisi-s-spremenljivimi-polji">
+<h3><span class="section-number">11.2.3. </span>Zapisi s spremenljivimi polji<a class="headerlink" href="11-podtipi.html#zapisi-s-spremenljivimi-polji" title="Povezava na naslov">¶</a></h3>
+<p>Katera pravila za podtipe zapisov pridejo v poštev, je odvisno od tega, kako
+lahko zapise uporabljamo. Denimo, če imamo zapise s <em>spremenljivimi</em> polji, se
+pravi, da lahko zapisu spremenjamo vrednosti polj, potem podtipi v globino niso
+več veljavni. Na primer, če imamo tipa</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="nc">A</span> <span class="o">=</span> <span class="o">{</span> <span class="k">mutable</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">int</span><span class="o">;</span> <span class="k">mutable</span> <span class="n">y</span> <span class="o">:</span> <span class="kt">int</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>in</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="nc">B</span> <span class="o">=</span> <span class="o">{</span> <span class="k">mutable</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">float</span><span class="o">;</span> <span class="k">mutable</span> <span class="n">y</span> <span class="o">:</span> <span class="kt">float</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>potem <em>ne</em> velja <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">≤</span> <span class="pre">B</span></code>. Če bi to veljalo, bi lahko v zapis <code class="docutils literal notranslate"><span class="pre">v</span> <span class="pre">:</span> <span class="pre">A</span></code> vrednost
+polja <code class="docutils literal notranslate"><span class="pre">x</span></code> nastavili na <code class="docutils literal notranslate"><span class="pre">3.14</span></code>. Zapišimo tip <code class="docutils literal notranslate"><span class="pre">A</span></code> še v OCamlu:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="n">a</span> <span class="o">=</span> <span class="o">{</span> <span class="k">mutable</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">int</span><span class="o">;</span> <span class="k">mutable</span> <span class="n">y</span> <span class="o">:</span> <span class="kt">int</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>Takole naredimo vrednost in ji nastavimo atribut:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="n">p</span> <span class="o">=</span> <span class="o">{</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span><span class="o">}</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">p</span> <span class="o">:</span> <span class="n">a</span> <span class="o">=</span> <span class="o">{</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span><span class="o">}</span>
+<span class="o">#</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;-</span> <span class="mi">42</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
+<span class="o">#</span> <span class="n">p</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="n">a</span> <span class="o">=</span> <span class="o">{</span><span class="n">x</span> <span class="o">=</span> <span class="mi">42</span><span class="o">;</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span><span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="problem-koherentnosti">
+<h3><span class="section-number">11.2.4. </span>Problem koherentnosti<a class="headerlink" href="11-podtipi.html#problem-koherentnosti" title="Povezava na naslov">¶</a></h3>
+<p>Težave nastopijo, če lahko vrednosti tipa <span class="math notranslate nohighlight">\(A\)</span> pretvorimo v nadtip <span class="math notranslate nohighlight">\(B\)</span> na več načinov, se pravi, če imamo</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+  A \leq B \\
+  A \leq C \\
+  B \leq D \\
+  C \leq D
+\end{align*}\]</div>
+<p>Zaradi tranzitivnosti sledi <span class="math notranslate nohighlight">\(A \leq D\)</span>, kar lahko izpeljemo na <em>dva</em> načina:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(A \leq B \leq D\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A \leq C \leq D\)</span></p></li>
+</ol>
+<p>To pa lahko vpliva na implicitne pretvorbe. Če imamo <span class="math notranslate nohighlight">\(e : A\)</span>, ga lahko pretvorimo
+v <span class="math notranslate nohighlight">\(D\)</span> preko pretvorb <span class="math notranslate nohighlight">\(A \to B \to D\)</span> ali preko <span class="math notranslate nohighlight">\(A \to C \to D\)</span>. Kako vemo, da bomo obakrat
+dobili isto? Temu pravimo problem koherentnosti. Pojavi se vedno, ko imamo
+implicitna (ali samodejne) pretvorbe vrednosti iz enega tipa v drugega.</p>
+</div>
+</div>
+<div class="section" id="podtipi-na-nivoju-struktur">
+<h2><span class="section-number">11.3. </span>Podtipi na nivoju struktur<a class="headerlink" href="11-podtipi.html#podtipi-na-nivoju-struktur" title="Povezava na naslov">¶</a></h2>
+<p>Strukture ali moduli so v resnici neke vrste zapisi na višjem nivoju. Zanje veljajo
+pravila za podtipe, kar preizkusimo na primerih.</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="n">color</span> <span class="o">=</span> <span class="o">{</span> <span class="n">r</span> <span class="o">:</span> <span class="kt">float</span><span class="o">;</span> <span class="n">g</span> <span class="o">:</span> <span class="kt">float</span><span class="o">;</span> <span class="n">b</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">}</span>
+
+<span class="k">module</span> <span class="k">type</span> <span class="nc">POINT</span> <span class="o">=</span>
+<span class="k">sig</span>
+  <span class="k">val</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">float</span>
+  <span class="k">val</span> <span class="n">y</span> <span class="o">:</span> <span class="kt">float</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="k">type</span> <span class="nc">COLOR_POINT</span> <span class="o">=</span>
+<span class="k">sig</span>
+  <span class="k">val</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">float</span>
+  <span class="k">val</span> <span class="n">y</span> <span class="o">:</span> <span class="kt">float</span>
+  <span class="k">val</span> <span class="n">c</span> <span class="o">:</span> <span class="n">color</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="nc">Pika</span> <span class="o">:</span> <span class="nc">POINT</span> <span class="o">=</span>
+<span class="k">struct</span>
+  <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="mi">2</span>
+  <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span><span class="o">.</span><span class="mi">4</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="nc">BarvnaPika</span> <span class="o">:</span> <span class="nc">COLOR_POINT</span> <span class="o">=</span>
+<span class="k">struct</span>
+  <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="mi">2</span>
+  <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span><span class="o">.</span><span class="mi">4</span>
+  <span class="k">let</span> <span class="n">c</span> <span class="o">=</span> <span class="o">{</span><span class="n">r</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="o">;</span> <span class="n">g</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="o">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">}</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="nc">F</span> <span class="o">(</span><span class="nc">P</span> <span class="o">:</span> <span class="nc">POINT</span><span class="o">)</span> <span class="o">=</span> <span class="k">struct</span>
+  <span class="k">let</span> <span class="n">z</span> <span class="o">=</span> <span class="nn">P</span><span class="p">.</span><span class="n">x</span> <span class="o">+.</span> <span class="nn">P</span><span class="p">.</span><span class="n">y</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="nc">G</span> <span class="o">(</span><span class="nc">P</span> <span class="o">:</span> <span class="nc">COLOR_POINT</span><span class="o">)</span> <span class="o">=</span> <span class="k">struct</span>
+  <span class="k">let</span> <span class="n">c</span> <span class="o">=</span> <span class="nn">P</span><span class="p">.</span><span class="n">c</span><span class="o">.</span><span class="n">r</span> <span class="o">+.</span> <span class="nn">P</span><span class="p">.</span><span class="n">c</span><span class="o">.</span><span class="n">g</span>
+<span class="k">end</span>
+
+<span class="c">(* COLOR_POINT ≤ POINT *)</span>
+
+<span class="k">module</span> <span class="nc">A</span> <span class="o">=</span> <span class="nc">F</span> <span class="o">(</span><span class="nc">Pika</span><span class="o">)</span>
+<span class="k">module</span> <span class="nc">B</span> <span class="o">=</span> <span class="nc">F</span> <span class="o">(</span><span class="nc">BarvnaPika</span><span class="o">)</span>
+<span class="k">module</span> <span class="nc">C</span> <span class="o">=</span> <span class="nc">G</span> <span class="o">(</span><span class="nc">BarvnaPika</span><span class="o">)</span>
+<span class="c">(* ne deluje: module C = G (Pika) *)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./11-podtipi"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../10-programiranje-z-omejitvami/10-programiranje-z-omejitvami.html" title="nazaj page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">nazaj</p>
+            <p class="prev-next-title"><span class="section-number">10. </span>Logično programiranje z omejitvami</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../12-objektno-programiranje/12-objektno-programiranje.html" title="naprej page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">naprej</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Objektno programiranje</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Avtor Andrej Bauer<br/>
+    
+        &copy; avtorske pravice 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

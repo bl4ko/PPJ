@@ -1,0 +1,1061 @@
+
+<!DOCTYPE html>
+
+<html lang="sl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10. Logično programiranje z omejitvami &#8212; Principi programskih jezikov</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css%3Fdigest=c3fdc42140077d1ad13ad2f1588a4309.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Abecedni seznam" href="../genindex.html" />
+    <link rel="search" title="Išči" href="../search.html" />
+    <link rel="next" title="11. Podtipi" href="../11-podtipi/11-podtipi.html" />
+    <link rel="prev" title="9. Logično programiranje" href="../09-logicno-programiranje/09-logicno-programiranje.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="sl">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Principi programskih jezikov</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Poiščite to knjigo ..." aria-label="Poiščite to knjigo ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-uvod.html">
+   Uvod
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-aritmeticni-izrazi/01-aritmeticni-izrazi.html">
+   1. O programskih jezikih in aritmetičnih izrazih
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-ukazni-programski-jezik/02-ukazni-programski-jezik.html">
+   2. Ukazni programski jezik
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-dokazovanje-pravilnosti/03-dokazovanje-pravilnosti.html">
+   3. Dokazovanje pravilnosti programov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-lambda-racun/04-lambda-racun.html">
+   4. λ-račun
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-deklarativno-programiranje/05-deklarativno-programiranje.html">
+   5. Deklarativno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-rekurzija/06-rekurzija.html">
+   6. Rekurzija in rekurzivni tipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07-izpeljava-tipov/07-izpeljava-tipov.html">
+   7. Izpeljava tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08-abstrakcija/08-abstrakcija.html">
+   8. Specifikacija, implementacija, abstrakcija
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09-logicno-programiranje/09-logicno-programiranje.html">
+   9. Logično programiranje
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="10-programiranje-z-omejitvami.html#">
+   10. Logično programiranje z omejitvami
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11-podtipi/11-podtipi.html">
+   11. Podtipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12-objektno-programiranje/12-objektno-programiranje.html">
+   12. Objektno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-haskell-in-razredi-tipov/14-haskell-in-razredi-tipov.html">
+   13. Haskell in razredi tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-monade/15-monade.html">
+   14. Monade in računski učinki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-ucinki-in-prestrezniki/13-ucinki-in-prestrezniki.html">
+   15. Učinki in prestrezniki
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Preklopi navigacijo" aria-controls="site-navigation"
+                title="Preklopi navigacijo" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Prenesite to stran"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/10-programiranje-z-omejitvami/10-programiranje-z-omejitvami.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Prenesite izvorno datoteko" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Natisni v PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Celozaslonski način"
+        title="Celozaslonski način"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Vsebina
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#aritmetika-v-prologu">
+   10.1. Aritmetika v Prologu
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#id1">
+   10.2. Logično programiranje z omejitvami
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#domene">
+     10.2.1. Domene
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#omejitve-za-domeno-fd">
+     10.2.2. Omejitve za domeno
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       fd
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#aritmeticne-omejitve">
+       Aritmetične omejitve
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#intervalske-omejitve">
+       Intervalske omejitve
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#kombinatorne-in-globalne-omejitve">
+       Kombinatorne in globalne omejitve
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#nastevanje">
+     10.2.3. Naštevanje
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#primer-sudoku">
+     10.2.4. Primer: Sudoku
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#rows-je-seznam-dolzine-9">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Rows
+        </span>
+       </code>
+       je seznam dolžine 9
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#vsak-element-rows-je-dolzine-9">
+       Vsak element
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Rows
+        </span>
+       </code>
+       je dolžine 9
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#vsi-elementi-elementov-rows-so-med-1-in-9">
+       Vsi elementi elementov
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Rows
+        </span>
+       </code>
+       so med 1 in 9
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#vsaka-vrstica-je-permutacija">
+       Vsaka vrstica je permutacija
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#vsak-stolpec-je-permutacija">
+       Vsak stolpec je permutacija
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#vsak-podkvadrat-3-3-je-permutacija">
+       Vsak podkvadrat 3 × 3 je permutacija
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#koncni-izdelek">
+     10.2.5. Končni izdelek
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Logično programiranje z omejitvami</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Vsebina </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#aritmetika-v-prologu">
+   10.1. Aritmetika v Prologu
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#id1">
+   10.2. Logično programiranje z omejitvami
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#domene">
+     10.2.1. Domene
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#omejitve-za-domeno-fd">
+     10.2.2. Omejitve za domeno
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       fd
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#aritmeticne-omejitve">
+       Aritmetične omejitve
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#intervalske-omejitve">
+       Intervalske omejitve
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#kombinatorne-in-globalne-omejitve">
+       Kombinatorne in globalne omejitve
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#nastevanje">
+     10.2.3. Naštevanje
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#primer-sudoku">
+     10.2.4. Primer: Sudoku
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#rows-je-seznam-dolzine-9">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Rows
+        </span>
+       </code>
+       je seznam dolžine 9
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#vsak-element-rows-je-dolzine-9">
+       Vsak element
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Rows
+        </span>
+       </code>
+       je dolžine 9
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#vsi-elementi-elementov-rows-so-med-1-in-9">
+       Vsi elementi elementov
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Rows
+        </span>
+       </code>
+       so med 1 in 9
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#vsaka-vrstica-je-permutacija">
+       Vsaka vrstica je permutacija
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#vsak-stolpec-je-permutacija">
+       Vsak stolpec je permutacija
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#vsak-podkvadrat-3-3-je-permutacija">
+       Vsak podkvadrat 3 × 3 je permutacija
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="10-programiranje-z-omejitvami.html#koncni-izdelek">
+     10.2.5. Končni izdelek
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="logicno-programiranje-z-omejitvami">
+<h1><span class="section-number">10. </span>Logično programiranje z omejitvami<a class="headerlink" href="10-programiranje-z-omejitvami.html#logicno-programiranje-z-omejitvami" title="Povezava na naslov">¶</a></h1>
+<p>V logičnem programiranju je program spisek logičnih izjav, ki opisujejo rešitev
+(seveda morajo biti izjave izražene s Hornovimi formulami). V istem duhu bi
+lahko računanje s števili opisali z <em>enačbami</em> (in <em>neenačbami</em>) namesto z
+zaporedjem aritmetičnih operacij in primerjav. Če bi prologu dodali algoritme za
+reševanje sistemov enačb (in neenačb), bi lahko takšne opise uporabili za
+računanje z aritmetičnimi izrazi.</p>
+<div class="section" id="aritmetika-v-prologu">
+<h2><span class="section-number">10.1. </span>Aritmetika v Prologu<a class="headerlink" href="10-programiranje-z-omejitvami.html#aritmetika-v-prologu" title="Povezava na naslov">¶</a></h2>
+<p>V prologu računamo s števili takole:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">is</span> <span class="p">(</span><span class="mi">10</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mf">3.</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mf">42.</span>
+
+<span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">is</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span> <span class="nv">Y</span> <span class="o">is</span> <span class="mi">10</span> <span class="o">*</span> <span class="nv">X</span><span class="p">.</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+<span class="nv">Y</span> <span class="o">=</span> <span class="mf">50.</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://www.swi-prolog.org/pldoc/man?predicate=is/2">Operator <code class="docutils literal notranslate"><span class="pre">is</span></code></a> sprejme spremenljivko <code class="docutils literal notranslate"><span class="pre">X</span></code> in aritmetični izraz <code class="docutils literal notranslate"><span class="pre">E</span></code>, izračuna vrednost
+izraza <code class="docutils literal notranslate"><span class="pre">E</span></code> in dobljeno vrednost priredi spremenljivki <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+<p>Števila lahko tudi primerjamo z <a class="reference external" href="https://www.swi-prolog.org/pldoc/man?section=arithpreds">operatorji za primerjavo</a> števil:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="mi">221</span> <span class="o">*</span> <span class="mi">19</span> <span class="o">=:=</span> <span class="mi">247</span> <span class="o">*</span> <span class="mf">17.</span>
+<span class="s s-Atom">true</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">23</span> <span class="o">&lt;</span> <span class="mf">42.</span>
+<span class="s s-Atom">true</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Takole bi implementirali funkcijo faktoriela:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">faktoriela</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">).</span>
+<span class="nf">faktoriela</span><span class="p">(</span><span class="nv">N</span><span class="p">,</span> <span class="nv">F</span><span class="p">)</span> <span class="p">:-</span>
+    <span class="nv">N</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nv">M</span> <span class="o">is</span> <span class="nv">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nf">faktoriela</span><span class="p">(</span><span class="nv">M</span><span class="p">,</span> <span class="nv">G</span><span class="p">),</span>
+    <span class="nv">F</span> <span class="o">is</span> <span class="nv">N</span> <span class="o">*</span> <span class="nv">G</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Preizkusimo:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="nf">faktoriela</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="nv">F</span><span class="p">).</span>
+<span class="nv">F</span> <span class="o">=</span> <span class="mf">5040.</span>
+</pre></div>
+</div>
+<p>V duhu prologa bi pričakovali, da <code class="docutils literal notranslate"><span class="pre">faktoriela</span></code> deluje v obse smeri:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="nf">faktoriela</span><span class="p">(</span><span class="nv">N</span><span class="p">,</span> <span class="mi">6</span><span class="p">).</span>
+<span class="nv">ERROR</span><span class="s s-Atom">:</span> <span class="nv">Arguments</span> <span class="s s-Atom">are</span> <span class="o">not</span> <span class="s s-Atom">sufficiently</span> <span class="s s-Atom">instantiated</span>
+<span class="nv">ERROR</span><span class="s s-Atom">:</span> <span class="nv">In</span><span class="s s-Atom">:</span>
+<span class="nv">ERROR</span><span class="s s-Atom">:</span>    <span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="k">_</span><span class="mi">13020</span><span class="o">&gt;</span><span class="mi">0</span>
+<span class="nv">ERROR</span><span class="s s-Atom">:</span>    <span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="nf">faktoriela</span><span class="p">(</span><span class="k">_</span><span class="mi">13046</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="s s-Atom">at</span> <span class="o">/</span><span class="s s-Atom">var</span><span class="o">/</span><span class="s s-Atom">folders</span><span class="o">/</span><span class="s s-Atom">tw</span><span class="o">/</span><span class="mi">2</span><span class="s s-Atom">p25pzx951n_ht9607h10kkc0000gn</span><span class="o">/</span><span class="nv">T</span><span class="o">/</span><span class="s s-Atom">prolcomp13972QVt</span><span class="p">.</span><span class="nn">pl</span><span class="p">:</span><span class="mi">5</span>
+<span class="nv">ERROR</span><span class="s s-Atom">:</span>    <span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">&lt;</span><span class="s s-Atom">user</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Napako se pojavi, ker <code class="docutils literal notranslate"><span class="pre">is</span></code> in <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> ne delujeta kot običajna predikata. V izrazu
+<code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">is</span> <span class="pre">E</span></code>, aritmetični izraz <code class="docutils literal notranslate"><span class="pre">E</span></code> ne sme vsebovati spremenljivk z neznano
+vrednostjo. Na primer, če poskusimo izračunati <code class="docutils literal notranslate"><span class="pre">Y</span> <span class="pre">-</span> <span class="pre">Y</span></code></p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="nv">Z</span> <span class="o">is</span> <span class="nv">Y</span> <span class="o">-</span> <span class="nv">Y</span><span class="p">.</span>
+<span class="nv">ERROR</span><span class="s s-Atom">:</span> <span class="nv">Arguments</span> <span class="s s-Atom">are</span> <span class="o">not</span> <span class="s s-Atom">sufficiently</span> <span class="s s-Atom">instantiated</span>
+<span class="nv">ERROR</span><span class="s s-Atom">:</span> <span class="nv">In</span><span class="s s-Atom">:</span>
+<span class="nv">ERROR</span><span class="s s-Atom">:</span>    <span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="k">_</span><span class="mi">3132</span> <span class="o">is</span> <span class="k">_</span><span class="mi">3138</span><span class="s s-Atom">-</span><span class="k">_</span><span class="mi">3140</span>
+<span class="nv">ERROR</span><span class="s s-Atom">:</span>    <span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">&lt;</span><span class="s s-Atom">user</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>dobimo napako, ker izraz na desni nima točno določene vrednosti. Tudi <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> ne
+deluje, če mu damo neznane vrednosti:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">&lt;</span> <span class="nv">X</span> <span class="o">+</span> <span class="mf">1.</span>
+<span class="nv">ERROR</span><span class="s s-Atom">:</span> <span class="nv">Arguments</span> <span class="s s-Atom">are</span> <span class="o">not</span> <span class="s s-Atom">sufficiently</span> <span class="s s-Atom">instantiated</span>
+<span class="nv">ERROR</span><span class="s s-Atom">:</span> <span class="nv">In</span><span class="s s-Atom">:</span>
+<span class="nv">ERROR</span><span class="s s-Atom">:</span>    <span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="k">_</span><span class="mi">5844</span><span class="s s-Atom">&lt;</span><span class="k">_</span><span class="mi">5850</span><span class="o">+</span><span class="mi">1</span>
+<span class="nv">ERROR</span><span class="s s-Atom">:</span>    <span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">&lt;</span><span class="s s-Atom">user</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Naj povemo, da predikat <code class="docutils literal notranslate"><span class="pre">=</span></code> ni uporaben pri računanju rezultatov, saj samo
+uporablja postopek združevanja:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">3.</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mi">2</span><span class="o">+</span><span class="mf">3.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">2</span> <span class="o">+</span> <span class="nv">X</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">3.</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mf">3.</span>
+
+<span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">3.</span>
+<span class="s s-Atom">false</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="nv">Z</span> <span class="o">=</span> <span class="nv">Y</span> <span class="o">-</span> <span class="nv">Y</span><span class="p">.</span>
+<span class="nv">Z</span> <span class="o">=</span> <span class="nv">Y</span><span class="o">-</span><span class="nv">Y</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Danes bomo spoznali <strong>logično programiranje z omejitvami</strong> (angl. logic <em>constraint
+programming</em>), ki omogoča dosti bolj fleksibilno obravnavo aritmetičnih izrazov.</p>
+</div>
+<div class="section" id="id1">
+<h2><span class="section-number">10.2. </span>Logično programiranje z omejitvami<a class="headerlink" href="10-programiranje-z-omejitvami.html#id1" title="Povezava na naslov">¶</a></h2>
+<p>V SWI prologu programiranje z omejitvami omogoča knjižnica <code class="docutils literal notranslate"><span class="pre">clpfd</span></code> (constraint logic programming on finite domains):</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="nf">use_module</span><span class="p">(</span><span class="nf">library</span><span class="p">(</span><span class="s s-Atom">clpfd</span><span class="p">)).</span>
+<span class="s s-Atom">true</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="nv">Z</span> <span class="s s-Atom">#=</span> <span class="nv">Y</span> <span class="o">-</span> <span class="nv">Y</span><span class="p">.</span>
+<span class="nv">Z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+<span class="nv">Y</span> <span class="s s-Atom">in</span> <span class="s s-Atom">inf</span><span class="p">..</span><span class="s s-Atom">sup</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">3</span> <span class="o">+</span> <span class="nv">X</span> <span class="s s-Atom">#=</span> <span class="mi">3</span> <span class="o">+</span> <span class="mf">2.</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mf">2.</span>
+
+<span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">+</span> <span class="mi">2</span> <span class="s s-Atom">#=</span> <span class="mi">3</span> <span class="o">+</span> <span class="mf">2.</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mf">3.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">3</span> <span class="s s-Atom">#&lt;</span> <span class="nv">X</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="nv">X</span> <span class="s s-Atom">#&lt;</span> <span class="mf">25.</span>
+<span class="nv">X</span> <span class="s s-Atom">in</span> <span class="mf">4..6</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Kot vidimo, je treba namesto operatorjev <code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> uporabljati <a class="reference external" href="https://www.swi-prolog.org/pldoc/man?section=clpfd-arith-constraints">aritmetične
+omejitve</a> <code class="docutils literal notranslate"><span class="pre">#=</span></code>, <code class="docutils literal notranslate"><span class="pre">#&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">#&gt;</span></code>, … Ali lahko rešujemo tudi kvadratne enačbe?</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">*</span> <span class="nv">X</span> <span class="s s-Atom">#=</span> <span class="mf">1.</span>
+<span class="nv">X</span> <span class="s s-Atom">in</span> <span class="o">-</span><span class="mi">1</span><span class="s s-Atom">\/</span><span class="mf">1.</span>
+</pre></div>
+</div>
+<p>Prolog je odgovoril, da je vrednost <code class="docutils literal notranslate"><span class="pre">X</span></code> bodisi <code class="docutils literal notranslate"><span class="pre">-1</span></code> bodisi <code class="docutils literal notranslate"><span class="pre">1</span></code>. Poskusimo še eno
+kvadratno enačbo:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">*</span> <span class="nv">X</span> <span class="o">-</span> <span class="mi">5</span> <span class="o">*</span> <span class="nv">X</span> <span class="o">+</span> <span class="mi">6</span> <span class="s s-Atom">#=</span> <span class="mf">0.</span>
+<span class="nv">X</span> <span class="s s-Atom">in</span> <span class="mf">2.</span><span class="p">.</span><span class="s s-Atom">sup</span><span class="p">,</span>
+<span class="mi">5</span><span class="o">*</span><span class="nv">X</span><span class="s s-Atom">#=</span><span class="k">_</span><span class="mi">30476</span><span class="p">,</span>
+<span class="nv">X</span><span class="s s-Atom">^</span><span class="mi">2</span><span class="s s-Atom">#=</span><span class="k">_</span><span class="mi">30500</span><span class="p">,</span>
+<span class="k">_</span><span class="mi">30476</span> <span class="s s-Atom">in</span> <span class="mf">10.</span><span class="p">.</span><span class="s s-Atom">sup</span><span class="p">,</span>
+<span class="o">-</span><span class="mi">6</span><span class="s s-Atom">+</span><span class="k">_</span><span class="mi">30476</span><span class="s s-Atom">#=</span><span class="k">_</span><span class="mi">30500</span><span class="p">,</span>
+<span class="k">_</span><span class="mi">30500</span> <span class="s s-Atom">in</span> <span class="mf">4.</span><span class="p">.</span><span class="s s-Atom">sup</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Tokrat smo dobili čuden odgovor. Poglejmo pobližje, kako deluje programiranje z omejitvami.</p>
+<div class="section" id="domene">
+<h3><span class="section-number">10.2.1. </span>Domene<a class="headerlink" href="10-programiranje-z-omejitvami.html#domene" title="Povezava na naslov">¶</a></h3>
+<p>Programiranje z omejitvami vedno deluje na neki <strong>domeni</strong>, se pravi na množici
+vrednosti z dano strukturo. Tipične domene so:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.swi-prolog.org/pldoc/man?section=clpfd">cela števila</a> (domena <code class="docutils literal notranslate"><span class="pre">fd</span></code>)</p></li>
+<li><p><a class="reference external" href="https://www.swi-prolog.org/pldoc/man?section=clpqr">realna in racionalna števila</a> (domena <code class="docutils literal notranslate"><span class="pre">qr</span></code>)</p></li>
+<li><p><a class="reference external" href="https://www.swi-prolog.org/pldoc/man?section=clpb">Boolova algebra</a> (domena <code class="docutils literal notranslate"><span class="pre">pb</span></code>)</p></li>
+</ul>
+<p>Vsaka od teh domen zahteva specialne algoritme, ki znajo poenostavljati in
+združevati omejitve, ki so sestavni del programa. Mi bomo spoznali programiranje
+z omejitvami za cela števila, ki se imenuje tudi <strong>končne domene</strong> (angl. finite
+domain), ker vedno obravnavamo cela števila iz neke končne množice vrednosti.</p>
+</div>
+<div class="section" id="omejitve-za-domeno-fd">
+<h3><span class="section-number">10.2.2. </span>Omejitve za domeno <code class="docutils literal notranslate"><span class="pre">fd</span></code><a class="headerlink" href="10-programiranje-z-omejitvami.html#omejitve-za-domeno-fd" title="Povezava na naslov">¶</a></h3>
+<p>V logičnem programiranju z omejitvami je program podan s Hornovimi formulami in
+<strong>omejitvami</strong>, ki predpisujejo dovoljene vrednosti spremenljivk. Prolog omejitve
+zbira in jih poenostavlja, z nekaj sreče pa jih kar razreši. Za domeno <code class="docutils literal notranslate"><span class="pre">fd</span></code> imamo
+več vrst omejitev.</p>
+<div class="section" id="aritmeticne-omejitve">
+<h4>Aritmetične omejitve<a class="headerlink" href="10-programiranje-z-omejitvami.html#aritmeticne-omejitve" title="Povezava na naslov">¶</a></h4>
+<p><a class="reference external" href="https://www.swi-prolog.org/pldoc/man?section=clpfd-arith-constraints">Aritmetične omejitve</a> zapišemo z osnovnimi aritmetičnimi operacijami</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+   -   *   ^   min   max   mod   rem   abs   //   div
+</pre></div>
+</div>
+<p>in operatorji za primerjavo</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#=   #\=   #&gt;=   #=&lt;   #&gt;   #&lt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="intervalske-omejitve">
+<h4>Intervalske omejitve<a class="headerlink" href="10-programiranje-z-omejitvami.html#intervalske-omejitve" title="Povezava na naslov">¶</a></h4>
+<p><a class="reference external" href="https://www.swi-prolog.org/pldoc/man?section=clpfd-membership">Intervalska omejitev</a></p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="nv">X</span> <span class="s s-Atom">in</span> <span class="nv">A</span><span class="p">..</span><span class="nv">B</span>
+</pre></div>
+</div>
+<p>določi, da mora veljati <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">≤</span> <span class="pre">X</span> <span class="pre">≤</span> <span class="pre">B</span></code>. Če želimo nastaviti samo zgornjo ali spodnjo
+mejo za <code class="docutils literal notranslate"><span class="pre">X</span></code>, lahko namesto <code class="docutils literal notranslate"><span class="pre">A</span></code> pišemo <code class="docutils literal notranslate"><span class="pre">inf</span></code> (kar pomeni <code class="docutils literal notranslate"><span class="pre">-∞</span></code>) in za <code class="docutils literal notranslate"><span class="pre">B</span></code> pišemo <code class="docutils literal notranslate"><span class="pre">sup</span></code> (kar
+pomeni <code class="docutils literal notranslate"><span class="pre">+∞</span></code>). Na primer,</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="nv">X</span> <span class="s s-Atom">in</span> <span class="s s-Atom">inf</span><span class="p">.</span><span class="mf">.5</span>
+</pre></div>
+</div>
+<p>pomeni, da velja <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">≤</span> <span class="pre">5</span></code>. Pogosto želimo z intervalom omejiti več spremenljivk
+hkrati:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="nv">X</span> <span class="s s-Atom">in</span> <span class="mf">1..5</span><span class="p">,</span> <span class="nv">Y</span> <span class="s s-Atom">in</span> <span class="mf">1..5</span><span class="p">,</span> <span class="nv">Z</span> <span class="s s-Atom">in</span> <span class="mf">1..5</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>V tem primeru lahko uporabimo <code class="docutils literal notranslate"><span class="pre">ins</span></code>:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">,</span><span class="nv">Z</span><span class="p">]</span> <span class="s s-Atom">ins</span> <span class="mf">1..5</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>V splošnem <code class="docutils literal notranslate"><span class="pre">L</span> <span class="pre">ins</span> <span class="pre">A..B</span></code> pomeni, da mora veljati <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">≤</span> <span class="pre">X</span> <span class="pre">≤</span> <span class="pre">B</span></code> za vse elemente <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">∈</span> <span class="pre">L</span></code>
+seznama <code class="docutils literal notranslate"><span class="pre">L</span></code>.</p>
+</div>
+<div class="section" id="kombinatorne-in-globalne-omejitve">
+<h4>Kombinatorne in globalne omejitve<a class="headerlink" href="10-programiranje-z-omejitvami.html#kombinatorne-in-globalne-omejitve" title="Povezava na naslov">¶</a></h4>
+<p>Omejitev <code class="docutils literal notranslate"><span class="pre">all_distinct([X₁,</span> <span class="pre">...,</span> <span class="pre">Xᵢ])</span></code> zagotovi, da imajo spremenljivke <code class="docutils literal notranslate"><span class="pre">X₁</span></code>, …,
+<code class="docutils literal notranslate"><span class="pre">Xᵢ</span></code> različne vrednosti. Primer uporabe bomo videli kasneje.</p>
+<p>Ostale kombinatorne in globalne omejitve so opisane <a class="reference external" href="https://www.swi-prolog.org/pldoc/man?section=clpfd-global">v priročniku za SWI prolog</a>.</p>
+</div>
+</div>
+<div class="section" id="nastevanje">
+<h3><span class="section-number">10.2.3. </span>Naštevanje<a class="headerlink" href="10-programiranje-z-omejitvami.html#nastevanje" title="Povezava na naslov">¶</a></h3>
+<p>Program z omejitvami napišemo v dveh delih:</p>
+<ol class="simple">
+<li><p>Podamo omejitve.</p></li>
+<li><p>Podamo zahtevo, da naj prolog našteje vse rešitve, glede na dane omejitve.</p></li>
+</ol>
+<p>Drugi korak izvedemo s predikatom <code class="docutils literal notranslate"><span class="pre">label</span></code> (ter <code class="docutils literal notranslate"><span class="pre">indomain</span></code> in <code class="docutils literal notranslate"><span class="pre">labeling</span></code>, <a class="reference external" href="https://www.swi-prolog.org/pldoc/man?section=clpfd-enumeration">preberite
+sami</a>). Če podamo samo omejitve, jih prolog izpiše, a ne pokaže konkretnih
+rešitev. Denimo, da želimo <code class="docutils literal notranslate"><span class="pre">X,</span> <span class="pre">Y</span> <span class="pre">∈</span> <span class="pre">{1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4}</span></code> in <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">&lt;</span> <span class="pre">Y</span></code>:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="p">[</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">]</span> <span class="s s-Atom">ins</span> <span class="mf">1..4</span><span class="p">,</span> <span class="nv">X</span> <span class="s s-Atom">#&lt;</span> <span class="nv">Y</span><span class="p">.</span>
+<span class="nv">X</span> <span class="s s-Atom">in</span> <span class="mf">1..3</span><span class="p">,</span>
+<span class="nv">X</span><span class="s s-Atom">#=&lt;</span><span class="nv">Y</span><span class="o">+</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+<span class="nv">Y</span> <span class="s s-Atom">in</span> <span class="mf">2..4</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Prolog je omejitve poenostavil:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">∈</span> <span class="pre">{1,</span> <span class="pre">2,</span> <span class="pre">3}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">≤</span> <span class="pre">Y</span> <span class="pre">-</span> <span class="pre">1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y</span> <span class="pre">∈</span> <span class="pre">{2,</span> <span class="pre">3,</span> <span class="pre">4}</span></code></p></li>
+</ul>
+<p>Če dodamo še <code class="docutils literal notranslate"><span class="pre">label([X,Y])</span></code>, našteje konkretne rešitve:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="p">[</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">]</span> <span class="s s-Atom">ins</span> <span class="mf">1..4</span><span class="p">,</span> <span class="nv">X</span> <span class="s s-Atom">#&lt;</span> <span class="nv">Y</span><span class="p">,</span> <span class="nf">label</span><span class="p">([</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">]).</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="nv">Y</span> <span class="o">=</span> <span class="mi">2</span> <span class="p">;</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="nv">Y</span> <span class="o">=</span> <span class="mi">3</span> <span class="p">;</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="nv">Y</span> <span class="o">=</span> <span class="mi">4</span> <span class="p">;</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+<span class="nv">Y</span> <span class="o">=</span> <span class="mi">3</span> <span class="p">;</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+<span class="nv">Y</span> <span class="o">=</span> <span class="mi">4</span> <span class="p">;</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+<span class="nv">Y</span> <span class="o">=</span> <span class="mf">4.</span>
+</pre></div>
+</div>
+<p>Poglejmo si primere, s katerimi bomo najbolje spoznali, kako deluje programiranje
+z omejitvami.</p>
+<div class="admonition-primer admonition">
+<p class="admonition-title">Primer</p>
+<p>Vrnimo se k funkciji faktoriela:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">faktoriela</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span>
+<span class="n">faktoriela</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span> <span class="p">:</span><span class="o">-</span>
+    <span class="n">N</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">M</span> <span class="ow">is</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">faktoriela</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">G</span><span class="p">),</span>
+    <span class="n">F</span> <span class="ow">is</span> <span class="n">N</span> <span class="o">*</span> <span class="n">G</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Operatorje <code class="docutils literal notranslate"><span class="pre">is</span></code> in <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> zamenjajmo z omejitvami (in funkcijo preimenujmo, da ne bo zmede):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">-</span> <span class="n">use_module</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">clpfd</span><span class="p">))</span><span class="o">.</span>
+
+<span class="n">fakulteta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span>
+<span class="n">fakulteta</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span> <span class="p">:</span><span class="o">-</span>
+    <span class="n">N</span> <span class="c1">#&gt; 0,</span>
+    <span class="n">M</span> <span class="c1">#= N - 1,</span>
+    <span class="n">F</span> <span class="c1">#= N * G,</span>
+    <span class="n">fakulteta</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">G</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Opomba: obrnili smo vrstni red zadnjih dveh pogojev. S tem smo poskrbeli, da se
+<em>najprej</em> zabeležijo vse omejitve, šele nato pa se izvede rekurzivni klic.</p>
+<p>Preizkusimo:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="nf">fakulteta</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="nv">F</span><span class="p">).</span>
+<span class="nv">F</span> <span class="o">=</span> <span class="mi">5040</span> <span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="nf">fakulteta</span><span class="p">(</span><span class="nv">N</span><span class="p">,</span> <span class="mi">6</span><span class="p">).</span>
+<span class="nv">N</span> <span class="o">=</span> <span class="mf">3.</span>
+
+<span class="s s-Atom">?-</span> <span class="nf">fakulteta</span><span class="p">(</span><span class="nv">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">).</span>
+<span class="nv">N</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span>
+<span class="nv">N</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span>
+<span class="s s-Atom">false</span><span class="p">.</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-primer admonition">
+<p class="admonition-title">Primer</p>
+<p><strong>Pitagorejska trojica</strong> je trojica celih števil <code class="docutils literal notranslate"><span class="pre">(A,</span> <span class="pre">B,</span> <span class="pre">C)</span></code>, za katero velja <code class="docutils literal notranslate"><span class="pre">A²</span> <span class="pre">+</span> <span class="pre">B²</span> <span class="pre">=</span> <span class="pre">C²</span></code>.
+Poleg tega smemo zaradi simetrije med <code class="docutils literal notranslate"><span class="pre">A</span></code> in <code class="docutils literal notranslate"><span class="pre">B</span></code> predpostaviti <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">≤</span> <span class="pre">B</span></code>.</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="p">:-</span> <span class="nf">use_module</span><span class="p">(</span><span class="nf">library</span><span class="p">(</span><span class="s s-Atom">clpfd</span><span class="p">)).</span>
+
+<span class="nf">pitagora</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span> <span class="nv">B</span><span class="p">,</span> <span class="nv">C</span><span class="p">)</span> <span class="p">:-</span>
+    <span class="nv">A</span> <span class="s s-Atom">#=&lt;</span> <span class="nv">B</span><span class="p">,</span>
+    <span class="nv">A</span> <span class="o">*</span> <span class="nv">A</span> <span class="o">+</span> <span class="nv">B</span> <span class="o">*</span> <span class="nv">B</span> <span class="s s-Atom">#=</span> <span class="nv">C</span> <span class="o">*</span> <span class="nv">C</span><span class="p">.</span>
+
+<span class="nf">pitagora_do</span><span class="p">([</span><span class="nv">A</span><span class="p">,</span><span class="nv">B</span><span class="p">,</span><span class="nv">C</span><span class="p">],</span> <span class="nv">N</span><span class="p">)</span> <span class="p">:-</span>
+    <span class="nf">pitagora</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span><span class="nv">B</span><span class="p">,</span><span class="nv">C</span><span class="p">),</span>
+    <span class="p">[</span><span class="nv">A</span><span class="p">,</span> <span class="nv">B</span><span class="p">,</span> <span class="nv">C</span><span class="p">]</span> <span class="s s-Atom">ins</span> <span class="mf">1.</span><span class="p">.</span><span class="nv">N</span><span class="p">,</span>
+    <span class="nf">label</span><span class="p">([</span><span class="nv">A</span><span class="p">,</span><span class="nv">B</span><span class="p">,</span><span class="nv">C</span><span class="p">]).</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-primer admonition">
+<p class="admonition-title">Primer</p>
+<p>Na vajah boste programirali permutacije seznamov v navadnem prologu. Permutacije
+števil lahko elegantno zapišemo z omejitvami:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">-</span> <span class="n">use_module</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">clpfd</span><span class="p">))</span><span class="o">.</span>
+
+<span class="n">permutacija</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span> <span class="p">:</span><span class="o">-</span>
+    <span class="n">length</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span>
+    <span class="n">P</span> <span class="n">ins</span> <span class="mf">1.</span><span class="o">.</span><span class="n">N</span><span class="p">,</span>
+    <span class="n">all_distinct</span><span class="p">(</span><span class="n">P</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>V poizvedbi zahtevamo, da se rešitve dejansko naštejejo:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="nf">permutacija</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="nv">P</span><span class="p">),</span> <span class="nf">label</span><span class="p">(</span><span class="nv">P</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>Pojasnimo vsako od zahtev:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">length(P,</span> <span class="pre">N)</span></code> pove, da je <code class="docutils literal notranslate"><span class="pre">P</span></code> seznam dolžine <code class="docutils literal notranslate"><span class="pre">N</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">ins</span> <span class="pre">1..N</span></code> pove, da so vsi elementi seznama <code class="docutils literal notranslate"><span class="pre">P</span></code> števila med <code class="docutils literal notranslate"><span class="pre">1</span></code> in <code class="docutils literal notranslate"><span class="pre">N</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">all_distinct(P)</span></code> pove, da so vsi elementi seznama <code class="docutils literal notranslate"><span class="pre">P</span></code> med seboj različni.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">label(P)</span></code> je zahteva, da je treba našteti vse sezname <code class="docutils literal notranslate"><span class="pre">P</span></code>, ki zadoščajo navedenim trditvam.</p></li>
+</ul>
+<p>Poskusimo:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="nf">permutacije</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="nv">P</span><span class="p">).</span>
+<span class="nv">P</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="p">;</span>
+<span class="nv">P</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="p">;</span>
+<span class="nv">P</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="p">;</span>
+<span class="nv">P</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="p">;</span>
+<span class="nv">P</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="p">;</span>
+<span class="nv">P</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">].</span>
+</pre></div>
+</div>
+<p>Ker smo uporabili programiranje z omejitvami, zlahka računamo tudi „nazaj“,</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="nf">permutacije</span><span class="p">(</span><span class="nv">N</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]).</span>
+<span class="nv">N</span> <span class="o">=</span> <span class="mf">3.</span>
+</pre></div>
+</div>
+<p>in preverimo, ali dani seznam je permutacija:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span> <span class="nf">permutacije</span><span class="p">(</span><span class="nv">N</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]).</span>
+<span class="s s-Atom">false</span><span class="p">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="primer-sudoku">
+<h3><span class="section-number">10.2.4. </span>Primer: Sudoku<a class="headerlink" href="10-programiranje-z-omejitvami.html#primer-sudoku" title="Povezava na naslov">¶</a></h3>
+<p>Skupaj implementirajmo <a class="reference external" href="https://sl.wikipedia.org/wiki/Sudoku">Sudoku</a>. Zasnovati moramo ustrezno predstavitev igre in
+zapisati pogoje, ki opisujejo pravila. Ostalo bo prolog naredil sam.</p>
+<p>Načrt:</p>
+<ol class="simple">
+<li><p>Igralno polje 9 × 9 predstavimo se seznamom vrstic:</p>
+<ul class="simple">
+<li><p>imamo 9 vrstic,</p></li>
+<li><p>vsaka vrstica ima dolžino 9.</p></li>
+</ul>
+</li>
+<li><p>Vsi elementi, ki se pojavljajo v vrsticah so števila med 1 in 9</p></li>
+<li><p>Vsaka vrstica je permutacija</p></li>
+<li><p>Vsak stolpec je permutacija.</p></li>
+<li><p>Vsak podkvadrat 3 × 3 je permutacija.</p></li>
+</ol>
+<p>Vsako od zgornjih omejitev zapišemo v prologu.</p>
+<div class="section" id="rows-je-seznam-dolzine-9">
+<h4><code class="docutils literal notranslate"><span class="pre">Rows</span></code> je seznam dolžine 9<a class="headerlink" href="10-programiranje-z-omejitvami.html#rows-je-seznam-dolzine-9" title="Povezava na naslov">¶</a></h4>
+<p>Pogoj lahko izrazimo kot</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rows</span> <span class="o">=</span> <span class="p">[</span><span class="n">X1</span><span class="p">,</span><span class="n">X2</span><span class="p">,</span><span class="n">X3</span><span class="p">,</span><span class="n">X4</span><span class="p">,</span><span class="n">X5</span><span class="p">,</span><span class="n">X6</span><span class="p">,</span><span class="n">X7</span><span class="p">,</span><span class="n">X8</span><span class="p">,</span><span class="n">X9</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>ali kot</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">length</span><span class="p">(</span><span class="n">Rows</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vsak-element-rows-je-dolzine-9">
+<h4>Vsak element <code class="docutils literal notranslate"><span class="pre">Rows</span></code> je dolžine 9<a class="headerlink" href="10-programiranje-z-omejitvami.html#vsak-element-rows-je-dolzine-9" title="Povezava na naslov">¶</a></h4>
+<p>Prvi poskus:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="nv">Rows</span> <span class="o">=</span> <span class="p">[</span><span class="nv">X1</span><span class="p">,</span><span class="nv">X2</span><span class="p">,</span><span class="nv">X3</span><span class="p">,</span><span class="nv">X4</span><span class="p">,</span><span class="nv">X5</span><span class="p">,</span><span class="nv">X6</span><span class="p">,</span><span class="nv">X7</span><span class="p">,</span><span class="nv">X8</span><span class="p">,</span><span class="nv">X9</span><span class="p">],</span>
+<span class="nf">length</span><span class="p">(</span><span class="nv">X1</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span>
+<span class="nf">length</span><span class="p">(</span><span class="nv">X2</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span>
+<span class="nf">length</span><span class="p">(</span><span class="nv">X3</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span>
+<span class="nf">length</span><span class="p">(</span><span class="nv">X4</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span>
+<span class="nf">length</span><span class="p">(</span><span class="nv">X5</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span>
+<span class="nf">length</span><span class="p">(</span><span class="nv">X6</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span>
+<span class="nf">length</span><span class="p">(</span><span class="nv">X7</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span>
+<span class="nf">length</span><span class="p">(</span><span class="nv">X8</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span>
+<span class="nf">length</span><span class="p">(</span><span class="nv">X9</span><span class="p">,</span><span class="mi">9</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>Drugi poskus: uporabimo <code class="docutils literal notranslate"><span class="pre">maplist</span></code>.</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">length9</span><span class="p">(</span><span class="nv">L</span><span class="p">)</span> <span class="p">:-</span> <span class="nf">length</span><span class="p">(</span><span class="nv">L</span><span class="p">,</span><span class="mi">9</span><span class="p">).</span>
+
+<span class="nf">maplist</span><span class="p">(</span><span class="s s-Atom">length9</span><span class="p">,</span> <span class="nv">Rows</span><span class="p">).</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vsi-elementi-elementov-rows-so-med-1-in-9">
+<h4>Vsi elementi elementov <code class="docutils literal notranslate"><span class="pre">Rows</span></code> so med 1 in 9<a class="headerlink" href="10-programiranje-z-omejitvami.html#vsi-elementi-elementov-rows-so-med-1-in-9" title="Povezava na naslov">¶</a></h4>
+<p>Prvi poskus:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="nv">Rows</span> <span class="o">=</span> <span class="p">[</span><span class="nv">X1</span><span class="p">,</span><span class="nv">X2</span><span class="p">,</span><span class="nv">X3</span><span class="p">,</span><span class="nv">X4</span><span class="p">,</span><span class="nv">X5</span><span class="p">,</span><span class="nv">X6</span><span class="p">,</span><span class="nv">X7</span><span class="p">,</span><span class="nv">X8</span><span class="p">,</span><span class="nv">X9</span><span class="p">],</span>
+<span class="nv">X1</span> <span class="s s-Atom">ins</span> <span class="mf">1..9</span><span class="p">,</span>
+<span class="nv">X2</span> <span class="s s-Atom">ins</span> <span class="mf">1..9</span><span class="p">,</span>
+<span class="nv">X3</span> <span class="s s-Atom">ins</span> <span class="mf">1..9</span><span class="p">,</span>
+<span class="nv">X4</span> <span class="s s-Atom">ins</span> <span class="mf">1..9</span><span class="p">,</span>
+<span class="nv">X5</span> <span class="s s-Atom">ins</span> <span class="mf">1..9</span><span class="p">,</span>
+<span class="nv">X6</span> <span class="s s-Atom">ins</span> <span class="mf">1..9</span><span class="p">,</span>
+<span class="nv">X7</span> <span class="s s-Atom">ins</span> <span class="mf">1..9</span><span class="p">,</span>
+<span class="nv">X8</span> <span class="s s-Atom">ins</span> <span class="mf">1..9</span><span class="p">,</span>
+<span class="nv">X9</span> <span class="s s-Atom">ins</span> <span class="mf">1..9</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Z uporabo <code class="docutils literal notranslate"><span class="pre">maplist</span></code>:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">vsi_med_1_9</span><span class="p">(</span><span class="nv">L</span><span class="p">)</span> <span class="p">:-</span> <span class="nv">L</span> <span class="s s-Atom">ins</span> <span class="mf">1..9</span><span class="p">.</span>
+
+<span class="nf">maplist</span><span class="p">(</span><span class="s s-Atom">vsi_med_1_9</span><span class="p">,</span> <span class="nv">Rows</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>Z uporabo <code class="docutils literal notranslate"><span class="pre">append</span></code>:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">append</span><span class="p">(</span><span class="nv">Rows</span><span class="p">,</span> <span class="nv">Elementi</span><span class="p">),</span> <span class="nv">Elementi</span> <span class="s s-Atom">ins</span> <span class="mf">1..9</span><span class="p">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vsaka-vrstica-je-permutacija">
+<h4>Vsaka vrstica je permutacija<a class="headerlink" href="10-programiranje-z-omejitvami.html#vsaka-vrstica-je-permutacija" title="Povezava na naslov">¶</a></h4>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">maplist</span><span class="p">(</span><span class="s s-Atom">all_distinct</span><span class="p">,</span> <span class="nv">Rows</span><span class="p">).</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vsak-stolpec-je-permutacija">
+<h4>Vsak stolpec je permutacija<a class="headerlink" href="10-programiranje-z-omejitvami.html#vsak-stolpec-je-permutacija" title="Povezava na naslov">¶</a></h4>
+<p>Ideja: matriko <code class="docutils literal notranslate"><span class="pre">Rows</span></code> transponiramo in zahtevamo, da so vrstice transponiranke permutacije:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">transpose</span><span class="p">(</span><span class="nv">Rows</span><span class="p">,</span> <span class="nv">Columns</span><span class="p">),</span> <span class="nf">map_list</span><span class="p">(</span><span class="s s-Atom">all_distinct</span><span class="p">,</span> <span class="nv">Columns</span><span class="p">).</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vsak-podkvadrat-3-3-je-permutacija">
+<h4>Vsak podkvadrat 3 × 3 je permutacija<a class="headerlink" href="10-programiranje-z-omejitvami.html#vsak-podkvadrat-3-3-je-permutacija" title="Povezava na naslov">¶</a></h4>
+<p>Ideja: če imamo vrstice <code class="docutils literal notranslate"><span class="pre">P</span></code>, <code class="docutils literal notranslate"><span class="pre">Q</span></code>, <code class="docutils literal notranslate"><span class="pre">R</span></code>, lahko iz njih izluščimo kvadrat na levi:</p>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="nv">P</span> <span class="o">=</span> <span class="p">[</span><span class="nv">P1</span><span class="p">,</span> <span class="nv">P2</span><span class="p">,</span> <span class="nv">P3</span> <span class="p">|</span> <span class="nv">Ps</span><span class="p">]</span>
+<span class="nv">Q</span> <span class="o">=</span> <span class="p">[</span><span class="nv">Q1</span><span class="p">,</span> <span class="nv">Q2</span><span class="p">,</span> <span class="nv">Q3</span> <span class="p">|</span> <span class="nv">Qs</span><span class="p">]</span>
+<span class="nv">R</span> <span class="o">=</span> <span class="p">[</span><span class="nv">R1</span><span class="p">,</span> <span class="nv">R2</span><span class="p">,</span> <span class="nv">R3</span> <span class="p">|</span> <span class="nv">Rs</span><span class="p">]</span>
+<span class="nv">K</span> <span class="o">=</span> <span class="p">[[</span><span class="nv">P1</span><span class="p">,</span> <span class="nv">P2</span><span class="p">,</span> <span class="nv">P3</span><span class="p">],</span>
+     <span class="p">[</span><span class="nv">Q1</span><span class="p">,</span> <span class="nv">Q2</span><span class="p">,</span> <span class="nv">Q3</span><span class="p">],</span>
+     <span class="p">[</span><span class="nv">R1</span><span class="p">,</span> <span class="nv">R2</span><span class="p">,</span> <span class="nv">R3</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Iz tega dobimo predikat, ki za vrstice <code class="docutils literal notranslate"><span class="pre">P</span></code>, <code class="docutils literal notranslate"><span class="pre">Q</span></code> in <code class="docutils literal notranslate"><span class="pre">R</span></code> pove, da so vsi trije kvadrati,
+ki tvorijo <code class="docutils literal notranslate"><span class="pre">P</span></code>, <code class="docutils literal notranslate"><span class="pre">Q</span></code>, <code class="docutils literal notranslate"><span class="pre">R</span></code>, permutacije:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kvadrati_permutacija</span><span class="p">([],[],[])</span><span class="o">.</span>
+<span class="n">kvadrati_permutacija</span><span class="p">(</span>
+   <span class="p">[</span><span class="n">P1</span><span class="p">,</span> <span class="n">P2</span><span class="p">,</span> <span class="n">P3</span> <span class="o">|</span> <span class="n">Ps</span><span class="p">],</span>
+   <span class="p">[</span><span class="n">Q1</span><span class="p">,</span> <span class="n">Q2</span><span class="p">,</span> <span class="n">Q3</span> <span class="o">|</span> <span class="n">Qs</span><span class="p">],</span>
+   <span class="p">[</span><span class="n">R1</span><span class="p">,</span> <span class="n">R2</span><span class="p">,</span> <span class="n">R3</span> <span class="o">|</span> <span class="n">Rs</span><span class="p">])</span> <span class="p">:</span><span class="o">-</span>
+   <span class="n">all_distinct</span><span class="p">([</span><span class="n">P1</span><span class="p">,</span> <span class="n">P2</span><span class="p">,</span> <span class="n">P3</span><span class="p">,</span> <span class="n">Q1</span><span class="p">,</span> <span class="n">Q2</span><span class="p">,</span> <span class="n">Q3</span><span class="p">,</span> <span class="n">R1</span><span class="p">,</span> <span class="n">R2</span><span class="p">,</span> <span class="n">R3</span><span class="p">]),</span>
+   <span class="n">kvadrati_permutacija</span><span class="p">(</span><span class="n">Ps</span><span class="p">,</span> <span class="n">Qs</span><span class="p">,</span> <span class="n">Rs</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="koncni-izdelek">
+<h3><span class="section-number">10.2.5. </span>Končni izdelek<a class="headerlink" href="10-programiranje-z-omejitvami.html#koncni-izdelek" title="Povezava na naslov">¶</a></h3>
+<div class="highlight-prolog notranslate"><div class="highlight"><pre><span></span><span class="p">:-</span> <span class="nf">use_module</span><span class="p">(</span><span class="nf">library</span><span class="p">(</span><span class="s s-Atom">clpfd</span><span class="p">)).</span>
+
+<span class="c1">% seznam L ima 9 elementov</span>
+<span class="nf">length9</span><span class="p">(</span><span class="nv">L</span><span class="p">)</span> <span class="p">:-</span> <span class="nf">length</span><span class="p">(</span><span class="nv">L</span><span class="p">,</span> <span class="mi">9</span><span class="p">).</span>
+
+<span class="c1">% ali Rows je pravilno izpolnjen Sudoku</span>
+<span class="nf">sudoku</span><span class="p">(</span><span class="nv">Rows</span><span class="p">)</span> <span class="p">:-</span>
+        <span class="nf">length9</span><span class="p">(</span><span class="nv">Rows</span><span class="p">),</span> <span class="c1">% imamo devet vrstic</span>
+        <span class="nf">maplist</span><span class="p">(</span><span class="s s-Atom">length9</span><span class="p">,</span> <span class="nv">Rows</span><span class="p">),</span> <span class="c1">% vsaka vrstica ima 9 elementov</span>
+        <span class="nf">append</span><span class="p">(</span><span class="nv">Rows</span><span class="p">,</span> <span class="nv">Vs</span><span class="p">),</span> <span class="nv">Vs</span> <span class="s s-Atom">ins</span> <span class="mf">1..9</span><span class="p">,</span> <span class="c1">% vsi elementi so med 1 in 9</span>
+        <span class="nf">maplist</span><span class="p">(</span><span class="s s-Atom">all_distinct</span><span class="p">,</span> <span class="nv">Rows</span><span class="p">),</span> <span class="c1">% vsaka vrstica je permutacija</span>
+        <span class="nf">transpose</span><span class="p">(</span><span class="nv">Rows</span><span class="p">,</span> <span class="nv">Columns</span><span class="p">),</span> <span class="nf">maplist</span><span class="p">(</span><span class="s s-Atom">all_distinct</span><span class="p">,</span> <span class="nv">Columns</span><span class="p">),</span> <span class="c1">% vsak stolpec je permutacija</span>
+        <span class="nv">Rows</span> <span class="o">=</span> <span class="p">[</span><span class="nv">As</span><span class="p">,</span><span class="nv">Bs</span><span class="p">,</span><span class="nv">Cs</span><span class="p">,</span><span class="nv">Ds</span><span class="p">,</span><span class="nv">Es</span><span class="p">,</span><span class="nv">Fs</span><span class="p">,</span><span class="nv">Gs</span><span class="p">,</span><span class="nv">Hs</span><span class="p">,</span><span class="nv">Is</span><span class="p">],</span>
+        <span class="nf">blocks</span><span class="p">(</span><span class="nv">As</span><span class="p">,</span> <span class="nv">Bs</span><span class="p">,</span> <span class="nv">Cs</span><span class="p">),</span> <span class="c1">% podkvadrati v vrsticah 1, 2, 3</span>
+        <span class="nf">blocks</span><span class="p">(</span><span class="nv">Ds</span><span class="p">,</span> <span class="nv">Es</span><span class="p">,</span> <span class="nv">Fs</span><span class="p">),</span> <span class="c1">% podkvadrati v vrsticah 4, 5, 6</span>
+        <span class="nf">blocks</span><span class="p">(</span><span class="nv">Gs</span><span class="p">,</span> <span class="nv">Hs</span><span class="p">,</span> <span class="nv">Is</span><span class="p">).</span> <span class="c1">% podkvadrati v vrsticah 7, 8, 9</span>
+
+<span class="c1">% preveri kvadratke v treh danih vrsticah</span>
+<span class="nf">blocks</span><span class="p">([],</span> <span class="p">[],</span> <span class="p">[]).</span>
+<span class="nf">blocks</span><span class="p">([</span><span class="nv">N1</span><span class="p">,</span><span class="nv">N2</span><span class="p">,</span><span class="nv">N3</span><span class="p">|</span><span class="nv">Ns1</span><span class="p">],</span>
+       <span class="p">[</span><span class="nv">N4</span><span class="p">,</span><span class="nv">N5</span><span class="p">,</span><span class="nv">N6</span><span class="p">|</span><span class="nv">Ns2</span><span class="p">],</span>
+       <span class="p">[</span><span class="nv">N7</span><span class="p">,</span><span class="nv">N8</span><span class="p">,</span><span class="nv">N9</span><span class="p">|</span><span class="nv">Ns3</span><span class="p">])</span> <span class="p">:-</span>
+        <span class="nf">all_distinct</span><span class="p">([</span><span class="nv">N1</span><span class="p">,</span><span class="nv">N2</span><span class="p">,</span><span class="nv">N3</span><span class="p">,</span><span class="nv">N4</span><span class="p">,</span><span class="nv">N5</span><span class="p">,</span><span class="nv">N6</span><span class="p">,</span><span class="nv">N7</span><span class="p">,</span><span class="nv">N8</span><span class="p">,</span><span class="nv">N9</span><span class="p">]),</span>
+        <span class="nf">blocks</span><span class="p">(</span><span class="nv">Ns1</span><span class="p">,</span> <span class="nv">Ns2</span><span class="p">,</span> <span class="nv">Ns3</span><span class="p">).</span>
+
+<span class="c1">% pomožni predikat, ki naredi label na vseh elementih matrike</span>
+<span class="nf">find</span><span class="p">(</span><span class="nv">Rows</span><span class="p">)</span> <span class="p">:-</span>
+    <span class="nf">append</span><span class="p">(</span><span class="nv">Rows</span><span class="p">,</span> <span class="nv">Vs</span><span class="p">),</span> <span class="nf">label</span><span class="p">(</span><span class="nv">Vs</span><span class="p">).</span>
+
+<span class="nf">example1</span><span class="p">([[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">9</span><span class="p">]]).</span>
+
+<span class="nf">example2</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+          <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+          <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">]]).</span>
+
+<span class="nf">example3</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">],</span>
+          <span class="p">[</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">,</span><span class="k">_</span><span class="p">]]).</span>
+
+<span class="c1">% Usage: ?- example1(Rows), sudoku(Rows), find(Rows), maplist(portray_clause, Rows).</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./10-programiranje-z-omejitvami"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../09-logicno-programiranje/09-logicno-programiranje.html" title="nazaj page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">nazaj</p>
+            <p class="prev-next-title"><span class="section-number">9. </span>Logično programiranje</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../11-podtipi/11-podtipi.html" title="naprej page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">naprej</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Podtipi</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Avtor Andrej Bauer<br/>
+    
+        &copy; avtorske pravice 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,735 @@
+
+<!DOCTYPE html>
+
+<html lang="sl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7. Izpeljava tipov &#8212; Principi programskih jezikov</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css%3Fdigest=c3fdc42140077d1ad13ad2f1588a4309.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Abecedni seznam" href="../genindex.html" />
+    <link rel="search" title="Išči" href="../search.html" />
+    <link rel="next" title="8. Specifikacija, implementacija, abstrakcija" href="../08-abstrakcija/08-abstrakcija.html" />
+    <link rel="prev" title="6. Rekurzija in rekurzivni tipi" href="../06-rekurzija/06-rekurzija.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="sl">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Principi programskih jezikov</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Poiščite to knjigo ..." aria-label="Poiščite to knjigo ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-uvod.html">
+   Uvod
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-aritmeticni-izrazi/01-aritmeticni-izrazi.html">
+   1. O programskih jezikih in aritmetičnih izrazih
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-ukazni-programski-jezik/02-ukazni-programski-jezik.html">
+   2. Ukazni programski jezik
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-dokazovanje-pravilnosti/03-dokazovanje-pravilnosti.html">
+   3. Dokazovanje pravilnosti programov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-lambda-racun/04-lambda-racun.html">
+   4. λ-račun
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-deklarativno-programiranje/05-deklarativno-programiranje.html">
+   5. Deklarativno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-rekurzija/06-rekurzija.html">
+   6. Rekurzija in rekurzivni tipi
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="07-izpeljava-tipov.html#">
+   7. Izpeljava tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08-abstrakcija/08-abstrakcija.html">
+   8. Specifikacija, implementacija, abstrakcija
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09-logicno-programiranje/09-logicno-programiranje.html">
+   9. Logično programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10-programiranje-z-omejitvami/10-programiranje-z-omejitvami.html">
+   10. Logično programiranje z omejitvami
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11-podtipi/11-podtipi.html">
+   11. Podtipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12-objektno-programiranje/12-objektno-programiranje.html">
+   12. Objektno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-haskell-in-razredi-tipov/14-haskell-in-razredi-tipov.html">
+   13. Haskell in razredi tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-monade/15-monade.html">
+   14. Monade in računski učinki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-ucinki-in-prestrezniki/13-ucinki-in-prestrezniki.html">
+   15. Učinki in prestrezniki
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Preklopi navigacijo" aria-controls="site-navigation"
+                title="Preklopi navigacijo" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Prenesite to stran"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/07-izpeljava-tipov/07-izpeljava-tipov.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Prenesite izvorno datoteko" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Natisni v PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Celozaslonski način"
+        title="Celozaslonski način"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Vsebina
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="07-izpeljava-tipov.html#kako-programski-jeziki-uporabljajo-tipe">
+   7.1. Kako programski jeziki uporabljajo tipe
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="07-izpeljava-tipov.html#kako-striktni-so-tipi">
+     7.1.1. Kako striktni so tipi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="07-izpeljava-tipov.html#dinamicni-in-staticni-tipi">
+     7.1.2. Dinamični in statični tipi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="07-izpeljava-tipov.html#preverjanje-in-izpeljevanje-tipov">
+     7.1.3. Preverjanje in izpeljevanje tipov
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="07-izpeljava-tipov.html#monomorfni-in-polimorfni-tipi">
+   7.2. Monomorfni in polimorfni tipi
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="07-izpeljava-tipov.html#id1">
+   7.3. Izpeljava tipov
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="07-izpeljava-tipov.html#postopek-izpeljave-glavnega-tipa">
+     7.3.1. Postopek izpeljave glavnega tipa
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="07-izpeljava-tipov.html#prva-faza">
+       Prva faza
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="07-izpeljava-tipov.html#druga-faza-zdruzevanje">
+       Druga faza: združevanje
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="07-izpeljava-tipov.html#primer-1">
+         Primer 1
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="07-izpeljava-tipov.html#primer-2">
+         Primer 2
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h6 nav-item toc-entry">
+          <a class="reference internal nav-link" href="07-izpeljava-tipov.html#churchovi-numerali">
+           Churchovi numerali
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="07-izpeljava-tipov.html#churchovi-scottovi-numerali">
+         Churchovi-Scottovi numerali
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Izpeljava tipov</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Vsebina </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="07-izpeljava-tipov.html#kako-programski-jeziki-uporabljajo-tipe">
+   7.1. Kako programski jeziki uporabljajo tipe
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="07-izpeljava-tipov.html#kako-striktni-so-tipi">
+     7.1.1. Kako striktni so tipi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="07-izpeljava-tipov.html#dinamicni-in-staticni-tipi">
+     7.1.2. Dinamični in statični tipi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="07-izpeljava-tipov.html#preverjanje-in-izpeljevanje-tipov">
+     7.1.3. Preverjanje in izpeljevanje tipov
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="07-izpeljava-tipov.html#monomorfni-in-polimorfni-tipi">
+   7.2. Monomorfni in polimorfni tipi
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="07-izpeljava-tipov.html#id1">
+   7.3. Izpeljava tipov
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="07-izpeljava-tipov.html#postopek-izpeljave-glavnega-tipa">
+     7.3.1. Postopek izpeljave glavnega tipa
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="07-izpeljava-tipov.html#prva-faza">
+       Prva faza
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="07-izpeljava-tipov.html#druga-faza-zdruzevanje">
+       Druga faza: združevanje
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="07-izpeljava-tipov.html#primer-1">
+         Primer 1
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="07-izpeljava-tipov.html#primer-2">
+         Primer 2
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h6 nav-item toc-entry">
+          <a class="reference internal nav-link" href="07-izpeljava-tipov.html#churchovi-numerali">
+           Churchovi numerali
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="07-izpeljava-tipov.html#churchovi-scottovi-numerali">
+         Churchovi-Scottovi numerali
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="izpeljava-tipov">
+<h1><span class="section-number">7. </span>Izpeljava tipov<a class="headerlink" href="07-izpeljava-tipov.html#izpeljava-tipov" title="Povezava na naslov">¶</a></h1>
+<div class="section" id="kako-programski-jeziki-uporabljajo-tipe">
+<h2><span class="section-number">7.1. </span>Kako programski jeziki uporabljajo tipe<a class="headerlink" href="07-izpeljava-tipov.html#kako-programski-jeziki-uporabljajo-tipe" title="Povezava na naslov">¶</a></h2>
+<p>Skoraj vsi programski jeziki imajo tipe, razlikujejo pa se po tem, kako se le-ti
+uporabljajo.</p>
+<div class="section" id="kako-striktni-so-tipi">
+<h3><span class="section-number">7.1.1. </span>Kako striktni so tipi<a class="headerlink" href="07-izpeljava-tipov.html#kako-striktni-so-tipi" title="Povezava na naslov">¶</a></h3>
+<p>Tipi so lahko bolj ali manj <strong>striktni</strong>. Če so popolnoma striktni, ima vsak
+izraz v veljavnem programu tip (OCaml, Standard ML, Haskell, Java, C++). Lahko se zgodi,
+da veljavni program nima tipa, ali vsaj ne takega, ki bi dobro opisal njegovo
+delovanje (Javascript, Python).</p>
+<p><strong>Primer:</strong> nabori v Pythonu imajo zelo ohlapen tip <code class="docutils literal notranslate"><span class="pre">tuple</span></code>, ki ne pove nič več kot
+to, da gre za urejeno večterico:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; type((1, &#39;foo&#39;, False))
+&lt;type &#39;tuple&#39;&gt;
+</pre></div>
+</div>
+<p>V OCamlu so tipi striktni. Tip urejene trojice je bolj informativen:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># (1, &quot;foo&quot;, false) ;;
+- : int * string * bool = (1, &quot;foo&quot;, false)
+</pre></div>
+</div>
+</div>
+<div class="section" id="dinamicni-in-staticni-tipi">
+<h3><span class="section-number">7.1.2. </span>Dinamični in statični tipi<a class="headerlink" href="07-izpeljava-tipov.html#dinamicni-in-staticni-tipi" title="Povezava na naslov">¶</a></h3>
+<p>Poznamo delitev glede na <em>fazo</em>, v kateri se uporabijo tipi:</p>
+<ul class="simple">
+<li><p>Programski jezik ima <strong>statične tipe</strong>, če preveri ali izpelje tipe v
+<em>statični fazi</em>, se pravi ob prevajanju ali nalaganju kode, preden se koda
+požene. Primeri: C, C++, Java, C#, Standard ML, OCaml, Haskell, Swift, Scala.</p></li>
+<li><p>Programski jezik ima <strong>dinamične tipe</strong>, če preverja tipe v <em>dinamični fazi</em>,
+se pravi, ko se koda izvaja. Primeri: Scheme, Racket, Javascript, Python.</p></li>
+</ul>
+</div>
+<div class="section" id="preverjanje-in-izpeljevanje-tipov">
+<h3><span class="section-number">7.1.3. </span>Preverjanje in izpeljevanje tipov<a class="headerlink" href="07-izpeljava-tipov.html#preverjanje-in-izpeljevanje-tipov" title="Povezava na naslov">¶</a></h3>
+<p>Programski jezik lahko tipe <strong>preverja</strong> ali <strong>izpeljuje</strong>:</p>
+<ul class="simple">
+<li><p><strong>preverja</strong> jih, če programer v večji meri zapiše tipe spremenljivk, funkcij in
+atributov, programski jezik pa preveri, da so pravilno uporabljeni. Primeri:
+C, C++, Java, C#.</p></li>
+<li><p><strong>izpeljuje</strong> jih, če programerju ni treba podajati tipov spremenljivk,
+funkcij in atributov (lahko pa jih, če to želi), programski jezik pa sam
+ugotovi, kakšnega tipa so. Primeri: OCaml, Standard ML, Haskell.</p></li>
+</ul>
+<p>Večina jezikov dopušča kombinacijo obeh tehnik. V OCamlu in Haskellu lahko
+predpišemo tip, čeprav bi ga programski jezik lahko izpeljal tudi sam. C++, Java
+in C# omogočajo izpeljavo tipov v omejenem obsegu, na primer pri tipih lokalnih
+spremenljivk.</p>
+</div>
+</div>
+<div class="section" id="monomorfni-in-polimorfni-tipi">
+<h2><span class="section-number">7.2. </span>Monomorfni in polimorfni tipi<a class="headerlink" href="07-izpeljava-tipov.html#monomorfni-in-polimorfni-tipi" title="Povezava na naslov">¶</a></h2>
+<p>Tipi so lahko:</p>
+<ul class="simple">
+<li><p><strong>monomorfni</strong>, če ima vsak izraz največ en tip</p></li>
+<li><p><strong>polimorfni</strong>, če ima lahko izraz hkrati več različnih tipov</p></li>
+</ul>
+<p>Poznamo več vrst polimorfizma, danes bomo obravnavali <strong>parametrični polimorfizem</strong>.</p>
+</div>
+<div class="section" id="id1">
+<h2><span class="section-number">7.3. </span>Izpeljava tipov<a class="headerlink" href="07-izpeljava-tipov.html#id1" title="Povezava na naslov">¶</a></h2>
+<p>Programski jeziki kot so OCaml, Standard ML in Haskell imajo polimorfne tipe, ki jih
+izpeljejo z algoritmom, ki sta ga razvila Hindley in Milner.</p>
+<p>Kakšen tip ima funkcija <code class="docutils literal notranslate"><span class="pre">λ</span> <span class="pre">x</span> <span class="pre">.</span> <span class="pre">x</span></code>, oziroma v OCamlu <code class="docutils literal notranslate"><span class="pre">fun</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">x</span></code>? Možnih je veliko odgovorov:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">→</span> <span class="pre">int</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">→</span> <span class="pre">bool</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">*</span> <span class="pre">int</span> <span class="pre">→</span> <span class="pre">int</span> <span class="pre">*</span> <span class="pre">int</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">α</span> <span class="pre">list</span> <span class="pre">→</span> <span class="pre">α</span> <span class="pre">list</span></code> za poljuben <code class="docutils literal notranslate"><span class="pre">α</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">β</span> <span class="pre">→</span> <span class="pre">β</span></code> za poljuben <code class="docutils literal notranslate"><span class="pre">β</span></code>.</p></li>
+</ul>
+<p>Od vseh je zadnji najbolj splošen, ker lahko vse ostale dobimo tako, da
+<strong>parameter</strong> <code class="docutils literal notranslate"><span class="pre">β</span></code> zamenjamo s kakim drugim tipom. Pravimo, da je <code class="docutils literal notranslate"><span class="pre">β</span> <span class="pre">→</span> <span class="pre">β</span></code>
+<em>glavni</em> tip funkcije <code class="docutils literal notranslate"><span class="pre">fun</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">x</span></code>.</p>
+<p><strong>Definicija:</strong> Tip izraza je <strong>glavni</strong>, če lahko vse njegove tipe dobimo tako,
+da v glavnem tipu parametre zamenjamo s tipi (ki lahko vsebujejo nadaljnje
+parametere).</p>
+<p>OCaml je načrtovan tako, da ima vsak veljaven izraz glavni tip, ki ga OCaml
+izpelje sam. (Izjema so rekurzivne polimorfne funkcije, kjer mora programer sam
+opredeliti tip, saj algoritem za izračun glavnega tipa rekurzivne funkcije ne
+obstaja.)</p>
+<div class="section" id="postopek-izpeljave-glavnega-tipa">
+<h3><span class="section-number">7.3.1. </span>Postopek izpeljave glavnega tipa<a class="headerlink" href="07-izpeljava-tipov.html#postopek-izpeljave-glavnega-tipa" title="Povezava na naslov">¶</a></h3>
+<p>Glavni tip izraza <code class="docutils literal notranslate"><span class="pre">e</span></code> izpeljemo v dveh fazah:</p>
+<ol class="simple">
+<li><p>Izračunamo kandidata za tip <code class="docutils literal notranslate"><span class="pre">e</span></code>, ki vsebuje neznanke, in enačbe, ki jim
+morajo neznanke zadoščati.</p></li>
+<li><p>Rešimo enačbe s postopkom <em>združevanja</em>.</p></li>
+</ol>
+<p>Druga faza se lahko zalomi, če se izkaže, da enačbe nimajo rešitve.</p>
+<div class="section" id="prva-faza">
+<h4>Prva faza<a class="headerlink" href="07-izpeljava-tipov.html#prva-faza" title="Povezava na naslov">¶</a></h4>
+<p>V prvi fazi izračunamo kandidata za tip in nabiramo enačbe, ki morajo veljati:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">true</span></code> ima tip <code class="docutils literal notranslate"><span class="pre">bool</span></code>, brez enačb</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">false</span></code> ima tip <code class="docutils literal notranslate"><span class="pre">bool</span></code>, brez enačb</p></li>
+<li><p>celoštevilska konstanta <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, … ima tip <code class="docutils literal notranslate"><span class="pre">int</span></code>, brez enačb</p></li>
+<li><p>spremenljivka ima svoj dani tip (tipe spremenljivk sproti beležimo v <em>kontekstu</em>)</p></li>
+<li><p>aritmetični izraz <code class="docutils literal notranslate"><span class="pre">e₁</span> <span class="pre">+</span> <span class="pre">e₂</span></code>:</p>
+<ul class="simple">
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ₁</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e₁</span></code> in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E₁</span></code></p></li>
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ₂</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e₂</span></code> in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E₂</span></code></p></li>
+</ul>
+<p>Tip izraza <code class="docutils literal notranslate"><span class="pre">e₁</span> <span class="pre">+</span> <span class="pre">e₂</span></code> je <code class="docutils literal notranslate"><span class="pre">int</span></code>, z enačbami <code class="docutils literal notranslate"><span class="pre">E₁</span></code>, <code class="docutils literal notranslate"><span class="pre">E₂</span></code> in <code class="docutils literal notranslate"><span class="pre">τ₁</span> <span class="pre">=</span> <span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">τ₂</span> <span class="pre">=</span> <span class="pre">int</span></code>
+Podobno obravnavamo ostale aritmetične izraze <code class="docutils literal notranslate"><span class="pre">e₁</span> <span class="pre">*</span> <span class="pre">e₂</span></code>, <code class="docutils literal notranslate"><span class="pre">e₁</span> <span class="pre">-</span> <span class="pre">e₂</span></code>, …</p>
+</li>
+<li><p>boolov izraz <code class="docutils literal notranslate"><span class="pre">e₁</span> <span class="pre">&amp;&amp;</span> <span class="pre">e₂</span></code>: obravnavamo podobno kot aritmetični izraz, le da uporabimo
+pričakovani <code class="docutils literal notranslate"><span class="pre">bool</span></code> namesto <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p></li>
+<li><p>primerjava celih števil <code class="docutils literal notranslate"><span class="pre">e₁</span> <span class="pre">&lt;</span> <span class="pre">e₂</span></code>:</p>
+<ul class="simple">
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ₁</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e₁</span></code> in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E₁</span></code></p></li>
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ₂</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e₂</span></code> in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E₂</span></code></p></li>
+</ul>
+<p>Tip izraza <code class="docutils literal notranslate"><span class="pre">e₁</span> <span class="pre">&lt;</span> <span class="pre">e₂</span></code> je <code class="docutils literal notranslate"><span class="pre">bool</span></code>, z enačbami <code class="docutils literal notranslate"><span class="pre">E₁</span></code>, <code class="docutils literal notranslate"><span class="pre">E₂</span></code> in <code class="docutils literal notranslate"><span class="pre">τ₁</span> <span class="pre">=</span> <span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">τ₂</span> <span class="pre">=</span> <span class="pre">int</span></code></p>
+</li>
+<li><p>pogojni stavek <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">e₁</span> <span class="pre">then</span> <span class="pre">e₂</span> <span class="pre">else</span> <span class="pre">e₃</span></code>:</p>
+<ul class="simple">
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ₁</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e₁</span></code> in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E₁</span></code></p></li>
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ₂</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e₂</span></code> in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E₂</span></code></p></li>
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ₃</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e₃</span></code> in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E₃</span></code></p></li>
+</ul>
+<p>Tip izraza <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">e₁</span> <span class="pre">then</span> <span class="pre">e₂</span> <span class="pre">else</span> <span class="pre">e₃</span></code> je <code class="docutils literal notranslate"><span class="pre">τ₂</span></code>, z enačbami <code class="docutils literal notranslate"><span class="pre">E₁</span></code>, <code class="docutils literal notranslate"><span class="pre">E₂</span></code>, <code class="docutils literal notranslate"><span class="pre">E₃</span></code>, <code class="docutils literal notranslate"><span class="pre">τ₁</span> <span class="pre">=</span> <span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">τ₂</span> <span class="pre">=</span> <span class="pre">τ₃</span></code></p>
+</li>
+<li><p>urejeni par <code class="docutils literal notranslate"><span class="pre">(e₁,</span> <span class="pre">e₂)</span></code>:</p>
+<ul class="simple">
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ₁</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e₁</span></code> in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E₁</span></code></p></li>
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ₂</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e₂</span></code> in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E₂</span></code></p></li>
+</ul>
+<p>Tipi izraza <code class="docutils literal notranslate"><span class="pre">(e₁,</span> <span class="pre">e₂)</span></code> je <code class="docutils literal notranslate"><span class="pre">τ₁</span> <span class="pre">×</span> <span class="pre">τ₂</span></code>, z enačbami <code class="docutils literal notranslate"><span class="pre">E₁</span></code>, <code class="docutils literal notranslate"><span class="pre">E₂</span></code>.</p>
+</li>
+<li><p>prva projekcija <code class="docutils literal notranslate"><span class="pre">fst</span> <span class="pre">e</span></code>:</p>
+<ul class="simple">
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e</span></code> in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E</span></code></p></li>
+</ul>
+<p>Uvedemo nova parametra <code class="docutils literal notranslate"><span class="pre">α</span></code> in <code class="docutils literal notranslate"><span class="pre">β</span></code> (se ne pojavljata v <code class="docutils literal notranslate"><span class="pre">E</span></code>).
+Tip izraza <code class="docutils literal notranslate"><span class="pre">fst</span> <span class="pre">e</span></code> je <code class="docutils literal notranslate"><span class="pre">α</span></code>, z enačbami <code class="docutils literal notranslate"><span class="pre">E</span></code>, <code class="docutils literal notranslate"><span class="pre">τ</span> <span class="pre">=</span> <span class="pre">α</span> <span class="pre">×</span> <span class="pre">β</span></code>.</p>
+</li>
+<li><p>druga projekcija <code class="docutils literal notranslate"><span class="pre">snd</span> <span class="pre">e</span></code>:</p>
+<ul class="simple">
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e</span></code> in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E</span></code></p></li>
+</ul>
+<p>Uvedemo nova parametra <code class="docutils literal notranslate"><span class="pre">α</span></code> in <code class="docutils literal notranslate"><span class="pre">β</span></code>.
+Tip izraza <code class="docutils literal notranslate"><span class="pre">snd</span> <span class="pre">e</span></code> je <code class="docutils literal notranslate"><span class="pre">β</span></code>, z enačbami <code class="docutils literal notranslate"><span class="pre">E</span></code>, <code class="docutils literal notranslate"><span class="pre">τ</span> <span class="pre">=</span> <span class="pre">α</span> <span class="pre">×</span> <span class="pre">β</span></code>.</p>
+</li>
+<li><p>funkcija <code class="docutils literal notranslate"><span class="pre">fun</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">e</span></code>: uvedemo nov parameter <code class="docutils literal notranslate"><span class="pre">α</span></code> in zabeležimo, da ima <code class="docutils literal notranslate"><span class="pre">x</span></code> tip <code class="docutils literal notranslate"><span class="pre">α</span></code>, ter</p>
+<ul class="simple">
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e</span></code> (pri predpostavki, da ima <code class="docutils literal notranslate"><span class="pre">x</span></code> tip <code class="docutils literal notranslate"><span class="pre">α</span></code>) in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E</span></code></p></li>
+</ul>
+<p>Tip funkcije <code class="docutils literal notranslate"><span class="pre">fun</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">e</span></code> je <code class="docutils literal notranslate"><span class="pre">α</span> <span class="pre">→</span> <span class="pre">τ</span></code> z enačbami <code class="docutils literal notranslate"><span class="pre">E</span></code></p>
+</li>
+<li><p>aplikacija <code class="docutils literal notranslate"><span class="pre">e₁</span> <span class="pre">e₂</span></code>:</p>
+<ul class="simple">
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ₁</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e₁</span></code> in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E₁</span></code></p></li>
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ₂</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e₂</span></code> in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E₂</span></code></p></li>
+</ul>
+<p>Uvedemo nov parameter <code class="docutils literal notranslate"><span class="pre">α</span></code>.
+Tip izraza <code class="docutils literal notranslate"><span class="pre">e₁</span> <span class="pre">e₂</span></code> je <code class="docutils literal notranslate"><span class="pre">α</span></code>, z enačbami <code class="docutils literal notranslate"><span class="pre">E₁</span></code>, <code class="docutils literal notranslate"><span class="pre">E₂</span></code>, <code class="docutils literal notranslate"><span class="pre">τ₁</span> <span class="pre">=</span> <span class="pre">τ₂</span> <span class="pre">→</span> <span class="pre">α</span></code></p>
+</li>
+<li><p>rekurzivna definicija <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">e</span></code> (kjer se <code class="docutils literal notranslate"><span class="pre">x</span></code> pojavi v <code class="docutils literal notranslate"><span class="pre">e</span></code>): uvedemo nov parameter <code class="docutils literal notranslate"><span class="pre">α</span></code>, zabeležimo,
+da ima <code class="docutils literal notranslate"><span class="pre">x</span></code> tip <code class="docutils literal notranslate"><span class="pre">α</span></code>, ter</p>
+<ul class="simple">
+<li><p>izračunamo tip <code class="docutils literal notranslate"><span class="pre">τ</span></code> izraza <code class="docutils literal notranslate"><span class="pre">e</span></code> (pri predpostavki, da ima <code class="docutils literal notranslate"><span class="pre">x</span></code> tip <code class="docutils literal notranslate"><span class="pre">α</span></code>) in dobimo še enačbe <code class="docutils literal notranslate"><span class="pre">E</span></code></p></li>
+</ul>
+<p>Tip izraza <code class="docutils literal notranslate"><span class="pre">x</span></code> je <code class="docutils literal notranslate"><span class="pre">τ</span></code>, z enačbami <code class="docutils literal notranslate"><span class="pre">E</span></code>, <code class="docutils literal notranslate"><span class="pre">α</span> <span class="pre">=</span> <span class="pre">τ</span></code>.
+Opomba: običajno na ta način definiramo rekurzivne funkcije, torej bo <code class="docutils literal notranslate"><span class="pre">x</span></code> v resnici funkcija.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="druga-faza-zdruzevanje">
+<h4>Druga faza: združevanje<a class="headerlink" href="07-izpeljava-tipov.html#druga-faza-zdruzevanje" title="Povezava na naslov">¶</a></h4>
+<p>Imamo množico enačb <code class="docutils literal notranslate"><span class="pre">E</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>l₁ = d₁
+l₂ = d₂
+l₃ = d₃
+...
+lᵢ = dᵢ
+</pre></div>
+</div>
+<p>v neznankah <code class="docutils literal notranslate"><span class="pre">α</span></code>, <code class="docutils literal notranslate"><span class="pre">β</span></code>, <code class="docutils literal notranslate"><span class="pre">γ</span></code>, <code class="docutils literal notranslate"><span class="pre">δ</span></code>, … Rešujemo z naslednjim postopkom:</p>
+<ol class="simple">
+<li><p>Imamo seznam rešitev <code class="docutils literal notranslate"><span class="pre">r</span></code>, ki je na začetku prazen.</p></li>
+<li><p>Če je <code class="docutils literal notranslate"><span class="pre">E</span></code> prazna množica, vrnemo rešitev <code class="docutils literal notranslate"><span class="pre">r</span></code>.</p></li>
+<li><p>Sicer iz <code class="docutils literal notranslate"><span class="pre">E</span></code> odstranimo katerokoli enačbo <code class="docutils literal notranslate"><span class="pre">l</span> <span class="pre">=</span> <span class="pre">d</span></code> in jo obravnavamo:</p>
+<ul class="simple">
+<li><p>če sta leva in desna stran povsem enaki, enačbo zavržemo ter gremo na korak 2</p></li>
+<li><p>če je enačba oblike <code class="docutils literal notranslate"><span class="pre">α</span> <span class="pre">=</span> <span class="pre">d</span></code>, kjer je <code class="docutils literal notranslate"><span class="pre">α</span></code> neznanka:</p>
+<ul>
+<li><p>če se <code class="docutils literal notranslate"><span class="pre">α</span></code> pojavi v <code class="docutils literal notranslate"><span class="pre">d</span></code>, postopek prekinemo, ker <em>ni rešitve</em></p></li>
+<li><p>sicer smo našli rešitev za <code class="docutils literal notranslate"><span class="pre">α</span></code>, namreč <code class="docutils literal notranslate"><span class="pre">α</span> <span class="pre">↦</span> <span class="pre">d</span></code>. Povsod v <code class="docutils literal notranslate"><span class="pre">r</span></code> in <code class="docutils literal notranslate"><span class="pre">E</span></code> zamenjamo <code class="docutils literal notranslate"><span class="pre">α</span></code> z <code class="docutils literal notranslate"><span class="pre">d</span></code> in
+v <code class="docutils literal notranslate"><span class="pre">r</span></code> dodamo rešitev <code class="docutils literal notranslate"><span class="pre">α</span> <span class="pre">↦</span> <span class="pre">d</span></code></p></li>
+</ul>
+</li>
+<li><p>če je enačba oblike <code class="docutils literal notranslate"><span class="pre">l</span> <span class="pre">=</span> <span class="pre">α</span></code>, kjer je <code class="docutils literal notranslate"><span class="pre">α</span></code> neznanka, imamo primer, ki je simetričen prejšnjemu</p></li>
+<li><p>če je enačba oblike <code class="docutils literal notranslate"><span class="pre">(l₁</span> <span class="pre">→</span> <span class="pre">l₂)</span> <span class="pre">=</span> <span class="pre">(d₁</span> <span class="pre">→</span> <span class="pre">d₂)</span></code>, v <code class="docutils literal notranslate"><span class="pre">E</span></code> dodamo enačbi <code class="docutils literal notranslate"><span class="pre">l₁</span> <span class="pre">=</span> <span class="pre">d₁</span></code> in <code class="docutils literal notranslate"><span class="pre">l₂</span> <span class="pre">=</span> <span class="pre">d₂</span></code> in gremo na korak 2</p></li>
+<li><p>če je enačba oblike <code class="docutils literal notranslate"><span class="pre">(l₁</span> <span class="pre">×</span> <span class="pre">l₂)</span> <span class="pre">=</span> <span class="pre">(d₁</span> <span class="pre">×</span> <span class="pre">d₂)</span></code>, v <code class="docutils literal notranslate"><span class="pre">E</span></code> dodamo enačbi <code class="docutils literal notranslate"><span class="pre">l₁</span> <span class="pre">=</span> <span class="pre">d₁</span></code> in <code class="docutils literal notranslate"><span class="pre">l₂</span> <span class="pre">=</span> <span class="pre">d₂</span></code> in gremo na korak 2</p></li>
+<li><p>če je enačba katerekoli druge oblike, na primer <code class="docutils literal notranslate"><span class="pre">(l₁</span> <span class="pre">→</span> <span class="pre">l₂)</span> <span class="pre">=</span> <span class="pre">(d₁</span> <span class="pre">×</span> <span class="pre">d₂)</span></code>, postopek prekinemo, ker <em>ni rešitve</em>.</p></li>
+</ul>
+</li>
+</ol>
+<p>Kako to deluje, si poglejmo na primerih.</p>
+<div class="section" id="primer-1">
+<h5>Primer 1<a class="headerlink" href="07-izpeljava-tipov.html#primer-1" title="Povezava na naslov">¶</a></h5>
+<p>Izpelji glavni tip funkcije</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fun x -&gt; x + 3
+</pre></div>
+</div>
+<p><strong>Odgovor:</strong> <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">-&gt;</span> <span class="pre">int</span></code></p>
+</div>
+<div class="section" id="primer-2">
+<h5>Primer 2<a class="headerlink" href="07-izpeljava-tipov.html#primer-2" title="Povezava na naslov">¶</a></h5>
+<p>Izpelji glavni tip izraza</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>if 3 &lt; 5 then (fun x -&gt; x) else (fun y -&gt; y + 3)
+</pre></div>
+</div>
+<p><strong>Odgovor:</strong> <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">-&gt;</span> <span class="pre">int</span></code></p>
+<div class="section" id="churchovi-numerali">
+<h6>Churchovi numerali<a class="headerlink" href="07-izpeljava-tipov.html#churchovi-numerali" title="Povezava na naslov">¶</a></h6>
+<p>Kakšen je tip števila <code class="docutils literal notranslate"><span class="pre">3</span></code>?</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0 = (λ f x . x)
+1 = (λ f x . f x)
+2 = (λ f x . f (f x))
+3 = (λ f x . f (f (f x)))
+</pre></div>
+</div>
+<p>To naj izračuna OCaml:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>let zero  = (fun f x -&gt; x) ;;
+let one   = (fun f x -&gt; f x) ;;
+let two   = (fun f x -&gt; f (f x)) ;;
+let three = (fun f x -&gt; f (f (f x))) ;;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="churchovi-scottovi-numerali">
+<h5>Churchovi-Scottovi numerali<a class="headerlink" href="07-izpeljava-tipov.html#churchovi-scottovi-numerali" title="Povezava na naslov">¶</a></h5>
+<p>Kakšen je tip števila <code class="docutils literal notranslate"><span class="pre">3</span></code>?</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0 = (λ f x . x)
+1 = (λ f x . f 0 x)
+2 = (λ f x . f 1 (f 0 x))
+3 = (λ f x . f 2 (f 1 (f 0 x)))
+</pre></div>
+</div>
+<p>To naj izračuna OCaml:</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./07-izpeljava-tipov"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../06-rekurzija/06-rekurzija.html" title="nazaj page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">nazaj</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Rekurzija in rekurzivni tipi</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../08-abstrakcija/08-abstrakcija.html" title="naprej page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">naprej</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Specifikacija, implementacija, abstrakcija</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Avtor Andrej Bauer<br/>
+    
+        &copy; avtorske pravice 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

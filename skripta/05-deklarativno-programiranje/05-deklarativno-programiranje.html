@@ -1,0 +1,1096 @@
+
+<!DOCTYPE html>
+
+<html lang="sl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5. Deklarativno programiranje &#8212; Principi programskih jezikov</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css%3Fdigest=c3fdc42140077d1ad13ad2f1588a4309.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Abecedni seznam" href="../genindex.html" />
+    <link rel="search" title="Išči" href="../search.html" />
+    <link rel="next" title="6. Rekurzija in rekurzivni tipi" href="../06-rekurzija/06-rekurzija.html" />
+    <link rel="prev" title="4. λ-račun" href="../04-lambda-racun/04-lambda-racun.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="sl">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Principi programskih jezikov</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Poiščite to knjigo ..." aria-label="Poiščite to knjigo ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-uvod.html">
+   Uvod
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-aritmeticni-izrazi/01-aritmeticni-izrazi.html">
+   1. O programskih jezikih in aritmetičnih izrazih
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-ukazni-programski-jezik/02-ukazni-programski-jezik.html">
+   2. Ukazni programski jezik
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-dokazovanje-pravilnosti/03-dokazovanje-pravilnosti.html">
+   3. Dokazovanje pravilnosti programov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-lambda-racun/04-lambda-racun.html">
+   4. λ-račun
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="05-deklarativno-programiranje.html#">
+   5. Deklarativno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-rekurzija/06-rekurzija.html">
+   6. Rekurzija in rekurzivni tipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07-izpeljava-tipov/07-izpeljava-tipov.html">
+   7. Izpeljava tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08-abstrakcija/08-abstrakcija.html">
+   8. Specifikacija, implementacija, abstrakcija
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09-logicno-programiranje/09-logicno-programiranje.html">
+   9. Logično programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10-programiranje-z-omejitvami/10-programiranje-z-omejitvami.html">
+   10. Logično programiranje z omejitvami
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11-podtipi/11-podtipi.html">
+   11. Podtipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12-objektno-programiranje/12-objektno-programiranje.html">
+   12. Objektno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-haskell-in-razredi-tipov/14-haskell-in-razredi-tipov.html">
+   13. Haskell in razredi tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-monade/15-monade.html">
+   14. Monade in računski učinki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-ucinki-in-prestrezniki/13-ucinki-in-prestrezniki.html">
+   15. Učinki in prestrezniki
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Preklopi navigacijo" aria-controls="site-navigation"
+                title="Preklopi navigacijo" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Prenesite to stran"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/05-deklarativno-programiranje/05-deklarativno-programiranje.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Prenesite izvorno datoteko" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Natisni v PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Celozaslonski način"
+        title="Celozaslonski način"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Vsebina
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#podatki">
+   5.1. Podatki
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#konstrukcije-mnozic">
+   5.2. Konstrukcije množic
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#zmnozek-ali-kartezicni-produkt">
+     5.2.1. Zmnožek ali kartezični produkt
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#vsota-ali-disjunktna-unija">
+     5.2.2. Vsota ali disjunktna unija
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#eksponent-ali-mnozica-funkcij">
+     5.2.3. Eksponent ali množica funkcij
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#podatkovni-tipi">
+   5.3. Podatkovni tipi
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#ocaml">
+     5.3.1. OCaml
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#zmnozek-tipov">
+     5.3.2. Zmnožek tipov
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#definicije-vrednosti">
+     5.3.3. Definicije vrednosti
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#enotski-tip">
+     5.3.4. Enotski tip
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#zapisi">
+     5.3.5. Zapisi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#definicije-tipov">
+     5.3.6. Definicije tipov
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#vsota-tipov">
+     5.3.7. Vsota tipov
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#razlocevanje-primerov">
+     5.3.8. Razločevanje primerov
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#tip-funkcij">
+     5.3.9. Tip funkcij
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Deklarativno programiranje</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Vsebina </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#podatki">
+   5.1. Podatki
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#konstrukcije-mnozic">
+   5.2. Konstrukcije množic
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#zmnozek-ali-kartezicni-produkt">
+     5.2.1. Zmnožek ali kartezični produkt
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#vsota-ali-disjunktna-unija">
+     5.2.2. Vsota ali disjunktna unija
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#eksponent-ali-mnozica-funkcij">
+     5.2.3. Eksponent ali množica funkcij
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#podatkovni-tipi">
+   5.3. Podatkovni tipi
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#ocaml">
+     5.3.1. OCaml
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#zmnozek-tipov">
+     5.3.2. Zmnožek tipov
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#definicije-vrednosti">
+     5.3.3. Definicije vrednosti
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#enotski-tip">
+     5.3.4. Enotski tip
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#zapisi">
+     5.3.5. Zapisi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#definicije-tipov">
+     5.3.6. Definicije tipov
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#vsota-tipov">
+     5.3.7. Vsota tipov
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#razlocevanje-primerov">
+     5.3.8. Razločevanje primerov
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="05-deklarativno-programiranje.html#tip-funkcij">
+     5.3.9. Tip funkcij
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="deklarativno-programiranje">
+<h1><span class="section-number">5. </span>Deklarativno programiranje<a class="headerlink" href="05-deklarativno-programiranje.html#deklarativno-programiranje" title="Povezava na naslov">¶</a></h1>
+<p>Z λ-računom smo spoznali uporabno vrednost funkcij in dejstvo, da lahko z njimi
+programiramo na nove in zanimive načine. A kot programski jezik λ-račun ni primeren, saj
+je zelo neučinkovit, poleg tega pa se programer večino časa ukvarja s kodiranjem podatkov
+s pomočjo funkcij. Da ne omenjamo grozne sintakse in neučinkovitosti.</p>
+<p>Obdržimo, kar ima λ-račun koristnega, a ga nato nadgradimo z manjkajočimi koncepti.
+Pomembna spoznanja so:</p>
+<ol class="simple">
+<li><p><strong>Funkcije so podatki.</strong> V programskem jeziku lahko funkcije obravnavamo enakovredno vsem
+ostalim podatkom. To pomeni, da lahko funkcije sprejmejo druge funkcije kot argumente,
+ali jih vrnejo kot rezultat, da lahko tvorimo podatkovne strukture, ki vsebujejo
+funkcije ipd.</p></li>
+<li><p><strong>Program ni nujno zaporedje ukazov.</strong> V λ-računu program <em>ni</em> navodilo, ki pove, kako
+naj se izvede zaporedje ukazov. Kot smo videli, je vrstni red računanja nedoločen, saj
+je v splošnem možno izraz v λ-računu poenostaviti na več načinov (ki pa vsi vodijo do
+istega odgovora).</p></li>
+</ol>
+<p>Kakšne vrste programiranje pa potemtakem je λ-račun, če ni ukazno? Nekateri uporabljajo
+izraz <strong>funkcijsko programiranje</strong>, mi pa bomo raje rekli <strong>deklarativno programiranje</strong>.
+S tem izrazom želimo poudariti, da s programom izrazimo (najavimo, deklariramo) strukturo
+podatka, ki ga želimo imeti, ne pa nujno kako se izračuna. Postopek, s katerim pridemo do
+rezultata je nato v večji ali manjši meri prepuščen programskemu jeziku.</p>
+<div class="section" id="podatki">
+<h2><span class="section-number">5.1. </span>Podatki<a class="headerlink" href="05-deklarativno-programiranje.html#podatki" title="Povezava na naslov">¶</a></h2>
+<p>V λ-računu moramo vse podatke predstaviti, ali <em>kodirati</em>, s funkcijami. Tako opravilo je
+zamudno in podvrženo napakam, ker krši načelo:</p>
+<blockquote>
+<div><p><strong>Programski jezik naj programerju omogoči neposredno izražanje idej.</strong></p>
+</div></blockquote>
+<p>Če mora programer neki koncept v programu izraziti tako, da ga simulira s
+pomočjo drugih konceptov, je večja možnost napake. Poleg tega prevajalnik ne bo
+imel informacije o tem, kaj programer počne, zato bo prepoznal manj napak in
+imel manj možnosti za optimizacijo.</p>
+<p>Ponazorimo to načelo z idejo. Denimo, da želimo računati s seznami. Od
+programskega jezika pričakujemo <em>neposredno</em> podporo za sezname: sezname lahko
+preprosto naredimo, jih analiziramo, podajamo kot argumente. Ali programski
+jeziki, ki jih že poznamo, podpirajo sezname? Poglejmo:</p>
+<ul class="simple">
+<li><p><strong>C</strong>: sezname moramo simulirati s pomočjo struktur (<code class="docutils literal notranslate"><span class="pre">struct</span></code>) in kazalcev</p></li>
+<li><p><strong>Java</strong>: sezname moramo simulirati z objekti</p></li>
+<li><p><strong>Python</strong>: seznami so vgrajeni, z njimi lahko delamo neposredno</p></li>
+</ul>
+<p>Python težavo torej reši tako, da ima sezname kar vgrajene v jezik. To je prikladna
+rešitev, vendar pa ne moremo pričakovati, da bomo lahko z vgrajenimi podatkovnimi
+strukturami zadovoljili vse potrebe. V vsakem primeru moramo programerju omogočiti, da
+definira <em>nove</em> strukture in <em>nove</em> načine organiziranja idej, ki jih načrtovalec jezika
+ni vnaprej predvidel. Različni programski jeziki to omogočajo na različne načine:</p>
+<ul class="simple">
+<li><p><strong>C</strong>: definiramo lahko strukture (<code class="docutils literal notranslate"><span class="pre">struct</span></code>), unije (<code class="docutils literal notranslate"><span class="pre">union</span></code>), uporabljamo kazalce, itd.</p></li>
+<li><p><strong>Java</strong>: definiramo razrede in podatke organiziramo kot objekte</p></li>
+<li><p><strong>Python</strong>: definiramo razrede in podatke organiziramo kot objekte</p></li>
+</ul>
+<p>Zdi se, da se novejši jeziki vsi zanašajo na objekte. A to še zdaleč ni edina
+rešitev za predstavitev podatkov – in tudi ne najboljša. Spoznali bomo <em>neposredne</em>
+konstrukcije podatkovnih tipov, ki <em>niso</em> simulacije s pomočjo kazalcev ali
+objektov. Navdih bomo vzeli iz matematike, kjer namesto podatkovnih tipov delamo z množicami.</p>
+</div>
+<div class="section" id="konstrukcije-mnozic">
+<h2><span class="section-number">5.2. </span>Konstrukcije množic<a class="headerlink" href="05-deklarativno-programiranje.html#konstrukcije-mnozic" title="Povezava na naslov">¶</a></h2>
+<p>V matematiki gradimo nove množice z nekaterimi osnovnimi operacijami, ki jih večinoma že
+poznamo, a jih vseeno ponovimo.</p>
+<div class="section" id="zmnozek-ali-kartezicni-produkt">
+<h3><span class="section-number">5.2.1. </span>Zmnožek ali kartezični produkt<a class="headerlink" href="05-deklarativno-programiranje.html#zmnozek-ali-kartezicni-produkt" title="Povezava na naslov">¶</a></h3>
+<p><strong>Zmnožek</strong> ali <strong>kartezični produkt</strong> množic <span class="math notranslate nohighlight">\(A\)</span> in <span class="math notranslate nohighlight">\(B\)</span> je množica, katere elementi so
+urejeni pari:</p>
+<ul class="simple">
+<li><p>za vsak <span class="math notranslate nohighlight">\(x \in A\)</span> in <span class="math notranslate nohighlight">\(y \in B\)</span> lahko tvorimo <strong>urejeni par</strong> <span class="math notranslate nohighlight">\((x, y) \in A \times B\)</span></p></li>
+</ul>
+<p>Če imamo element <span class="math notranslate nohighlight">\(p \in A \times B\)</span>, lahko dobimo njegovo <strong>prvo komponento</strong> <span class="math notranslate nohighlight">\(\pi_1(p) \in A\)</span> in
+<strong>drugo komponento</strong> <span class="math notranslate nohighlight">\(\pi_2(p) \in B\)</span>. Pri tem velja:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_1(x, y) = x
+\qquad\qquad
+\pi_2(x, y) = y
+\]</div>
+<p>Operacijama <span class="math notranslate nohighlight">\(\pi_1\)</span> in <span class="math notranslate nohighlight">\(\pi_2\)</span> pravimo <strong>projekciji</strong>.</p>
+<p>Tvorimo lahko tudi zmnožek več množic, na primer <span class="math notranslate nohighlight">\(A \times B \times C \times D\)</span>, v tem primeru imamo
+urejene četverice <span class="math notranslate nohighlight">\((x, y, z, t)\)</span> in štiri projekcije, <span class="math notranslate nohighlight">\(\pi_1\)</span>, <span class="math notranslate nohighlight">\(\pi_2\)</span>, <span class="math notranslate nohighlight">\(\pi_3\)</span> in <span class="math notranslate nohighlight">\(\pi_4\)</span>.</p>
+</div>
+<div class="section" id="vsota-ali-disjunktna-unija">
+<h3><span class="section-number">5.2.2. </span>Vsota ali disjunktna unija<a class="headerlink" href="05-deklarativno-programiranje.html#vsota-ali-disjunktna-unija" title="Povezava na naslov">¶</a></h3>
+<p><strong>Vsota</strong> množic <span class="math notranslate nohighlight">\(A + B\)</span> je množica, ki vsebuje dve vrsti elementov:</p>
+<ul class="simple">
+<li><p>za vsak <span class="math notranslate nohighlight">\(x \in A\)</span> lahko tvorimo element <span class="math notranslate nohighlight">\(\iota_1(x) \in A + B\)</span></p></li>
+<li><p>za vsak <span class="math notranslate nohighlight">\(y \in A\)</span> lahko tvorimo element <span class="math notranslate nohighlight">\(\iota_2(x) \in A + B\)</span></p></li>
+</ul>
+<p>Predstavljamo si, da je vsota <span class="math notranslate nohighlight">\(A + B\)</span> sestavljena iz dveh ločenih kosov <span class="math notranslate nohighlight">\(A\)</span> in <span class="math notranslate nohighlight">\(B\)</span> Simbola
+<span class="math notranslate nohighlight">\(\iota_1\)</span> in <span class="math notranslate nohighlight">\(\iota_2\)</span> sta <em>oznaki</em>, ki povesta, iz katerega kosa je element. To je pomembno, kadar
+tvorimo vsoto <span class="math notranslate nohighlight">\(A + A\)</span>. Če je <span class="math notranslate nohighlight">\(x \in A\)</span>, potem sta <span class="math notranslate nohighlight">\(\iota_1(x)\)</span> in <span class="math notranslate nohighlight">\(\iota_2(x)\)</span> <em>različna</em> elementa
+vsote <span class="math notranslate nohighlight">\(A + A\)</span>.</p>
+<p>Operacijama <span class="math notranslate nohighlight">\(\iota_1\)</span> in <span class="math notranslate nohighlight">\(\iota_2\)</span> pravimo <strong>injekciji</strong>.</p>
+<p>Vsoti pravimo tudi <strong>disjunktna unija</strong>. Ločiti jo moramo od običajne unije. V vsoti
+<span class="math notranslate nohighlight">\(A + B\)</span> se <span class="math notranslate nohighlight">\(A\)</span> in <span class="math notranslate nohighlight">\(B\)</span> nikoli ne prekrivata, ker elemente razločimo z oznakama <span class="math notranslate nohighlight">\(\iota_1\)</span> in <span class="math notranslate nohighlight">\(\iota_2\)</span>.
+V uniji <span class="math notranslate nohighlight">\(A \cup B\)</span> so lahko nekateri elementi <em>hkrati</em> v <span class="math notranslate nohighlight">\(A\)</span> in v <span class="math notranslate nohighlight">\(B\)</span>. V skrajnem primeru
+imamo celo <span class="math notranslate nohighlight">\(A \cup A = A\)</span>, tako da je vsak element v obeh kosih.</p>
+<p>Če želimo uporabiti element <span class="math notranslate nohighlight">\(u \in A + B\)</span> v neki konstrukciji ali dokazu, <strong>obravnavamo primera</strong>:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(u = \iota_1(x)\)</span> za neki <span class="math notranslate nohighlight">\(x \in A\)</span> ali</p></li>
+<li><p><span class="math notranslate nohighlight">\(u = \iota_2(y)\)</span> za neki <span class="math notranslate nohighlight">\(y \in B\)</span>.</p></li>
+</ol>
+<p>To je matematična zasnova konstrukcij za obravnavanje primerov v programskih jezikih (<code class="docutils literal notranslate"><span class="pre">match</span></code> v OCamlu, <code class="docutils literal notranslate"><span class="pre">case</span></code> v C/C++).</p>
+<p>Matematiki ne poznajo prikladnega zapisa za obravnavanje primerov. Nasploh matematiki vsoto množic slabo
+poznajo in jo neradi uporabljajo (kdo bi vedel, zakaj). V programiranju so vsote izjemno
+koristne, a na žalost jih programski jeziki bodisi ne podpirajo bodisi implementirajo
+narobe.</p>
+<p>Poglejmo si primer uporabe vsot v programiranju. Na primer, da v spletni trgovini
+prodajamo čevlje, palice in posode. Čevelj ima barvo in velikost, palica velikost in
+posoda prostornino. Če je <span class="math notranslate nohighlight">\(B\)</span> množica vseh barv in <span class="math notranslate nohighlight">\(\mathbb{N}\)</span> množica naravnih števil, lahko
+izdelek predstavimo kot element množice</p>
+<div class="math notranslate nohighlight">
+\[
+(B \times \mathbb{N}) + \mathbb{N} + \mathbb{N}
+\]</div>
+<p>Res: črn čevelj velikosti <span class="math notranslate nohighlight">\(42\)</span> je element <span class="math notranslate nohighlight">\(\iota_1(\mathsf{črna}, 42)\)</span>, palica dolžine <span class="math notranslate nohighlight">\(7\)</span> je <span class="math notranslate nohighlight">\(\iota_2(7\)</span>),
+posoda s prostornino <span class="math notranslate nohighlight">\(7\)</span> pa je <span class="math notranslate nohighlight">\(\iota_3(7)\)</span>. Oznaki <span class="math notranslate nohighlight">\(\iota_2\)</span> in <span class="math notranslate nohighlight">\(\iota_3\)</span> ločita med palicami in
+posodami. Seveda je tak zapis s programerskega stališča nepraktičen, zato ga bomo
+v programskem jeziku izboljšali.</p>
+</div>
+<div class="section" id="eksponent-ali-mnozica-funkcij">
+<h3><span class="section-number">5.2.3. </span>Eksponent ali množica funkcij<a class="headerlink" href="05-deklarativno-programiranje.html#eksponent-ali-mnozica-funkcij" title="Povezava na naslov">¶</a></h3>
+<p><strong>Eksponent</strong> <span class="math notranslate nohighlight">\(B^A\)</span>, ki ga pišemo tudi <span class="math notranslate nohighlight">\(A \to B\)</span>, je množica vseh funkcij iz <span class="math notranslate nohighlight">\(A\)</span> v <span class="math notranslate nohighlight">\(B\)</span>. Če je
+<span class="math notranslate nohighlight">\(f \in B^A\)</span>, pravimo, da je <span class="math notranslate nohighlight">\(A\)</span> <strong>domena</strong> in <span class="math notranslate nohighlight">\(B\)</span> <strong>kodomena</strong> funkcije <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<p>Dogovorimo se, da je <span class="math notranslate nohighlight">\(\to\)</span> asociira desno, se pravi</p>
+<div class="math notranslate nohighlight">
+\[
+A \to B \to C  =  A \to (B \to C).
+\]</div>
+<p>Primeri:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbb{R} \to \mathbb{R}\)</span> je množica realnih funkcij ene spremenljivke. Primeri: <span class="math notranslate nohighlight">\(\sin\)</span>, <span class="math notranslate nohighlight">\(\cos\)</span>, <span class="math notranslate nohighlight">\(\exp\)</span> in <span class="math notranslate nohighlight">\(x \mapsto 2 x + 3\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{R} \times \mathbb{R} \to \mathbb{R}\)</span> je množica realnih funkcija dveh spremenljivk. Primeri: <span class="math notranslate nohighlight">\(+\)</span>, <span class="math notranslate nohighlight">\(\times\)</span>,
+in <span class="math notranslate nohighlight">\((x, y) \mapsto x^2 + y^3\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{R} \to \mathbb{R} \to \mathbb{R}\)</span> je množica funkcij, ki sprejmejo eno realno število in
+vrnejo funkcijo, ki sprejme še eno realno število in vrne realno število,
+na primer <span class="math notranslate nohighlight">\(x \mapsto (y \mapsto x^2 + y^3)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\((\mathbb{R} \to \mathbb{R}) \to \mathbb{R}\)</span> je množica funkcij, ki sprejmejo realno funkcijo in vrnejo realno
+število, na primer <span class="math notranslate nohighlight">\(f \mapsto \int_0^1 f(x) \, dx\)</span> (določeni integral od <span class="math notranslate nohighlight">\(0\)</span> do <span class="math notranslate nohighlight">\(1\)</span>).</p></li>
+</ol>
+<p>Več bomo o eksponentih povedali kasneje, ko jih bomo obravnavali kot podatkovne
+tipe v programskem jeziku.</p>
+</div>
+</div>
+<div class="section" id="podatkovni-tipi">
+<h2><span class="section-number">5.3. </span>Podatkovni tipi<a class="headerlink" href="05-deklarativno-programiranje.html#podatkovni-tipi" title="Povezava na naslov">¶</a></h2>
+<p>V programskem jeziku ne govorimo o množicah, ampak o <strong>tipih</strong>, ki so na prvi pogled podobni množicam, a z njimi ne
+izražamo le »skupkov stvari«, ampak <em>načine konstrukcij</em> matematičnih objektov in podatkov. Tipi so zelo
+splošen in uporaben koncept, ki presega meje programiranja in celo računalništva. Uporabljajo se tudi v logiki in drugih
+vejah matematike.</p>
+<p>Programski jeziki lahko podpirajo tipe v večji ali manjši meri. V λ-računu ni nobenih
+tipov, C jih ima, prav tako Java. Če je <code class="docutils literal notranslate"><span class="pre">e</span></code> izraz tipa <code class="docutils literal notranslate"><span class="pre">T</span></code>, to zapišemo</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>e : T
+</pre></div>
+</div>
+<p>Zapis spominja na <span class="math notranslate nohighlight">\(e \in T\)</span> iz teorije množic. Poudarimo še enkrat, da na tip
+<code class="docutils literal notranslate"><span class="pre">T</span></code> ne gledamo kot na zbirko elementov, ampak kot na informacijo o tem, kakšen podatek
+je <code class="docutils literal notranslate"><span class="pre">e</span></code> in kakšna je njegova struktura.</p>
+<div class="section" id="ocaml">
+<h3><span class="section-number">5.3.1. </span>OCaml<a class="headerlink" href="05-deklarativno-programiranje.html#ocaml" title="Povezava na naslov">¶</a></h3>
+<p>Konstrukcije množic, ki smo jih spoznali, bomo predelali v konstrukcije tipov. V ta namen
+potrebujemo primer programskega jezika, ki le-te neposredno podpira. Izbrali
+bomo <strong>OCaml</strong>. Lahko bi uporabili tudi <a class="reference external" href="https://www.smlnj.org">SML</a>, <a class="reference external" href="https://www.haskell.org">Haskell</a>, <a class="reference external" href="https://www.idris-lang.org">Idris</a>, <a class="reference external" href="https://elm-lang.org">Elm</a> in še marsikaterega drugega.
+C/C++, Java, Python in Javascript ne podpirajo konstrukcij, ki jih bomo obravnavali, lahko
+jih le bolj ali manj uspešno simuliramo.</p>
+<p>V OCaml se imena tipov piše z malo začetnico, zato bomo za imena tipov uporabljali male črke.</p>
+<p>Spletni viri za OCaml:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ocaml.org">Uradna spletna stran za OCaml</a></p></li>
+<li><p><a class="reference external" href="https://glot.io/new/ocaml">REPL za OCaml na glot.io</a> (kaj pomeni <a class="reference external" href="https://www.abbreviations.com/REPL">REPL</a>?)</p></li>
+<li><p>Učbenik <a class="reference external" href="https://ocamlbook.org">OCaml from the ground up</a></p></li>
+</ul>
+</div>
+<div class="section" id="zmnozek-tipov">
+<h3><span class="section-number">5.3.2. </span>Zmnožek tipov<a class="headerlink" href="05-deklarativno-programiranje.html#zmnozek-tipov" title="Povezava na naslov">¶</a></h3>
+<p><strong>Zmnožek tipov</strong> ali <strong>kartezični produkt</strong> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">*</span> <span class="pre">b</span></code> tipov <code class="docutils literal notranslate"><span class="pre">a</span></code> in <code class="docutils literal notranslate"><span class="pre">b</span></code> vsebuje urejene
+pare, ki jih v OCaml zapišemo enako, kot v matematiki:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span>        <span class="nc">OCaml</span> <span class="n">version</span> <span class="mi">4</span><span class="o">.</span><span class="mi">12</span><span class="o">.</span><span class="mi">0</span>
+
+<span class="o">#</span> <span class="o">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">,</span> <span class="s2">&quot;banana&quot;</span><span class="o">)</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">string</span> <span class="o">=</span> <span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="s2">&quot;banana&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>Zapisali smo urejeni par <code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">+</span> <span class="pre">2,</span> <span class="pre">&quot;banana&quot;)</span></code>. OCaml je ugotovil, da je tip tega urejenega para
+<code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">*</span> <span class="pre">string</span></code> in to izpisal, skupaj z izračunano vrednostjo.</p>
+<p>Na koncu vsakega ukaza moramo napisati <code class="docutils literal notranslate"><span class="pre">;;</span></code>. Človek se sčasoma navadi na vse.</p>
+<p>Tvorimo lahko urejene <span class="math notranslate nohighlight">\(n\)</span>-terice, za poljuben <span class="math notranslate nohighlight">\(n \ge 0\)</span>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s2">&quot;banana&quot;</span><span class="o">,</span> <span class="bp">false</span><span class="o">,</span> <span class="mi">2</span><span class="o">)</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">string</span> <span class="o">*</span> <span class="kt">bool</span> <span class="o">*</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s2">&quot;banana&quot;</span><span class="o">,</span> <span class="bp">false</span><span class="o">,</span> <span class="mi">2</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>Projekciji <span class="math notranslate nohighlight">\(\pi_1\)</span> in <span class="math notranslate nohighlight">\(\pi_2\)</span> v OCamlu zapišemo <code class="docutils literal notranslate"><span class="pre">fst</span></code> in <code class="docutils literal notranslate"><span class="pre">snd</span></code> (okrajšavi za »first« in »second«):</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">fst</span> <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s2">&quot;banana&quot;</span><span class="o">)</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="o">#</span> <span class="n">snd</span> <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s2">&quot;banana&quot;</span><span class="o">)</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;banana&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="definicije-vrednosti">
+<h3><span class="section-number">5.3.3. </span>Definicije vrednosti<a class="headerlink" href="05-deklarativno-programiranje.html#definicije-vrednosti" title="Povezava na naslov">¶</a></h3>
+<p>Če želimo vpeljati definicijo, to naredimo z <code class="docutils literal notranslate"><span class="pre">let</span></code>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">i</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">13</span>
+
+<span class="o">#</span> <span class="k">let</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">j</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">269</span>
+</pre></div>
+</div>
+<p>Pozor! Zgoraj <em>nismo</em> definirali »spremenljivke <code class="docutils literal notranslate"><span class="pre">i</span></code>« ampak <strong>vrednost</strong> <code class="docutils literal notranslate"><span class="pre">i</span></code>, ki je <em>ne moremo spreminjati</em>. OCaml
+izračuna vrednost <code class="docutils literal notranslate"><span class="pre">13</span></code> in jo priredi <code class="docutils literal notranslate"><span class="pre">i</span></code>, ki se ga ne da spremeniti. To je tako, kot če bi v Javi povsod pisali <code class="docutils literal notranslate"><span class="pre">final</span></code>
+pred deklaracije spremenljivk in je zelo dobra ideja.</p>
+<p>Če naredimo tole:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="o">#</span> <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p><em>nismo</em> spremenili <code class="docutils literal notranslate"><span class="pre">x</span></code>, ampak smo definirali <em>nov</em> <code class="docutils literal notranslate"><span class="pre">x</span></code>, ki je <em>prekril</em> staro definicijo. Če želimo pravo spremenljivko, v ta namen uporabimo <a class="reference external" href="https://ocamlbook.org/records-and-references/">referenco</a> (o tem več kasneje).</p>
+<div class="admonition-naloga admonition">
+<p class="admonition-title">Naloga</p>
+<p>Predavatelja poskusite prepričati, da so »ne-spremenljivke« slaba ideja.</p>
+</div>
+<p>Poznamo tudi <strong>lokalne definicije</strong> vrednosti, ki jih pišemo</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="n">p</span> <span class="o">=</span> <span class="n">e₁</span> <span class="k">in</span> <span class="n">e₂</span>
+</pre></div>
+</div>
+<p>Tu je <code class="docutils literal notranslate"><span class="pre">p</span></code> <strong>vzorec</strong>, <code class="docutils literal notranslate"><span class="pre">e₁</span></code> in <code class="docutils literal notranslate"><span class="pre">e₂</span></code> pa sta izraza. Vzorec je sestavljen iz konstruktorjev, imen in anonimnega vzorca <code class="docutils literal notranslate"><span class="pre">_</span></code>.
+Vrednost izraza <code class="docutils literal notranslate"><span class="pre">e₁</span></code> se primerja z vzorcem <code class="docutils literal notranslate"><span class="pre">p</span></code> in sestavni deli vrednosti se priredijo simbolom. Primeri:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">14</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">42</span>
+
+<span class="o">#</span> <span class="k">let</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">=</span> <span class="o">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="o">)</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">a</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">val</span> <span class="n">b</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="o">#</span> <span class="k">let</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="o">(</span><span class="n">y</span><span class="o">,</span> <span class="n">z</span><span class="o">))</span> <span class="o">=</span> <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">))</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">x</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">val</span> <span class="n">y</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">val</span> <span class="n">z</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="o">#</span> <span class="k">let</span> <span class="o">(</span><span class="n">r</span><span class="o">,</span> <span class="o">_,</span> <span class="n">q</span><span class="o">)</span> <span class="o">=</span> <span class="o">(</span><span class="bp">false</span><span class="o">,</span> <span class="s2">&quot;foo&quot;</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">r</span> <span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="bp">false</span>
+<span class="k">val</span> <span class="n">q</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">8</span>
+</pre></div>
+</div>
+<p>S pomočjo vzorcev lahko definiramo tudi ostale projekcije (tretja, čerta, peta, …), a te v praksi malokdaj pridejo
+prav, saj so vzorci dosti bolj uporabni:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="n">thd</span> <span class="o">(_,</span> <span class="o">_,</span> <span class="n">z</span><span class="o">)</span> <span class="o">=</span> <span class="n">z</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">thd</span> <span class="o">:</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">b</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">c</span> <span class="o">-&gt;</span> <span class="k">&#39;</span><span class="n">c</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+<span class="o">#</span> <span class="n">thd</span> <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s2">&quot;banana&quot;</span><span class="o">,</span> <span class="bp">false</span><span class="o">)</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="bp">false</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="enotski-tip">
+<h3><span class="section-number">5.3.4. </span>Enotski tip<a class="headerlink" href="05-deklarativno-programiranje.html#enotski-tip" title="Povezava na naslov">¶</a></h3>
+<p>Če smemo pisati urejene pare, trojice, četverice, …, ali smemo zapisati tudi »urejeno
+ničterico«? Seveda!</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="bp">()</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">unit</span> <span class="o">=</span> <span class="bp">()</span>
+</pre></div>
+</div>
+<p>Dobili smo <strong>enotski tip</strong> <code class="docutils literal notranslate"><span class="pre">unit</span></code>. To je tip, ki ima en sam element, namreč urejeno
+ničterico <code class="docutils literal notranslate"><span class="pre">()</span></code>, ki ji pravimo <strong>enota</strong>. Zakaj se mu reče »enotski«? Ker je množica z enim
+elementom »enota za množenje« (matematiki namesto <code class="docutils literal notranslate"><span class="pre">unit</span></code> pišejo kar <span class="math notranslate nohighlight">\(\mathsf{1} = \{\star\}\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[
+A \cong \mathsf{1} \times A
+\]</div>
+<p>Morda se zdi enotski tip neuporaben, a to ni res. V C in Java so ta tip poimenovali <code class="docutils literal notranslate"><span class="pre">void</span></code>
+(»prazen“) in se ga uporablja za funkcije, ki ne vračajo rezultata. Tip <code class="docutils literal notranslate"><span class="pre">void</span></code> sploh ni
+prazen, ampak ima en sam element, ki pa ga programer nikoli ne vidi (in ga tudi ne more).
+Če namreč funkcija vrača v naprej predpisan element, potem vemo, kaj bo vrnila, in tega ni
+treba razlagati.</p>
+<p>Zapomnimo si torej, da funkcija, ki »ne vrne ničesar« v resnici vrne <code class="docutils literal notranslate"><span class="pre">()</span></code>. V OCaml se to
+dejansko vidi, v Javi in C pa ne.</p>
+<p>Kaj pa funkcija, ki »ne sprejme ničesar“? Če funkcija sprejme argumente <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code> in <code class="docutils literal notranslate"><span class="pre">z</span></code>,
+potem sprejme urejeno trojico. Če ne sprejme ničesar, potem v resnici sprejme urejeno
+ničterico <code class="docutils literal notranslate"><span class="pre">()</span></code>, torej spet enoto.</p>
+<p>Pa še to: morda ste si kdaj želeli, da bi lahko v C ali Java brez velikih muk napisali
+funkcijo, ki vrne dva rezultata? Jezik, ki ima zmnožke, to omogoča sam od sebe: preprosto
+vrnete urejeni par!</p>
+</div>
+<div class="section" id="zapisi">
+<h3><span class="section-number">5.3.5. </span>Zapisi<a class="headerlink" href="05-deklarativno-programiranje.html#zapisi" title="Povezava na naslov">¶</a></h3>
+<p>Urejeni pari včasih niso prikladni, ker si moramo zapomniti vrstni red komponent. Na
+primer, polno ime osebe bi lahko predstavili z urejenim parom <code class="docutils literal notranslate"><span class="pre">(&quot;Mojca&quot;,</span> <span class="pre">&quot;Novak&quot;)</span></code>, a
+potem moramo vedno paziti, da ne zapišemo pomotoma <code class="docutils literal notranslate"><span class="pre">(&quot;Novak&quot;,</span> <span class="pre">&quot;Mojca&quot;)</span></code>. Težava nastopi
+tudi, ko imamo komplicirane podatke. Na primer, podatke o trenutnem času bi lahko
+predstavili z naborom</p>
+<div class="math notranslate nohighlight">
+\[(\mathsf{leto},
+ \mathsf{mesec},
+ \mathsf{dan},
+ \mathsf{ura},
+ \mathsf{minuta},
+ \mathsf{sekunda},
+ \mathsf{milisekunda}
+)\]</div>
+<p>Kdo si bo zapomnil, da so minute peto polje in milisekunde sedmo?</p>
+<p>Težavo razrešimo tako, da komponent ne štejemo po vrsti, ampak jih poimenujemo. Dobimo
+tako imenovani tip <em>zapis</em> (angl. <em>record</em>). Najprej ga definiramo z deklaracijo <code class="docutils literal notranslate"><span class="pre">type</span></code>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="n">oseba</span> <span class="o">=</span> <span class="o">{</span> <span class="n">ime</span> <span class="o">:</span> <span class="kt">string</span><span class="o">;</span> <span class="n">priimek</span> <span class="o">:</span> <span class="kt">string</span><span class="o">;</span> <span class="o">}</span>
+</pre></div>
+</div>
+<p>S tem smo uvedli nov tip <code class="docutils literal notranslate"><span class="pre">oseba</span></code>, ki je zapis z dvema poljema. Sedaj lahko
+namesto urejenega para tvorimo zapis:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="o">{</span> <span class="n">ime</span> <span class="o">=</span> <span class="s2">&quot;Mojca&quot;</span><span class="o">;</span> <span class="n">priimek</span> <span class="o">=</span> <span class="s2">&quot;Pokraculja&quot;</span> <span class="o">}</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="n">oseba</span> <span class="o">=</span> <span class="o">{</span><span class="n">ime</span> <span class="o">=</span> <span class="s2">&quot;Mojca&quot;</span><span class="o">;</span> <span class="n">priimek</span> <span class="o">=</span> <span class="s2">&quot;Pokraculja&quot;</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>Torej je <code class="docutils literal notranslate"><span class="pre">{ℓ₁=e₁;</span> <span class="pre">…;</span> <span class="pre">ℓᵢ=eᵢ}</span></code> kot nabor <code class="docutils literal notranslate"><span class="pre">(e₁,</span> <span class="pre">…,</span> <span class="pre">eᵢ)</span></code>, le da smo poimenovali njene
+komponente <code class="docutils literal notranslate"><span class="pre">ℓ₁</span></code>, …, <code class="docutils literal notranslate"><span class="pre">ℓᵢ</span></code>.</p>
+<p>Težave z vrstnim redom izginejo, ker je v zapisu pomembno ime komponente in ne vrstni red:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="o">{</span> <span class="n">priimek</span> <span class="o">=</span> <span class="s2">&quot;Pokraculja&quot;</span><span class="o">;</span> <span class="n">ime</span> <span class="o">=</span> <span class="s2">&quot;Mojca&quot;</span> <span class="o">}</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="n">oseba</span> <span class="o">=</span> <span class="o">{</span><span class="n">ime</span> <span class="o">=</span> <span class="s2">&quot;Mojca&quot;</span><span class="o">;</span> <span class="n">priimek</span> <span class="o">=</span> <span class="s2">&quot;Pokraculja&quot;</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>Z zapisom lahko zapišemo tudi urejeno »enerico«:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">type</span> <span class="n">zajec</span> <span class="o">=</span> <span class="o">{</span> <span class="n">masa</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">}</span> <span class="o">;;</span>
+<span class="k">type</span> <span class="n">zajec</span> <span class="o">=</span> <span class="o">{</span> <span class="n">masa</span> <span class="o">:</span> <span class="kt">int</span><span class="o">;</span> <span class="o">}</span>
+</pre></div>
+</div>
+<p>Sedaj lahko tvorimo zapis z enim samim poljem:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="o">{</span> <span class="n">masa</span> <span class="o">=</span> <span class="mi">42</span> <span class="o">}</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="n">zajec</span> <span class="o">=</span> <span class="o">{</span><span class="n">masa</span> <span class="o">=</span> <span class="mi">42</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>V Pythonu se to zapiše <code class="docutils literal notranslate"><span class="pre">(&quot;42&quot;,)</span></code>.</p>
+<p>Do polja z imenom <code class="docutils literal notranslate"><span class="pre">foo</span></code> v zapisu <code class="docutils literal notranslate"><span class="pre">s</span></code> dostopamo s <code class="docutils literal notranslate"><span class="pre">s.foo</span></code>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="n">mati</span> <span class="o">=</span> <span class="o">{</span> <span class="n">ime</span> <span class="o">=</span> <span class="s2">&quot;Neza&quot;</span><span class="o">;</span> <span class="n">priimek</span> <span class="o">=</span> <span class="s2">&quot;Cankar&quot;</span> <span class="o">}</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">mati</span> <span class="o">:</span> <span class="n">oseba</span> <span class="o">=</span> <span class="o">{</span><span class="n">ime</span> <span class="o">=</span> <span class="s2">&quot;Neza&quot;</span><span class="o">;</span> <span class="n">priimek</span> <span class="o">=</span> <span class="s2">&quot;Cankar&quot;</span><span class="o">}</span>
+<span class="o">#</span> <span class="n">mati</span><span class="o">.</span><span class="n">ime</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Neza&quot;</span>
+<span class="o">#</span> <span class="n">mati</span><span class="o">.</span><span class="n">priimek</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Cankar&quot;</span>
+</pre></div>
+</div>
+<p>Do polj zapisa lahko dostopamo tudi z vzorci:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="o">{</span><span class="n">ime</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">priimek</span> <span class="o">=</span> <span class="n">p</span><span class="o">}</span> <span class="o">=</span> <span class="n">mati</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">i</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Neza&quot;</span>
+<span class="k">val</span> <span class="n">p</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Cankar&quot;</span>
+
+<span class="o">#</span> <span class="k">let</span> <span class="o">{</span><span class="n">ime</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">priimek</span> <span class="o">=</span> <span class="o">_}</span> <span class="o">=</span> <span class="n">mati</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">i</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Neza&quot;</span>
+</pre></div>
+</div>
+<p>Polj, ki nas ne zanimajo, v vzorcu ni treba omenjati, lahko le uporabimo <code class="docutils literal notranslate"><span class="pre">_</span></code>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="o">{</span><span class="n">ime</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">priimek</span> <span class="o">=</span> <span class="o">_}</span> <span class="o">=</span> <span class="n">mati</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">i</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Neza&quot;</span>
+</pre></div>
+</div>
+<p>Če ignoriramo več polj, lahko za vse skupaj uporabimo <code class="docutils literal notranslate"><span class="pre">_</span></code>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="o">{</span><span class="n">ime</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="o">_}</span> <span class="o">=</span> <span class="n">mati</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">i</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Neza&quot;</span>
+</pre></div>
+</div>
+<p>Pogosto poimenujemo vrednosti enako kot polja:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="o">{</span><span class="n">ime</span> <span class="o">=</span> <span class="n">ime</span><span class="o">;</span> <span class="n">priimek</span> <span class="o">=</span> <span class="n">priimek</span><span class="o">}</span> <span class="o">=</span> <span class="n">mati</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">ime</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Neza&quot;</span>
+<span class="k">val</span> <span class="n">priimek</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Cankar&quot;</span>
+</pre></div>
+</div>
+<p>Za take primere OCaml podpira <a class="reference external" href="https://en.wikipedia.org/wiki/Syntactic_sugar">sintaktični sladkorček</a>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="o">{</span><span class="n">ime</span><span class="o">;</span> <span class="n">priimek</span><span class="o">}</span> <span class="o">=</span> <span class="n">mati</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">ime</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Neza&quot;</span>
+<span class="k">val</span> <span class="n">priimek</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Cankar&quot;</span>
+
+<span class="o">#</span> <span class="k">let</span> <span class="o">{</span><span class="n">ime</span><span class="o">;</span> <span class="o">_}</span> <span class="o">=</span> <span class="n">mati</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">ime</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Neza&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="definicije-tipov">
+<h3><span class="section-number">5.3.6. </span>Definicije tipov<a class="headerlink" href="05-deklarativno-programiranje.html#definicije-tipov" title="Povezava na naslov">¶</a></h3>
+<p>Videli smo že, da lahko s <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">a</span> <span class="pre">=</span> <span class="pre">...</span></code> definiramo zapise:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="n">complex</span> <span class="o">=</span> <span class="o">{</span> <span class="n">re</span> <span class="o">:</span> <span class="kt">float</span><span class="o">;</span> <span class="n">im</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">}</span>
+
+<span class="k">type</span> <span class="n">datetime</span> <span class="o">=</span> <span class="o">{</span> <span class="n">year</span> <span class="o">:</span> <span class="kt">int</span>
+                <span class="o">;</span> <span class="n">month</span> <span class="o">:</span> <span class="kt">int</span>
+                <span class="o">;</span> <span class="n">hour</span> <span class="o">:</span> <span class="kt">int</span>
+                <span class="o">;</span> <span class="n">minute</span> <span class="o">:</span> <span class="kt">int</span>
+                <span class="o">;</span> <span class="n">second</span> <span class="o">:</span> <span class="kt">int</span>
+                <span class="o">;</span> <span class="n">millisecond</span> <span class="o">:</span> <span class="kt">int</span>
+                <span class="o">}</span>
+
+<span class="k">type</span> <span class="n">color</span> <span class="o">=</span> <span class="o">{</span> <span class="n">red</span> <span class="o">:</span> <span class="kt">float</span><span class="o">;</span> <span class="n">green</span> <span class="o">:</span> <span class="kt">float</span><span class="o">;</span> <span class="n">blue</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">}</span>
+</pre></div>
+</div>
+<p>Definiramo lahko tudi okrajšave za tipe, na primer:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="n">krneki</span> <span class="o">=</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">bool</span> <span class="o">*</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>Sedaj lahko namesto <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">*</span> <span class="pre">bool</span> <span class="pre">*</span> <span class="pre">string</span></code> pišemo <code class="docutils literal notranslate"><span class="pre">krneki</span></code>.</p>
+</div>
+<div class="section" id="vsota-tipov">
+<h3><span class="section-number">5.3.7. </span>Vsota tipov<a class="headerlink" href="05-deklarativno-programiranje.html#vsota-tipov" title="Povezava na naslov">¶</a></h3>
+<p>Elemente vsote množic <span class="math notranslate nohighlight">\(A + B\)</span> smo označevali z <span class="math notranslate nohighlight">\(\iota_1\)</span> in <span class="math notranslate nohighlight">\(\iota_2\)</span>. Izbor oznak je z
+matematičnega stališča nepomemben, namesto <span class="math notranslate nohighlight">\(\iota_1\)</span> in <span class="math notranslate nohighlight">\(\iota_2\)</span> bi lahko pisali tudi kaj drugega.
+V programiranju bomo to seveda izkoristili: tako kot smo uvedli zapise, ki so pravzaprav
+zmnožki s poimenovanimi komponentami, bomo uvedli vsote tipov, pri katerih si oznake
+izbere programer.</p>
+<p>Če želimo imeti vsoto, jo moramo v OCaml najprej definirati s <code class="docutils literal notranslate"><span class="pre">type</span></code>, tako kot zapise.
+Zgornji primer izdelkov v spletni trgovini, bi zapisali takole:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="n">barva</span> <span class="o">=</span> <span class="o">{</span> <span class="n">blue</span> <span class="o">:</span> <span class="kt">float</span><span class="o">;</span> <span class="n">green</span> <span class="o">:</span> <span class="kt">float</span><span class="o">;</span>  <span class="n">red</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">}</span>
+
+<span class="k">type</span> <span class="n">izdelek</span> <span class="o">=</span>
+  <span class="o">|</span> <span class="nc">Cevelj</span> <span class="k">of</span> <span class="n">barva</span> <span class="o">*</span> <span class="kt">int</span>
+  <span class="o">|</span> <span class="nc">Palica</span> <span class="k">of</span> <span class="kt">int</span>
+  <span class="o">|</span> <span class="nc">Posoda</span> <span class="k">of</span> <span class="kt">int</span>
+</pre></div>
+</div>
+<p>Ta definicija pravi, da je <code class="docutils literal notranslate"><span class="pre">izdelek</span></code> vsota treh tipov: prvi tip je zmnožek tipov <code class="docutils literal notranslate"><span class="pre">barva</span></code>
+in <code class="docutils literal notranslate"><span class="pre">int</span></code>. Drugi in tretji tip sta oba <code class="docutils literal notranslate"><span class="pre">int</span></code>. Za oznake smo izbrali <code class="docutils literal notranslate"><span class="pre">Cevelj</span></code>, <code class="docutils literal notranslate"><span class="pre">Palica</span></code> in
+<code class="docutils literal notranslate"><span class="pre">Posoda</span></code>. Tem oznakam v Ocaml pravimo <strong>konstruktorji</strong> (angl. constructor).</p>
+<p>Črn čevelj velikosti <code class="docutils literal notranslate"><span class="pre">42</span></code> zapišemo</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="nc">Cevelj</span> <span class="o">({</span><span class="n">blue</span><span class="o">=</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">;</span> <span class="n">green</span><span class="o">=</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">;</span> <span class="n">red</span><span class="o">=</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">},</span> <span class="mi">42</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>palico velikosti <code class="docutils literal notranslate"><span class="pre">7</span></code></p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="nc">Palica</span> <span class="mi">7</span>
+</pre></div>
+</div>
+<p>in posodo s prostornino <code class="docutils literal notranslate"><span class="pre">7</span></code></p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="nc">Posoda</span> <span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="razlocevanje-primerov">
+<h3><span class="section-number">5.3.8. </span>Razločevanje primerov<a class="headerlink" href="05-deklarativno-programiranje.html#razlocevanje-primerov" title="Povezava na naslov">¶</a></h3>
+<p>Kot smo omenili, potrebujemo zapis za <em>razločevanje primerov</em>. Nadaljujmo s primerom.
+Denimo, da je cena izdelka <code class="docutils literal notranslate"><span class="pre">z</span></code> določena takole:</p>
+<ul class="simple">
+<li><p>čevelj stane 15 evrov, če je številka manjša od 25, sicer stane 20 evrov</p></li>
+<li><p>palica dolžine <code class="docutils literal notranslate"><span class="pre">x</span></code> stane <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">x</span></code> evrov</p></li>
+<li><p>posoda stane 7 evrov ne glede na prostornino</p></li>
+</ul>
+<p>To v Ocaml zapišemo z <code class="docutils literal notranslate"><span class="pre">match</span></code>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">match</span> <span class="n">z</span> <span class="k">with</span>
+  <span class="o">|</span> <span class="nc">Cevelj</span> <span class="o">(</span><span class="n">b</span><span class="o">,</span> <span class="n">v</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="mi">25</span> <span class="k">then</span> <span class="mi">15</span> <span class="k">else</span> <span class="mi">25</span>
+  <span class="o">|</span> <span class="nc">Palica</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+  <span class="o">|</span> <span class="nc">Posoda</span> <span class="n">y</span> <span class="o">-&gt;</span> <span class="mi">7</span>
+</pre></div>
+</div>
+<p>Splošna oblika stavka <code class="docutils literal notranslate"><span class="pre">match</span></code> je</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>match e with
+  | p₁ -&gt; e₁
+  | p₂ -&gt; e₂
+  | p₃ -&gt; e₃
+    ⋮
+  | pᵢ -&gt; eᵢ
+</pre></div>
+</div>
+<p>Tu so <code class="docutils literal notranslate"><span class="pre">p₁</span></code>, …, <code class="docutils literal notranslate"><span class="pre">pᵢ</span></code> <strong>vzorci</strong>. Vrednost izraza <code class="docutils literal notranslate"><span class="pre">match</span> <span class="pre">...</span></code> je prvi <code class="docutils literal notranslate"><span class="pre">eⱼ</span></code>, za katerega <code class="docutils literal notranslate"><span class="pre">e</span></code> zadošča vzorcu <code class="docutils literal notranslate"><span class="pre">pⱼ</span></code>. V OCaml je <code class="docutils literal notranslate"><span class="pre">match</span></code> dosti bolj uporaben kot <code class="docutils literal notranslate"><span class="pre">switch</span></code> v C in Javi ali <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">…</span> <span class="pre">elif</span> <span class="pre">…</span> <span class="pre">elif</span> <span class="pre">…</span></code> v Pythnu, ker OCaml izračuna, ali smo pozabili obravnavati kakšno možnost. Primer:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">match</span> <span class="o">(</span><span class="nc">Palica</span> <span class="mi">7</span><span class="o">)</span> <span class="k">with</span>
+         <span class="o">|</span> <span class="nc">Cevelj</span> <span class="o">(</span><span class="n">b</span><span class="o">,</span> <span class="n">v</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="mi">35</span> <span class="k">then</span> <span class="mi">15</span> <span class="k">else</span> <span class="mi">25</span>
+         <span class="o">|</span> <span class="nc">Posoda</span> <span class="n">y</span> <span class="o">-&gt;</span> <span class="mi">7</span> <span class="o">;;</span>
+<span class="nc">Warning</span> <span class="mi">8</span><span class="o">:</span> <span class="n">this</span> <span class="n">pattern</span><span class="o">-</span><span class="n">matching</span> <span class="n">is</span> <span class="n">not</span> <span class="n">exhaustive</span><span class="o">.</span>
+<span class="nc">Here</span> <span class="n">is</span> <span class="n">an</span> <span class="n">example</span> <span class="k">of</span> <span class="n">a</span> <span class="n">case</span> <span class="n">that</span> <span class="n">is</span> <span class="n">not</span> <span class="n">matched</span><span class="o">:</span>
+<span class="nc">Palica</span> <span class="o">_</span>
+<span class="nc">Exception</span><span class="o">:</span> <span class="nc">Match_failure</span> <span class="o">(</span><span class="s2">&quot;//toplevel//&quot;</span><span class="o">,</span> <span class="mi">29</span><span class="o">,</span> <span class="o">-</span><span class="mi">65</span><span class="o">).</span>
+</pre></div>
+</div>
+<p>Včasih želimo uvesti tip, ki sestoji iz končnega števila konstant. To lahko naredimo z vsoto takole:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="n">t</span> <span class="o">=</span> <span class="nc">Foo</span> <span class="o">|</span> <span class="nc">Bar</span> <span class="o">|</span> <span class="nc">Baz</span> <span class="o">|</span> <span class="nc">Qux</span>
+</pre></div>
+</div>
+<p>V C je to tip <code class="docutils literal notranslate"><span class="pre">enum</span></code>, podobno v Javi. Imena konstruktorjev se morajo pisati z veliko začetnico. V OCaml bi lahko
+<code class="docutils literal notranslate"><span class="pre">bool</span></code> definirali sami, če ga še ne bi bilo:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="kt">bool</span> <span class="o">=</span> <span class="nc">False</span> <span class="o">|</span> <span class="nc">True</span>
+</pre></div>
+</div>
+<p>Vzorci v stavku <code class="docutils literal notranslate"><span class="pre">match</span></code> so lahko poljubno gnezdeni. Denimo, da bi želeli ceno izračunati takole:</p>
+<ul class="simple">
+<li><p>čevelj stane 15 evrov, če je številka manjša od 25, sicer stane 20 evrov</p></li>
+<li><p>palica dolžine 42 stane 1000 evrov</p></li>
+<li><p>palica dolžine <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">≠</span> <span class="pre">42</span></code> stane <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">x</span></code> evrov</p></li>
+<li><p>posoda stane 7 evrov ne glede na prostornino</p></li>
+</ul>
+<p>Pripadajoči stavek <code class="docutils literal notranslate"><span class="pre">match</span></code> se glasi:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">match</span> <span class="n">z</span> <span class="k">with</span>
+  <span class="o">|</span> <span class="nc">Cevelj</span> <span class="o">(</span><span class="n">b</span><span class="o">,</span> <span class="n">v</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="mi">35</span> <span class="k">then</span> <span class="mi">15</span> <span class="k">else</span> <span class="mi">25</span>
+  <span class="o">|</span> <span class="nc">Palica</span> <span class="mi">42</span> <span class="o">-&gt;</span> <span class="mi">1000</span>
+  <span class="o">|</span> <span class="nc">Palica</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+  <span class="o">|</span> <span class="nc">Posoda</span> <span class="n">y</span> <span class="o">-&gt;</span> <span class="mi">7</span>
+</pre></div>
+</div>
+<p>Vzorce lahko uporabljamo tudi v definicijah vrednosti <code class="docutils literal notranslate"><span class="pre">let</span></code>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="o">(</span><span class="nc">Posoda</span> <span class="n">p</span><span class="o">)</span> <span class="o">=</span> <span class="nc">Posoda</span> <span class="mi">10</span> <span class="o">;;</span>
+<span class="nc">Warning</span> <span class="mi">8</span><span class="o">:</span> <span class="n">this</span> <span class="n">pattern</span><span class="o">-</span><span class="n">matching</span> <span class="n">is</span> <span class="n">not</span> <span class="n">exhaustive</span><span class="o">.</span>
+<span class="nc">Here</span> <span class="n">is</span> <span class="n">an</span> <span class="n">example</span> <span class="k">of</span> <span class="n">a</span> <span class="n">case</span> <span class="n">that</span> <span class="n">is</span> <span class="n">not</span> <span class="n">matched</span><span class="o">:</span>
+<span class="nc">Palica</span> <span class="o">_</span>
+<span class="k">val</span> <span class="n">p</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="o">#</span> <span class="k">let</span> <span class="nc">Cevelj</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span> <span class="o">=</span> <span class="nc">Cevelj</span> <span class="o">({</span><span class="n">red</span><span class="o">=</span><span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="o">;</span> <span class="n">green</span><span class="o">=</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="o">;</span> <span class="n">blue</span><span class="o">=</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">},</span> <span class="mi">43</span><span class="o">)</span> <span class="o">;;</span>
+<span class="nc">Warning</span> <span class="mi">8</span><span class="o">:</span> <span class="n">this</span> <span class="n">pattern</span><span class="o">-</span><span class="n">matching</span> <span class="n">is</span> <span class="n">not</span> <span class="n">exhaustive</span><span class="o">.</span>
+<span class="nc">Here</span> <span class="n">is</span> <span class="n">an</span> <span class="n">example</span> <span class="k">of</span> <span class="n">a</span> <span class="n">case</span> <span class="n">that</span> <span class="n">is</span> <span class="n">not</span> <span class="n">matched</span><span class="o">:</span>
+<span class="o">(</span><span class="nc">Palica</span> <span class="o">_|</span><span class="nc">Posoda</span> <span class="o">_)</span>
+<span class="k">val</span> <span class="n">x</span> <span class="o">:</span> <span class="n">barva</span> <span class="o">=</span> <span class="o">{</span><span class="n">blue</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.;</span> <span class="n">green</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="o">;</span> <span class="n">red</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.}</span>
+<span class="k">val</span> <span class="n">y</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">43</span>
+
+<span class="o">#</span> <span class="k">let</span> <span class="nc">Cevelj</span> <span class="o">({</span><span class="n">red</span><span class="o">=</span><span class="n">r</span><span class="o">;</span><span class="n">green</span><span class="o">=_;</span><span class="n">blue</span><span class="o">=</span><span class="n">b</span><span class="o">},</span><span class="n">v</span><span class="o">)</span> <span class="o">=</span> <span class="nc">Cevelj</span> <span class="o">({</span><span class="n">red</span><span class="o">=</span><span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="o">;</span> <span class="n">green</span><span class="o">=</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="o">;</span> <span class="n">blue</span><span class="o">=</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">},</span> <span class="mi">43</span><span class="o">)</span> <span class="o">;;</span>
+<span class="nc">Warning</span> <span class="mi">8</span><span class="o">:</span> <span class="n">this</span> <span class="n">pattern</span><span class="o">-</span><span class="n">matching</span> <span class="n">is</span> <span class="n">not</span> <span class="n">exhaustive</span><span class="o">.</span>
+<span class="nc">Here</span> <span class="n">is</span> <span class="n">an</span> <span class="n">example</span> <span class="k">of</span> <span class="n">a</span> <span class="n">case</span> <span class="n">that</span> <span class="n">is</span> <span class="n">not</span> <span class="n">matched</span><span class="o">:</span>
+<span class="o">(</span><span class="nc">Palica</span> <span class="o">_|</span><span class="nc">Posoda</span> <span class="o">_)</span>
+<span class="k">val</span> <span class="n">b</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.</span>
+<span class="k">val</span> <span class="n">r</span> <span class="o">:</span> <span class="kt">float</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span>
+<span class="k">val</span> <span class="n">v</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">43</span>
+</pre></div>
+</div>
+<p>Vzorcem se bomo bolj podrobno še posvetili.</p>
+</div>
+<div class="section" id="tip-funkcij">
+<h3><span class="section-number">5.3.9. </span>Tip funkcij<a class="headerlink" href="05-deklarativno-programiranje.html#tip-funkcij" title="Povezava na naslov">¶</a></h3>
+<p><strong>Tip funkcij</strong> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-&gt;</span> <span class="pre">b</span></code> zajema funkcije, ki sprejmejo argument tipa <code class="docutils literal notranslate"><span class="pre">a</span></code> in vrnejo
+rezultat tipa <code class="docutils literal notranslate"><span class="pre">b</span></code>. V OCaml λ-abstrakcijo <span class="math notranslate nohighlight">\(\lambda x \,.\, e\)</span> zapišemo kot <code class="docutils literal notranslate"><span class="pre">fun</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">e</span></code>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">3</span><span class="o">)</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Izračunana vrednost je funkcija, ki jo OCaml izpiše kot <code class="docutils literal notranslate"><span class="pre">&lt;fun&gt;</span></code>. (Kaj pa bi lahko naredil drugega, izpisal prevedeno kodo, ki predstavlja funkcijo?)</p>
+<p>Veljajo podobna pravila kot v λ-računu. Na primer funkcije lahko gnezdimo:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="k">fun</span> <span class="n">y</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">3</span><span class="o">)</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>OCaml je izračunal tip funkcije <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">-&gt;</span> <span class="pre">int</span> <span class="pre">-&gt;</span> <span class="pre">int</span></code>. Operator <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> je <em>desno asociativen</em> ,
+<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-&gt;</span> <span class="pre">b</span> <span class="pre">-&gt;</span> <span class="pre">c</span></code> je enako <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-&gt;</span> <span class="pre">(b</span> <span class="pre">-&gt;</span> <span class="pre">c)</span></code>.</p>
+<p>Tip <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">-&gt;</span> <span class="pre">int</span> <span class="pre">-&gt;</span> <span class="pre">int</span></code> torej opisuje funkcije, ki sprejmejo <code class="docutils literal notranslate"><span class="pre">int</span></code> in vrnejo <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">-&gt;</span> <span class="pre">int</span></code>.
+Funkcije lahko tudi uporabljamo:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="o">(</span><span class="k">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="k">fun</span> <span class="n">y</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">3</span><span class="o">))</span> <span class="mi">10</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Ste razumeli, kaj naredi zgornji primer? Kaj pa tale:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="o">(</span><span class="k">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="k">fun</span> <span class="n">y</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">3</span><span class="o">))</span> <span class="mi">10</span> <span class="mi">3</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">20</span>
+</pre></div>
+</div>
+<p>Funkcijo lahko poimenujemo:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="n">f</span> <span class="o">=</span> <span class="k">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">f</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+<span class="o">#</span> <span class="n">f</span> <span class="mi">10</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">101</span>
+</pre></div>
+</div>
+<p>Namesto <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">f</span> <span class="pre">=</span> <span class="pre">fun</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">⋯</span></code> lahko pišemo tudi <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">f</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">⋯</span></code></p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="n">g</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">g</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+<span class="o">#</span> <span class="n">g</span> <span class="mi">10</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">101</span>
+</pre></div>
+</div>
+<p>Definicija funkcije je rekurzivna, če to naznanimo <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">rec</span></code>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">let</span> <span class="k">rec</span> <span class="n">fact</span> <span class="n">n</span> <span class="o">=</span> <span class="o">(</span><span class="k">if</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">then</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fact</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">))</span> <span class="o">;;</span>
+<span class="k">val</span> <span class="n">fact</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+<span class="o">#</span> <span class="n">fact</span> <span class="mi">10</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">3628800</span>
+</pre></div>
+</div>
+<p>V telesu funkcije smo uporabili pogojni stavek, a se v OCamlu bolje obnese <code class="docutils literal notranslate"><span class="pre">match</span></code>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="k">rec</span> <span class="n">fact</span> <span class="n">n</span> <span class="o">=</span>
+  <span class="k">match</span> <span class="n">n</span> <span class="k">with</span>
+  <span class="o">|</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">1</span>
+  <span class="o">|</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fact</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>Sintagma <code class="docutils literal notranslate"><span class="pre">fun</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">match</span> <span class="pre">x</span> <span class="pre">with</span> <span class="pre">p₁</span> <span class="pre">-&gt;</span> <span class="pre">e₁</span> <span class="pre">|</span> <span class="pre">...</span></code> je pogosta in ju lahko nadomestimo s <code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">p₁</span> <span class="pre">-&gt;</span> <span class="pre">e₁</span> <span class="pre">|</span> <span class="pre">..</span></code>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="k">rec</span> <span class="n">fact</span> <span class="o">=</span> <span class="k">function</span>
+  <span class="o">|</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">1</span>
+  <span class="o">|</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fact</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>Kot vidimo, OCaml sam izračuna tip funkcije. Pravzaprav vedno sam izračuna vse tipe.
+Pravimo, da tipe <em>izpelje</em> in s tem se bomo še posebej ukvarjali. Včasih kak tip ostane
+nedoločen, na primer:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">fun</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">y</span><span class="o">,</span> <span class="n">x</span><span class="o">)</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">b</span> <span class="o">-&gt;</span> <span class="k">&#39;</span><span class="n">b</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Tip <code class="docutils literal notranslate"><span class="pre">x</span></code> je poljuben, prav tako tip <code class="docutils literal notranslate"><span class="pre">y</span></code>. Ocaml ju zapiše z <code class="docutils literal notranslate"><span class="pre">'a</span></code> in <code class="docutils literal notranslate"><span class="pre">'b</span></code>. Znak apostrof
+označuje dejstvo, da sta to <em>poljubna</em> tipa, ali <em>parametra</em>. Še en primer:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">fun</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">z</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span><span class="o">,</span> <span class="n">x</span><span class="o">)</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">*</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span> <span class="o">-&gt;</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">*</span> <span class="kt">int</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Ko zapišemo funkcijo, lahko podamo tip njenih argumentov:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">fun</span> <span class="o">(</span><span class="n">x</span> <span class="o">:</span> <span class="kt">string</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">-&gt;</span> <span class="kt">string</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Brez oznake tipa OCaml izpelje najbolj splošen tip:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="k">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">;;</span>
+<span class="o">-</span> <span class="o">:</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">=</span> <span class="o">&lt;</span><span class="k">fun</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./05-deklarativno-programiranje"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../04-lambda-racun/04-lambda-racun.html" title="nazaj page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">nazaj</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>λ-račun</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../06-rekurzija/06-rekurzija.html" title="naprej page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">naprej</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Rekurzija in rekurzivni tipi</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Avtor Andrej Bauer<br/>
+    
+        &copy; avtorske pravice 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

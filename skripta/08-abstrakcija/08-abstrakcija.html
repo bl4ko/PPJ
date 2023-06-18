@@ -1,0 +1,1156 @@
+
+<!DOCTYPE html>
+
+<html lang="sl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>8. Specifikacija, implementacija, abstrakcija &#8212; Principi programskih jezikov</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css%3Fdigest=c3fdc42140077d1ad13ad2f1588a4309.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Abecedni seznam" href="../genindex.html" />
+    <link rel="search" title="Išči" href="../search.html" />
+    <link rel="next" title="9. Logično programiranje" href="../09-logicno-programiranje/09-logicno-programiranje.html" />
+    <link rel="prev" title="7. Izpeljava tipov" href="../07-izpeljava-tipov/07-izpeljava-tipov.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="sl">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Principi programskih jezikov</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Poiščite to knjigo ..." aria-label="Poiščite to knjigo ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-uvod.html">
+   Uvod
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-aritmeticni-izrazi/01-aritmeticni-izrazi.html">
+   1. O programskih jezikih in aritmetičnih izrazih
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-ukazni-programski-jezik/02-ukazni-programski-jezik.html">
+   2. Ukazni programski jezik
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-dokazovanje-pravilnosti/03-dokazovanje-pravilnosti.html">
+   3. Dokazovanje pravilnosti programov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-lambda-racun/04-lambda-racun.html">
+   4. λ-račun
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-deklarativno-programiranje/05-deklarativno-programiranje.html">
+   5. Deklarativno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-rekurzija/06-rekurzija.html">
+   6. Rekurzija in rekurzivni tipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07-izpeljava-tipov/07-izpeljava-tipov.html">
+   7. Izpeljava tipov
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="08-abstrakcija.html#">
+   8. Specifikacija, implementacija, abstrakcija
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09-logicno-programiranje/09-logicno-programiranje.html">
+   9. Logično programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10-programiranje-z-omejitvami/10-programiranje-z-omejitvami.html">
+   10. Logično programiranje z omejitvami
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11-podtipi/11-podtipi.html">
+   11. Podtipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12-objektno-programiranje/12-objektno-programiranje.html">
+   12. Objektno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-haskell-in-razredi-tipov/14-haskell-in-razredi-tipov.html">
+   13. Haskell in razredi tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-monade/15-monade.html">
+   14. Monade in računski učinki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-ucinki-in-prestrezniki/13-ucinki-in-prestrezniki.html">
+   15. Učinki in prestrezniki
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Preklopi navigacijo" aria-controls="site-navigation"
+                title="Preklopi navigacijo" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Prenesite to stran"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/08-abstrakcija/08-abstrakcija.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Prenesite izvorno datoteko" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Natisni v PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Celozaslonski način"
+        title="Celozaslonski način"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Vsebina
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="08-abstrakcija.html#specifikacija-implementacija">
+   8.1. Specifikacija &amp; implementacija
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#signature-in-aksiomi">
+     8.1.1. Signature in aksiomi
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="08-abstrakcija.html#vmesniki">
+   8.2. Vmesniki
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#vmesniki-v-javi">
+     8.2.1. Vmesniki v Javi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#vmesniki-v-ocamlu">
+     8.2.2. Vmesniki v OCamlu
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="08-abstrakcija.html#implementacija">
+   8.3. Implementacija
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#implementacija-v-javi">
+     8.3.1. Implementacija v Javi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#implementacija-v-ocamlu">
+     8.3.2. Implementacija v OCamlu
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="08-abstrakcija.html#abstrakcija">
+   8.4. Abstrakcija
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="08-abstrakcija.html#genericno-programiranje">
+   8.5. Generično programiranje
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#genericno-programiranje-v-javi">
+     8.5.1. Generično programiranje v Javi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#genericno-programiranje-v-ocamlu">
+     8.5.2. Generično programiranje v OCamlu
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="08-abstrakcija.html#primer-prioritetne-vrste">
+   8.6. Primer: prioritetne vrste
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#id1">
+     8.6.1. Implementacija v OCamlu
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#id2">
+     8.6.2. Implementacija v Javi
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="08-abstrakcija.html#primer-mnozice">
+   8.7. Primer: množice
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Specifikacija, implementacija, abstrakcija</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Vsebina </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="08-abstrakcija.html#specifikacija-implementacija">
+   8.1. Specifikacija &amp; implementacija
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#signature-in-aksiomi">
+     8.1.1. Signature in aksiomi
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="08-abstrakcija.html#vmesniki">
+   8.2. Vmesniki
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#vmesniki-v-javi">
+     8.2.1. Vmesniki v Javi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#vmesniki-v-ocamlu">
+     8.2.2. Vmesniki v OCamlu
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="08-abstrakcija.html#implementacija">
+   8.3. Implementacija
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#implementacija-v-javi">
+     8.3.1. Implementacija v Javi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#implementacija-v-ocamlu">
+     8.3.2. Implementacija v OCamlu
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="08-abstrakcija.html#abstrakcija">
+   8.4. Abstrakcija
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="08-abstrakcija.html#genericno-programiranje">
+   8.5. Generično programiranje
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#genericno-programiranje-v-javi">
+     8.5.1. Generično programiranje v Javi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#genericno-programiranje-v-ocamlu">
+     8.5.2. Generično programiranje v OCamlu
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="08-abstrakcija.html#primer-prioritetne-vrste">
+   8.6. Primer: prioritetne vrste
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#id1">
+     8.6.1. Implementacija v OCamlu
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="08-abstrakcija.html#id2">
+     8.6.2. Implementacija v Javi
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="08-abstrakcija.html#primer-mnozice">
+   8.7. Primer: množice
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="specifikacija-implementacija-abstrakcija">
+<h1><span class="section-number">8. </span>Specifikacija, implementacija, abstrakcija<a class="headerlink" href="08-abstrakcija.html#specifikacija-implementacija-abstrakcija" title="Povezava na naslov">¶</a></h1>
+<div class="section" id="specifikacija-implementacija">
+<h2><span class="section-number">8.1. </span>Specifikacija &amp; implementacija<a class="headerlink" href="08-abstrakcija.html#specifikacija-implementacija" title="Povezava na naslov">¶</a></h2>
+<p><strong>Specifikacija (angl. specification)</strong> <code class="docutils literal notranslate"><span class="pre">S</span></code> je <em>zahteva</em>, ki opisuje, kakšen
+izdelek želimo.</p>
+<p><strong>Implementacija (angl. implementation)</strong> <code class="docutils literal notranslate"><span class="pre">I</span></code> je izdelek. Implementacija <code class="docutils literal notranslate"><span class="pre">I</span></code>
+<em>zadošča</em> specifikaciji <code class="docutils literal notranslate"><span class="pre">S</span></code>, če ustreza zahtevam iz <code class="docutils literal notranslate"><span class="pre">S</span></code>.</p>
+<p>V programiranju je implementacija programska koda. Specifikacije podajamo na
+različne načine in jih pogosto razvijemo postopoma:</p>
+<ul class="simple">
+<li><p>pogovor s stranko in analiza potreb</p></li>
+<li><p>dokumentacija, ki jo razume stranka</p></li>
+<li><p>tehnična dokumentacija za programerje</p></li>
+</ul>
+<p>Brez specifikacije ne vemo, kaj je treba naprogramirati. Danes si bomo ogledali,
+kako v programskih jezikih poskrbimo za zapis specifikacij in kako programski
+jezik preveri, ali dana koda (implementacija) zadošča dani specifikaciji.</p>
+<div class="section" id="signature-in-aksiomi">
+<h3><span class="section-number">8.1.1. </span>Signature in aksiomi<a class="headerlink" href="08-abstrakcija.html#signature-in-aksiomi" title="Povezava na naslov">¶</a></h3>
+<p>Omenimo še povezavo z algebro. V algebri poznamo <em>algebraične strukture</em>, na
+primer vektorske prostore, grupe, monoide, kolobarje, Boolove algebre, …
+Definicija takih struktur poteka v dveh korakih:</p>
+<ul class="simple">
+<li><p><strong>signatura</strong> pove, kakšne množice, konstante in operacije imamo</p></li>
+<li><p><strong>aksiomi</strong> povedo, kakšnim zakonom morajo zadoščati operacije</p></li>
+</ul>
+<div class="admonition-primer admonition">
+<p class="admonition-title">Primer</p>
+<p>Matematično strukturo <strong>grupa</strong> opišemo takole:</p>
+<ul>
+<li><p>signatura:</p>
+<ul class="simple">
+<li><p>množica <code class="docutils literal notranslate"><span class="pre">G</span></code></p></li>
+<li><p>operacija <code class="docutils literal notranslate"><span class="pre">·</span></code> : <code class="docutils literal notranslate"><span class="pre">G</span> <span class="pre">×</span> <span class="pre">G</span> <span class="pre">→</span> <span class="pre">G</span></code></p></li>
+<li><p>operacija <code class="docutils literal notranslate"><span class="pre">⁻¹</span></code> : <code class="docutils literal notranslate"><span class="pre">G</span> <span class="pre">→</span> <span class="pre">G</span></code></p></li>
+<li><p>konstanta <code class="docutils literal notranslate"><span class="pre">e</span></code> : <code class="docutils literal notranslate"><span class="pre">G</span></code></p></li>
+</ul>
+</li>
+<li><p>aksiomi:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  x · (y · z) = (x · y) · z
+  x · e = x
+  e · x = x
+  x · x⁻¹ = e
+  x⁻¹ · x = e
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonition-primer admonition">
+<p class="admonition-title">Primer</p>
+<p>Matematično strukturo <strong>usmerjen graf</strong> opišemo takole:</p>
+<ul class="simple">
+<li><p>signatura:</p>
+<ul>
+<li><p>množica <code class="docutils literal notranslate"><span class="pre">V</span></code> (vozlišča)</p></li>
+<li><p>množica <code class="docutils literal notranslate"><span class="pre">E</span></code> (povezave)</p></li>
+<li><p>operacija <code class="docutils literal notranslate"><span class="pre">src</span> <span class="pre">:</span> <span class="pre">E</span> <span class="pre">→</span> <span class="pre">V</span></code> (začetno vozlišče povezave)</p></li>
+<li><p>operacija <code class="docutils literal notranslate"><span class="pre">trg</span> <span class="pre">:</span> <span class="pre">E</span> <span class="pre">→</span> <span class="pre">V</span></code> (končno vozlišče povezave)</p></li>
+</ul>
+</li>
+<li><p>aksiomi: ni aksiomov</p></li>
+</ul>
+</div>
+<p>Zakaj vse to razlagamo? Ker programski jeziki ponavadi omogočajo zapis <em>signature</em>
+v programskem jeziku, ne pa tudi aksiomov, saj jih prevajalnik ne more
+preveriti.</p>
+</div>
+</div>
+<div class="section" id="vmesniki">
+<h2><span class="section-number">8.2. </span>Vmesniki<a class="headerlink" href="08-abstrakcija.html#vmesniki" title="Povezava na naslov">¶</a></h2>
+<p>Specifikaciji včasih rečemo tudi <strong>vmesnik (angl. interface)</strong>, ker jo lahko
+razumemo kot opis, ki pove, kako se uporablja neko programsko kodo. Na primer,
+avtor programske knjižnice običajno objavi <strong>API (Application Programming
+Interface)</strong>, ki ni nič drugega kot specifikacija, ki pove, kako deluje
+knjižnica.</p>
+<p>Torej imamo (vsaj) dve uporabi specifikacij:</p>
+<ul class="simple">
+<li><p>zahtevek za programsko kodo (specifikacija)</p></li>
+<li><p>protokol za uporabo programske kode (vmesnik)</p></li>
+</ul>
+<div class="section" id="vmesniki-v-javi">
+<h3><span class="section-number">8.2.1. </span>Vmesniki v Javi<a class="headerlink" href="08-abstrakcija.html#vmesniki-v-javi" title="Povezava na naslov">¶</a></h3>
+<p>V Javi je specifikacija <code class="docutils literal notranslate"><span class="pre">S</span></code> podana z vmesnikom</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">S</span> <span class="p">{</span>
+   <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>v katerem lahko naštejemo metode. Tipe, ki nastopajo v specifikaciji, podamo kot
+generične razrede. Na primer, vmesnik za grupo bi zapisali takole:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Group</span><span class="o">&lt;</span><span class="n">G</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="n">G</span> <span class="nf">getUnit</span><span class="p">();</span>
+    <span class="kd">public</span> <span class="n">G</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">G</span> <span class="n">x</span><span class="p">,</span> <span class="n">G</span> <span class="n">y</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="n">G</span> <span class="nf">inverse</span><span class="p">(</span><span class="n">G</span> <span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Vmesnik za usmerjeni graf:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Graph</span><span class="o">&lt;</span><span class="n">V</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+   <span class="kd">public</span> <span class="n">V</span> <span class="nf">src</span><span class="p">(</span><span class="n">E</span> <span class="n">e</span><span class="p">);</span>
+   <span class="kd">public</span> <span class="n">V</span> <span class="nf">trg</span><span class="p">(</span><span class="n">E</span> <span class="n">e</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Seveda v praksi nihče ne piše takih vmesnikov, tu samo razmišljamo o zvezi med
+matematičnimi signaturami in vmesniki v programskih jezikih. Kasneje bomo videli
+bolj uporabne vmesnike, ki opisujejo abstraktne podatkovne strukture.</p>
+</div>
+<div class="section" id="vmesniki-v-ocamlu">
+<h3><span class="section-number">8.2.2. </span>Vmesniki v OCamlu<a class="headerlink" href="08-abstrakcija.html#vmesniki-v-ocamlu" title="Povezava na naslov">¶</a></h3>
+<p>V OCamlu lahko podamo poljubno signaturo (tipe in vrednost), ne moremo pa zapisati
+aksiomov, ki jim zadoščajo. Takole zapišemo signaturo za grupo:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">module</span> <span class="k">type</span> <span class="nc">GROUP</span> <span class="o">=</span>
+<span class="k">sig</span>
+  <span class="k">type</span> <span class="n">g</span>
+  <span class="k">val</span> <span class="n">mul</span> <span class="o">:</span> <span class="n">g</span> <span class="o">*</span> <span class="n">g</span> <span class="o">-&gt;</span> <span class="n">g</span>
+  <span class="k">val</span> <span class="n">inv</span> <span class="o">:</span> <span class="n">g</span> <span class="o">-&gt;</span> <span class="n">g</span>
+  <span class="k">val</span> <span class="n">e</span> <span class="o">:</span> <span class="n">g</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>In takole za usmerjeni graf:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="nb">type</span> <span class="n">DIRECTED_GRAPH</span> <span class="o">=</span>
+<span class="n">sig</span>
+  <span class="nb">type</span> <span class="n">v</span>
+  <span class="nb">type</span> <span class="n">e</span>
+  <span class="n">val</span> <span class="n">src</span> <span class="p">:</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">v</span>
+  <span class="n">val</span> <span class="n">trg</span> <span class="p">:</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">v</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="implementacija">
+<h2><span class="section-number">8.3. </span>Implementacija<a class="headerlink" href="08-abstrakcija.html#implementacija" title="Povezava na naslov">¶</a></h2>
+<p>Programski jeziki seveda omogočajo implementacijo, kar ni nič drugega kot pisanje kode, ki ustreza dani specifikaciji.
+Zanimivo pa je vprašanje, kako so posamezne enote implementacije organizirane v različnih jezikih.</p>
+<div class="section" id="implementacija-v-javi">
+<h3><span class="section-number">8.3.1. </span>Implementacija v Javi<a class="headerlink" href="08-abstrakcija.html#implementacija-v-javi" title="Povezava na naslov">¶</a></h3>
+<p>V Javi implementiramo vmesnik <code class="docutils literal notranslate"><span class="pre">I</span></code> tako, da definiramo razred <code class="docutils literal notranslate"><span class="pre">C</span></code>, ki mu zadošča:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="k">class</span> <span class="nc">C</span> <span class="n">implements</span> <span class="n">I</span> <span class="p">{</span>
+   <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Razred lahko hkrati zadošča več vmesnikom. (Opomba: podrazredi so mehanizem, ki
+se <em>ne</em> uporablja za specifikacijo.)</p>
+</div>
+<div class="section" id="implementacija-v-ocamlu">
+<h3><span class="section-number">8.3.2. </span>Implementacija v OCamlu<a class="headerlink" href="08-abstrakcija.html#implementacija-v-ocamlu" title="Povezava na naslov">¶</a></h3>
+<p>Implementacija v OCamlu se imenuje <strong>modul (angl. module)</strong>. Modul je skupek
+definicij tipov in vrednosti, lahko pa vsebuje tudi še nadaljnje podmodule.</p>
+<p>Nekaj primerov (nepraktičnih) implementacij grup podajmo tu, kasneje pa bomo videli bolj uporabne primere:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="c">(* Najprej definiramo signature. *)</span>
+
+<span class="k">module</span> <span class="k">type</span> <span class="nc">GROUP</span> <span class="o">=</span>
+<span class="k">sig</span>
+    <span class="k">type</span> <span class="n">g</span>
+    <span class="k">val</span> <span class="n">mul</span> <span class="o">:</span> <span class="n">g</span> <span class="o">*</span> <span class="n">g</span> <span class="o">-&gt;</span> <span class="n">g</span>
+    <span class="k">val</span> <span class="n">inv</span> <span class="o">:</span> <span class="n">g</span> <span class="o">-&gt;</span> <span class="n">g</span>
+    <span class="k">val</span> <span class="n">e</span> <span class="o">:</span> <span class="n">g</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="k">type</span> <span class="nc">DIRECTED_GRAPH</span> <span class="o">=</span>
+<span class="k">sig</span>
+    <span class="k">type</span> <span class="n">v</span>
+    <span class="k">type</span> <span class="n">e</span>
+    <span class="k">val</span> <span class="n">src</span> <span class="o">:</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">v</span>
+    <span class="k">val</span> <span class="n">trg</span> <span class="o">:</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">v</span>
+<span class="k">end</span>
+
+<span class="c">(* Signaturo implementiramo z modulom ali strukturo.</span>
+<span class="c">   Dana signatura ima lahko več implementacij. *)</span>
+
+<span class="k">module</span> <span class="nc">Z3</span> <span class="o">:</span> <span class="nc">GROUP</span> <span class="o">=</span>
+<span class="k">struct</span>
+
+  <span class="k">type</span> <span class="n">g</span> <span class="o">=</span> <span class="nc">Zero</span> <span class="o">|</span> <span class="nc">One</span> <span class="o">|</span> <span class="nc">Two</span>
+
+  <span class="k">let</span> <span class="n">e</span> <span class="o">=</span> <span class="nc">Zero</span>
+
+  <span class="k">let</span> <span class="n">plus</span> <span class="o">=</span> <span class="k">function</span>
+    <span class="o">|</span> <span class="o">(</span><span class="nc">Zero</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">y</span>
+    <span class="o">|</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="nc">Zero</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">x</span>
+    <span class="o">|</span> <span class="o">(</span><span class="nc">One</span><span class="o">,</span> <span class="nc">One</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="nc">Two</span>
+    <span class="o">|</span> <span class="o">(</span><span class="nc">One</span><span class="o">,</span> <span class="nc">Two</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="nc">Zero</span>
+    <span class="o">|</span> <span class="o">(</span><span class="nc">Two</span><span class="o">,</span> <span class="nc">One</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="nc">Zero</span>
+    <span class="o">|</span> <span class="o">(</span><span class="nc">Two</span><span class="o">,</span> <span class="nc">Two</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="nc">One</span>
+
+  <span class="k">let</span> <span class="n">mul</span> <span class="o">=</span> <span class="n">plus</span>
+
+  <span class="k">let</span> <span class="n">inv</span> <span class="o">=</span> <span class="k">function</span>
+    <span class="o">|</span> <span class="nc">Zero</span> <span class="o">-&gt;</span> <span class="nc">Zero</span>
+    <span class="o">|</span> <span class="nc">One</span> <span class="o">-&gt;</span> <span class="nc">Two</span>
+    <span class="o">|</span> <span class="nc">Two</span> <span class="o">-&gt;</span> <span class="nc">One</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="nc">Z3&#39;</span> <span class="o">:</span> <span class="nc">GROUP</span> <span class="o">=</span>
+<span class="k">struct</span>
+
+    <span class="k">type</span> <span class="n">g</span> <span class="o">=</span> <span class="kt">int</span>
+
+    <span class="k">let</span> <span class="n">mul</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">)</span> <span class="ow">mod</span> <span class="mi">3</span>
+    <span class="k">let</span> <span class="n">inv</span> <span class="n">x</span> <span class="o">=</span> <span class="o">(</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="o">)</span> <span class="ow">mod</span> <span class="mi">3</span>
+    <span class="k">let</span> <span class="n">e</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="nc">K4</span> <span class="o">:</span> <span class="nc">DIRECTED_GRAPH</span> <span class="o">=</span>
+<span class="k">struct</span>
+
+    <span class="k">type</span> <span class="n">v</span> <span class="o">=</span> <span class="nc">V0</span> <span class="o">|</span> <span class="nc">V1</span> <span class="o">|</span> <span class="nc">V2</span> <span class="o">|</span> <span class="nc">V3</span>
+    <span class="k">type</span> <span class="n">e</span> <span class="o">=</span> <span class="nc">E0</span> <span class="o">|</span> <span class="nc">E1</span> <span class="o">|</span> <span class="nc">E2</span> <span class="o">|</span> <span class="nc">E3</span> <span class="o">|</span> <span class="nc">E4</span> <span class="o">|</span> <span class="nc">E5</span>
+
+    <span class="k">let</span> <span class="n">src</span> <span class="o">=</span> <span class="k">function</span>
+      <span class="o">|</span> <span class="nc">E0</span> <span class="o">-&gt;</span> <span class="nc">V0</span>
+      <span class="o">|</span> <span class="nc">E1</span> <span class="o">-&gt;</span> <span class="nc">V1</span>
+      <span class="o">|</span> <span class="nc">E2</span> <span class="o">-&gt;</span> <span class="nc">V2</span>
+      <span class="o">|</span> <span class="nc">E3</span> <span class="o">-&gt;</span> <span class="nc">V3</span>
+      <span class="o">|</span> <span class="nc">E4</span> <span class="o">-&gt;</span> <span class="nc">V0</span>
+      <span class="o">|</span> <span class="nc">E5</span> <span class="o">-&gt;</span> <span class="nc">V1</span>
+
+    <span class="k">let</span> <span class="n">trg</span> <span class="o">=</span> <span class="k">function</span>
+      <span class="o">|</span> <span class="nc">E0</span> <span class="o">-&gt;</span> <span class="nc">V1</span>
+      <span class="o">|</span> <span class="nc">E1</span> <span class="o">-&gt;</span> <span class="nc">V2</span>
+      <span class="o">|</span> <span class="nc">E2</span> <span class="o">-&gt;</span> <span class="nc">V3</span>
+      <span class="o">|</span> <span class="nc">E3</span> <span class="o">-&gt;</span> <span class="nc">V0</span>
+      <span class="o">|</span> <span class="nc">E4</span> <span class="o">-&gt;</span> <span class="nc">V2</span>
+      <span class="o">|</span> <span class="nc">E5</span> <span class="o">-&gt;</span> <span class="nc">V3</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="nc">Cycle3</span> <span class="o">:</span> <span class="nc">DIRECTED_GRAPH</span> <span class="o">=</span>
+<span class="k">struct</span>
+  <span class="k">type</span> <span class="n">v</span> <span class="o">=</span> <span class="kt">int</span> <span class="c">(* uporabimo 0, 1, 2 *)</span>
+  <span class="k">type</span> <span class="n">e</span> <span class="o">=</span> <span class="kt">int</span> <span class="c">(* uporabimo 0, 1, 2 *)</span>
+  <span class="k">let</span> <span class="n">src</span> <span class="n">e</span> <span class="o">=</span> <span class="n">e</span>
+  <span class="k">let</span> <span class="n">trg</span> <span class="n">e</span> <span class="o">=</span> <span class="o">(</span><span class="n">e</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="ow">mod</span> <span class="mi">3</span>
+
+  <span class="c">(* Graf z vozlišči 0, 1, 2 in povezavami 0, 1, 2:</span>
+<span class="c">        src    trg</span>
+<span class="c">     0 : 0 --&gt; 1</span>
+<span class="c">     1 : 1 --&gt; 2</span>
+<span class="c">     2 : 2 --&gt; 0</span>
+<span class="c">  *)</span>
+<span class="k">end</span>
+
+<span class="c">(* Takole pa naredimo modul, ki je parametriziran s</span>
+<span class="c">   strukturo. Kasneje bomo videli bolj uporabne primere. *)</span>
+<span class="k">module</span> <span class="nc">Cycle</span> <span class="o">(</span><span class="nc">S</span> <span class="o">:</span> <span class="k">sig</span> <span class="k">val</span> <span class="n">n</span> <span class="o">:</span> <span class="kt">int</span> <span class="k">end</span><span class="o">)</span> <span class="o">:</span> <span class="nc">DIRECTED_GRAPH</span> <span class="o">=</span>
+<span class="k">struct</span>
+  <span class="k">type</span> <span class="n">v</span> <span class="o">=</span> <span class="kt">int</span>
+  <span class="k">type</span> <span class="n">e</span> <span class="o">=</span> <span class="kt">int</span>
+  <span class="k">let</span> <span class="n">src</span> <span class="n">k</span> <span class="o">=</span> <span class="n">k</span>
+  <span class="k">let</span> <span class="n">trg</span> <span class="n">k</span> <span class="o">=</span> <span class="o">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="ow">mod</span> <span class="nn">S</span><span class="p">.</span><span class="n">n</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="nc">C5</span> <span class="o">=</span> <span class="nc">Cycle</span><span class="o">(</span><span class="k">struct</span> <span class="k">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span> <span class="k">end</span><span class="o">)</span>
+<span class="k">module</span> <span class="nc">C15</span> <span class="o">=</span> <span class="nc">Cycle</span><span class="o">(</span><span class="k">struct</span> <span class="k">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">15</span> <span class="k">end</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="abstrakcija">
+<h2><span class="section-number">8.4. </span>Abstrakcija<a class="headerlink" href="08-abstrakcija.html#abstrakcija" title="Povezava na naslov">¶</a></h2>
+<p>Ko gradimo večje programske sisteme, so ti sestavljeni iz enot, ki jih
+povezujemo med seboj. Za vsako enoto je lahko zadolžena ločena ekipa
+programerjev. Programerji opišejo programske enote z <em>vmesniki</em>, da vedo, kaj
+kdo počne in kako uporabljati kodo ostalih ekip.</p>
+<p>A to je le del zgodbe. Denimo, da prva ekipa razvija programsko enoto <code class="docutils literal notranslate"><span class="pre">E</span></code>, ki
+zadošča vmesniku <code class="docutils literal notranslate"><span class="pre">S</span></code> in da druga ekipa uporablja enoto <code class="docutils literal notranslate"><span class="pre">E</span></code> pri izdelavi svoje
+programske enote. Dobra programska praksa pravi, da se druga ekipa ne sme
+zanašati na podrobnosti implementacije <code class="docutils literal notranslate"><span class="pre">E</span></code>, ampak samo na to, kar je zapisano v
+specifikaciji <code class="docutils literal notranslate"><span class="pre">S</span></code>. Na primer, če <code class="docutils literal notranslate"><span class="pre">E</span></code> vsebuje pomožno funkcijo <code class="docutils literal notranslate"><span class="pre">f</span></code>, ki je <code class="docutils literal notranslate"><span class="pre">S</span></code> ne
+omenja, potem je druga ekipa ne sme uporabljati, saj je <code class="docutils literal notranslate"><span class="pre">f</span></code> namenjena <em>notranji</em>
+uporabi <code class="docutils literal notranslate"><span class="pre">E</span></code>. Prva ekipa lahko <code class="docutils literal notranslate"><span class="pre">f</span></code> spremeni ali zbriše, saj <code class="docutils literal notranslate"><span class="pre">f</span></code> ni del
+specifikacije <code class="docutils literal notranslate"><span class="pre">S</span></code>.</p>
+<p>Če sledimo načelu, da mora programski jezik neposredno podpirati aktivnosti
+programerjev, potem bi želeli <em>skriti</em> podrobnosti implementacije <code class="docutils literal notranslate"><span class="pre">E</span></code> tako, da
+bi lahko programerji druge ekipe imeli dostop <em>samo</em> do tistih delov <code class="docutils literal notranslate"><span class="pre">E</span></code>, ki so
+našteti v <code class="docutils literal notranslate"><span class="pre">S</span></code>.</p>
+<p>Kadar <em>skrijemo</em> podrobnosti implementacije, pravimo, da je implementacija
+<strong>abstraktna</strong>.</p>
+<p>Programski jeziki omogočajo abstrakcijo v večji ali manjši meri:</p>
+<ul class="simple">
+<li><p>Java nadzoruje dostopnost do komponent z določili <code class="docutils literal notranslate"><span class="pre">private</span></code>, <code class="docutils literal notranslate"><span class="pre">public</span></code> in
+<code class="docutils literal notranslate"><span class="pre">protected</span></code></p></li>
+<li><p>Python nima nikakršne abstrakcije</p></li>
+<li><p>OCaml omogoča abstrakcijo z določilom <code class="docutils literal notranslate"><span class="pre">M</span> <span class="pre">:</span> <span class="pre">S</span></code>, kjer je <code class="docutils literal notranslate"><span class="pre">M</span></code> module in <code class="docutils literal notranslate"><span class="pre">S</span></code> signatura.
+S tem skrijemo vsebino modula <code class="docutils literal notranslate"><span class="pre">M</span></code>, razen tistih komponent, ki so naštete v <code class="docutils literal notranslate"><span class="pre">S</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="genericno-programiranje">
+<h2><span class="section-number">8.5. </span>Generično programiranje<a class="headerlink" href="08-abstrakcija.html#genericno-programiranje" title="Povezava na naslov">¶</a></h2>
+<p>Z izrazom <em>generično programiranje</em> razumemo kodo, ki jo lahko uporabimo večkrat
+na različne načine. Na primer, če napišemo knjižnico za 3D grafiko, bi jo želeli
+uporabljati na več različnih grafičnih karticah. Ali bomo za vsako grafično
+kartico napisali novo različico knjižnice? Ne! Želimo <strong>generično</strong>
+implementacijo, ki bo preko ustreznega <em>vmesnika</em> dostopala do grafične kartice.
+Proizvajalci grafičnih kartic bodo implementirali <em>gonilnike</em>, ki bodo zadoščali
+temu vmesniku.</p>
+<div class="section" id="genericno-programiranje-v-javi">
+<h3><span class="section-number">8.5.1. </span>Generično programiranje v Javi<a class="headerlink" href="08-abstrakcija.html#genericno-programiranje-v-javi" title="Povezava na naslov">¶</a></h3>
+<p>Java podpira generično programiranje. Ko definiramo razred, je ta lahko odvisen
+od kakega drugega razreda:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Knjiznica3D</span><span class="o">&lt;</span><span class="n">Driver</span> <span class="kd">extends</span> <span class="n">GraphicsDriver</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="genericno-programiranje-v-ocamlu">
+<h3><span class="section-number">8.5.2. </span>Generično programiranje v OCamlu<a class="headerlink" href="08-abstrakcija.html#genericno-programiranje-v-ocamlu" title="Povezava na naslov">¶</a></h3>
+<p>V OCamlu je generično programiranje omogočeno s <strong>funktorji (angl. functor)</strong>
+(opomba: v matematiki poznamo funktorje v teoriji kategorij, ki nimajo nič
+skupnega s funktorji v OCamlu).</p>
+<p>Funktor je preslikava iz struktur v strukture in je bolj splošen kot generični
+razredi v Javi (ker lahko struktura vsebuje podstrukture in definicije več
+tipov, razred pa ne more vsebovati definicij podrazredov).</p>
+<p>Funktor <code class="docutils literal notranslate"><span class="pre">F</span></code>, ki sprejme strukturo <code class="docutils literal notranslate"><span class="pre">A</span></code>, ki zadošča signaturi <code class="docutils literal notranslate"><span class="pre">S</span></code>, in vrne
+strukturo <code class="docutils literal notranslate"><span class="pre">B</span></code> zapišemo takole:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">module</span> <span class="nc">F</span><span class="o">(</span><span class="nc">A</span> <span class="o">:</span> <span class="nc">S</span><span class="o">)</span> <span class="o">=</span>
+<span class="k">struct</span>
+  <span class="c">(* definicija strukture B *)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Zgoraj smo videli primer preprostega funktorja <code class="docutils literal notranslate"><span class="pre">Cycle</span></code>, ki sprejme strukturo s številom <code class="docutils literal notranslate"><span class="pre">n</span></code> in vrne usmerjeni cikel na
+<code class="docutils literal notranslate"><span class="pre">n</span></code> vozliščih. Bolj uporaben primer sledi.</p>
+<div class="admonition-primer admonition">
+<p class="admonition-title">Primer</p>
+<p>Kot primer uporabe modulov in funktorjev v OCamlu priporočamo <a class="reference external" href="https://mirageos.org">MirageOS</a>. To je sistem za gradnjo
+unijeder (angl <a class="reference external" href="https://en.wikipedia.org/wiki/Unikernel">unikernel</a>) – minuaturinih operacijskih sistemov, ki
+opravljajo samo eno opravilo, npr. odgovorijo na <a class="reference external" href="https://en.wikipedia.org/wiki/Domain_Name_System">DNS request</a>. So
+zelo majhni in za zagon potrebujejo le nekaj milisekund, MirageOS pa jih gradi z intenzivno uporabo OCaml modulov in
+funktorjev.</p>
+</div>
+</div>
+</div>
+<div class="section" id="primer-prioritetne-vrste">
+<h2><span class="section-number">8.6. </span>Primer: prioritetne vrste<a class="headerlink" href="08-abstrakcija.html#primer-prioritetne-vrste" title="Povezava na naslov">¶</a></h2>
+<p><strong>Prioritetna vrsta</strong> je podatkovna struktura, v katero dodajamo elemente, ven
+pa jih jemljemo glede na njihovo <em>prioriteto</em>. Zapišimo specifikacijo:</p>
+<p>Signatura:</p>
+<ul class="simple">
+<li><p>podatkovni tip <code class="docutils literal notranslate"><span class="pre">element</span></code></p></li>
+<li><p>operacija <code class="docutils literal notranslate"><span class="pre">priority</span> <span class="pre">:</span> <span class="pre">element</span> <span class="pre">→</span> <span class="pre">int</span></code></p></li>
+<li><p>podatkovni tip <code class="docutils literal notranslate"><span class="pre">queue</span></code></p></li>
+<li><p>konstanta <code class="docutils literal notranslate"><span class="pre">empty</span> <span class="pre">:</span> <span class="pre">queue</span></code></p></li>
+<li><p>operacija <code class="docutils literal notranslate"><span class="pre">put</span> <span class="pre">:</span> <span class="pre">element</span> <span class="pre">→</span> <span class="pre">queue</span> <span class="pre">→</span> <span class="pre">queue</span></code></p></li>
+<li><p>operacija <code class="docutils literal notranslate"><span class="pre">get</span> <span class="pre">:</span> <span class="pre">queue</span> <span class="pre">→</span> <span class="pre">element</span> <span class="pre">option</span> <span class="pre">*</span> <span class="pre">queue</span></code></p></li>
+</ul>
+<p>Aksiomov ne bomo pisali, ker bi morali v tem primeru spoznati bolj zahtevne
+jezike za specifikacijo, ki presegajo okvir te lekcije. Neformalno pa lahko
+opišemo zahteve za prioritetno vrsto:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">element</span></code> je tip elementov, ki jih hranimo v vrsti</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">priority</span> <span class="pre">x</span></code> vrne prioriteto elementa <code class="docutils literal notranslate"><span class="pre">x</span></code>, ki je celo število. Manjše število pomeni »prej na vrsti«</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">queue</span></code> je tip prioritetnih vrst</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">empty</span></code> je prazna prioritetna vrsta, ki ne vsebuje elementov</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">put</span> <span class="pre">x</span> <span class="pre">q</span></code> vstavi element <code class="docutils literal notranslate"><span class="pre">x</span></code> v vrsto <code class="docutils literal notranslate"><span class="pre">q</span></code> glede na njegovo prioriteto in vrne tako dobljeno vrsto</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get</span> <span class="pre">q</span></code> vrne <code class="docutils literal notranslate"><span class="pre">(Some</span> <span class="pre">x,</span> <span class="pre">q')</span></code> kjer je <code class="docutils literal notranslate"><span class="pre">x</span></code> element iz <code class="docutils literal notranslate"><span class="pre">q</span></code> z najnižjo prioriteto in
+<code class="docutils literal notranslate"><span class="pre">q'</span></code> vrsta <code class="docutils literal notranslate"><span class="pre">q</span></code> brez <code class="docutils literal notranslate"><span class="pre">x</span></code> Operacija <code class="docutils literal notranslate"><span class="pre">get</span></code> vrne <code class="docutils literal notranslate"><span class="pre">(None,</span> <span class="pre">q)</span></code>, če je <code class="docutils literal notranslate"><span class="pre">q</span></code> prazna vrsta.</p></li>
+</ul>
+<div class="section" id="id1">
+<h3><span class="section-number">8.6.1. </span>Implementacija v OCamlu<a class="headerlink" href="08-abstrakcija.html#id1" title="Povezava na naslov">¶</a></h3>
+<p>Oglejmo si implementacijo v OCamlu.</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">module</span> <span class="k">type</span> <span class="nc">PRIORITY_QUEUE</span> <span class="o">=</span>
+  <span class="k">sig</span>
+    <span class="k">type</span> <span class="n">element</span>
+    <span class="k">val</span> <span class="n">priority</span> <span class="o">:</span> <span class="n">element</span> <span class="o">-&gt;</span> <span class="kt">int</span>
+    <span class="k">type</span> <span class="n">queue</span>
+    <span class="k">val</span> <span class="n">empty</span> <span class="o">:</span> <span class="n">queue</span>
+    <span class="k">val</span> <span class="n">put</span> <span class="o">:</span> <span class="n">element</span> <span class="o">-&gt;</span> <span class="n">queue</span> <span class="o">-&gt;</span> <span class="n">queue</span>
+    <span class="k">val</span> <span class="n">get</span> <span class="o">:</span> <span class="n">queue</span> <span class="o">-&gt;</span> <span class="n">element</span> <span class="n">option</span> <span class="o">*</span> <span class="n">queue</span>
+  <span class="k">end</span>
+
+<span class="k">module</span> <span class="nc">MyFirstQueue</span> <span class="o">:</span> <span class="nc">PRIORITY_QUEUE</span> <span class="k">with</span> <span class="k">type</span> <span class="n">element</span> <span class="o">=</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span> <span class="o">=</span>
+  <span class="k">struct</span>
+    <span class="k">type</span> <span class="n">element</span> <span class="o">=</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span>
+
+    <span class="k">let</span> <span class="n">priority</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">=</span> <span class="n">a</span>
+
+    <span class="k">type</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">element</span> <span class="kt">list</span>
+
+    <span class="k">let</span> <span class="n">empty</span> <span class="o">=</span> <span class="bp">[]</span>
+
+    <span class="k">let</span> <span class="k">rec</span> <span class="n">put</span> <span class="n">x</span> <span class="o">=</span> <span class="k">function</span>
+      <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="o">[</span><span class="n">x</span><span class="o">]</span>
+      <span class="o">|</span> <span class="n">y</span> <span class="o">::</span> <span class="n">ys</span> <span class="o">-&gt;</span>
+         <span class="k">if</span> <span class="n">priority</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">priority</span> <span class="n">y</span> <span class="k">then</span>
+           <span class="n">x</span> <span class="o">::</span> <span class="n">y</span> <span class="o">::</span> <span class="n">ys</span>
+         <span class="k">else</span>
+           <span class="n">y</span> <span class="o">::</span> <span class="n">put</span> <span class="n">x</span> <span class="n">ys</span>
+
+    <span class="k">let</span> <span class="n">get</span> <span class="o">=</span> <span class="k">function</span>
+      <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="nc">None</span><span class="o">,</span> <span class="bp">[]</span><span class="o">)</span>
+      <span class="o">|</span> <span class="n">x</span> <span class="o">::</span> <span class="n">xs</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="nc">Some</span> <span class="n">x</span><span class="o">,</span> <span class="n">xs</span><span class="o">)</span>
+  <span class="k">end</span>
+
+<span class="k">module</span> <span class="k">type</span> <span class="nc">PRIORITY</span> <span class="o">=</span>
+<span class="k">sig</span>
+  <span class="k">type</span> <span class="n">t</span>
+  <span class="k">val</span> <span class="n">priority</span> <span class="o">:</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="kt">int</span>
+<span class="k">end</span>
+
+
+<span class="c">(* Implementacija prioritetne vrste s seznami. To je funktor, ki</span>
+<span class="c">   sprejme tip elemetov in prioritetno funkcijo. *)</span>
+<span class="k">module</span> <span class="nc">ListQueue</span> <span class="o">(</span><span class="nc">M</span> <span class="o">:</span> <span class="nc">PRIORITY</span><span class="o">)</span> <span class="o">:</span> <span class="nc">PRIORITY_QUEUE</span> <span class="k">with</span> <span class="k">type</span> <span class="n">element</span> <span class="o">=</span> <span class="nn">M</span><span class="p">.</span><span class="n">t</span>
+  <span class="o">=</span>
+  <span class="k">struct</span>
+    <span class="k">type</span> <span class="n">element</span> <span class="o">=</span> <span class="nn">M</span><span class="p">.</span><span class="n">t</span>
+
+    <span class="k">let</span> <span class="n">priority</span> <span class="o">=</span> <span class="nn">M</span><span class="p">.</span><span class="n">priority</span>
+
+    <span class="k">type</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">element</span> <span class="kt">list</span>
+
+    <span class="k">let</span> <span class="n">fortytwo</span> <span class="o">=</span> <span class="mi">42</span>
+
+    <span class="k">let</span> <span class="n">empty</span> <span class="o">=</span> <span class="bp">[]</span>
+
+    <span class="k">let</span> <span class="k">rec</span> <span class="n">put</span> <span class="n">x</span> <span class="o">=</span> <span class="k">function</span>
+      <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="o">[</span><span class="n">x</span><span class="o">]</span>
+      <span class="o">|</span> <span class="n">y</span> <span class="o">::</span> <span class="n">ys</span> <span class="o">-&gt;</span>
+         <span class="k">if</span> <span class="n">priority</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">priority</span> <span class="n">y</span> <span class="k">then</span>
+           <span class="n">x</span> <span class="o">::</span> <span class="n">y</span> <span class="o">::</span> <span class="n">ys</span>
+         <span class="k">else</span>
+           <span class="n">y</span> <span class="o">::</span> <span class="n">put</span> <span class="n">x</span> <span class="n">ys</span>
+
+    <span class="k">let</span> <span class="n">get</span> <span class="o">=</span> <span class="k">function</span>
+      <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="nc">None</span><span class="o">,</span> <span class="bp">[]</span><span class="o">)</span>
+      <span class="o">|</span> <span class="n">x</span> <span class="o">::</span> <span class="n">xs</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="nc">Some</span> <span class="n">x</span><span class="o">,</span> <span class="n">xs</span><span class="o">)</span>
+  <span class="k">end</span>
+
+<span class="c">(* Naredimo prioritetno vrsto nizov, prioriteta je dolžina niza. *)</span>
+<span class="k">module</span> <span class="nc">A</span> <span class="o">=</span>
+  <span class="nc">ListQueue</span><span class="o">(</span>
+      <span class="k">struct</span>
+        <span class="k">type</span> <span class="n">t</span> <span class="o">=</span> <span class="kt">string</span>
+        <span class="k">let</span> <span class="n">priority</span> <span class="o">=</span> <span class="nn">String</span><span class="p">.</span><span class="n">length</span>
+      <span class="k">end</span><span class="o">)</span>
+
+<span class="c">(* Preizkus. *)</span>
+<span class="k">let</span> <span class="n">example1</span> <span class="o">=</span>
+  <span class="nn">A</span><span class="p">.</span><span class="n">get</span> <span class="o">(</span><span class="nn">A</span><span class="p">.</span><span class="n">put</span> <span class="s2">&quot;kiwi&quot;</span> <span class="o">(</span><span class="nn">A</span><span class="p">.</span><span class="n">put</span> <span class="s2">&quot;jabolko&quot;</span> <span class="o">(</span><span class="nn">A</span><span class="p">.</span><span class="n">put</span> <span class="s2">&quot;banana&quot;</span> <span class="nn">A</span><span class="p">.</span><span class="n">empty</span><span class="o">)))</span>
+
+<span class="c">(* Naredimo prioritetno vrsto nizov, prioriteta je dolžina niza. *)</span>
+<span class="k">module</span> <span class="nc">A&#39;</span> <span class="o">=</span>
+  <span class="nc">ListQueue</span><span class="o">(</span>
+      <span class="k">struct</span>
+        <span class="k">type</span> <span class="n">t</span> <span class="o">=</span> <span class="kt">string</span>
+        <span class="k">let</span> <span class="n">priority</span> <span class="n">s</span> <span class="o">=</span> <span class="o">-</span> <span class="nn">String</span><span class="p">.</span><span class="n">length</span> <span class="n">s</span>
+      <span class="k">end</span><span class="o">)</span>
+
+<span class="c">(* Preizkus. *)</span>
+<span class="k">let</span> <span class="n">example1&#39;</span> <span class="o">=</span>
+  <span class="nn">A&#39;</span><span class="p">.</span><span class="n">get</span> <span class="o">(</span><span class="nn">A&#39;</span><span class="p">.</span><span class="n">put</span> <span class="s2">&quot;kiwi&quot;</span> <span class="o">(</span><span class="nn">A&#39;</span><span class="p">.</span><span class="n">put</span> <span class="s2">&quot;jabolko&quot;</span> <span class="o">(</span><span class="nn">A&#39;</span><span class="p">.</span><span class="n">put</span> <span class="s2">&quot;banana&quot;</span> <span class="nn">A&#39;</span><span class="p">.</span><span class="n">empty</span><span class="o">)))</span>
+
+<span class="c">(* Naredimo prioritetno vrsto parov števil. *)</span>
+<span class="k">module</span> <span class="nc">B</span> <span class="o">=</span>
+  <span class="nc">ListQueue</span><span class="o">(</span>
+      <span class="k">struct</span>
+        <span class="k">type</span> <span class="n">t</span> <span class="o">=</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span>
+        <span class="k">let</span> <span class="n">priority</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">)</span> <span class="o">=</span> <span class="n">a</span>
+      <span class="k">end</span>
+    <span class="o">)</span>
+
+<span class="k">module</span> <span class="nc">IntQueue</span> <span class="o">=</span>
+  <span class="nc">ListQueue</span><span class="o">(</span>
+    <span class="k">struct</span>
+      <span class="k">type</span> <span class="n">t</span> <span class="o">=</span> <span class="kt">int</span>
+      <span class="k">let</span> <span class="n">priority</span> <span class="n">k</span> <span class="o">=</span> <span class="n">k</span>
+    <span class="k">end</span>
+  <span class="o">)</span>
+
+
+<span class="c">(* Učinkovita implementacija z levičarskimi kopicami,</span>
+<span class="c">   glej https://en.wikipedia.org/wiki/Leftist_tree.</span>
+<span class="c">   Implementacija je abstraktna, ker uporabimo :,</span>
+<span class="c">   vendar dodamo določilo, da je tip element enak tipu t.</span>
+<span class="c"> *)</span>
+<span class="k">module</span> <span class="nc">LeftistHeapQueue</span> <span class="o">(</span><span class="nc">M</span> <span class="o">:</span> <span class="nc">PRIORITY</span><span class="o">)</span>
+       <span class="o">:</span> <span class="nc">PRIORITY_QUEUE</span> <span class="k">with</span> <span class="k">type</span> <span class="n">element</span> <span class="o">=</span> <span class="nn">M</span><span class="p">.</span><span class="n">t</span> <span class="o">=</span>
+  <span class="k">struct</span>
+    <span class="k">type</span> <span class="n">element</span> <span class="o">=</span> <span class="nn">M</span><span class="p">.</span><span class="n">t</span>
+
+    <span class="k">let</span> <span class="n">priority</span> <span class="o">=</span> <span class="nn">M</span><span class="p">.</span><span class="n">priority</span>
+
+    <span class="k">type</span> <span class="n">queue</span> <span class="o">=</span> <span class="nc">Leaf</span> <span class="o">|</span> <span class="nc">Node</span> <span class="k">of</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">element</span> <span class="o">*</span> <span class="n">queue</span> <span class="o">*</span> <span class="n">queue</span>
+
+    <span class="k">let</span> <span class="n">rank</span> <span class="o">=</span> <span class="k">function</span>
+      <span class="o">|</span> <span class="nc">Leaf</span> <span class="o">-&gt;</span> <span class="mi">0</span>
+      <span class="o">|</span> <span class="nc">Node</span> <span class="o">(</span><span class="n">r</span><span class="o">,</span> <span class="o">_,</span> <span class="o">_,</span> <span class="o">_)</span> <span class="o">-&gt;</span> <span class="n">r</span>
+
+    <span class="k">let</span> <span class="n">node</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">=</span>
+      <span class="k">if</span> <span class="n">rank</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">rank</span> <span class="n">b</span> <span class="k">then</span>
+        <span class="nc">Node</span> <span class="o">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">rank</span> <span class="n">a</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">a</span><span class="o">)</span>
+      <span class="k">else</span>
+        <span class="nc">Node</span> <span class="o">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">rank</span> <span class="n">b</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span>
+
+    <span class="k">let</span> <span class="k">rec</span> <span class="n">meld</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=</span>
+      <span class="k">match</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="k">with</span>
+      <span class="o">|</span> <span class="o">(_,</span> <span class="nc">Leaf</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span>
+      <span class="o">|</span> <span class="o">(</span><span class="nc">Leaf</span><span class="o">,</span> <span class="o">_)</span> <span class="o">-&gt;</span> <span class="n">b</span>
+      <span class="o">|</span> <span class="o">(</span><span class="nc">Node</span> <span class="o">(_,</span> <span class="n">ka</span><span class="o">,</span> <span class="n">la</span><span class="o">,</span> <span class="n">ra</span><span class="o">),</span> <span class="nc">Node</span> <span class="o">(_,</span> <span class="n">kb</span><span class="o">,</span> <span class="n">lb</span><span class="o">,</span> <span class="n">rb</span><span class="o">))</span> <span class="o">-&gt;</span>
+         <span class="k">if</span> <span class="n">priority</span> <span class="n">ka</span> <span class="o">&lt;</span> <span class="n">priority</span> <span class="n">kb</span> <span class="k">then</span>
+           <span class="n">node</span> <span class="o">(</span><span class="n">ka</span><span class="o">,</span> <span class="n">la</span><span class="o">,</span> <span class="n">meld</span> <span class="n">ra</span> <span class="n">b</span><span class="o">)</span>
+         <span class="k">else</span>
+           <span class="n">node</span> <span class="o">(</span><span class="n">kb</span><span class="o">,</span> <span class="n">lb</span><span class="o">,</span> <span class="n">meld</span> <span class="n">a</span> <span class="n">rb</span><span class="o">)</span>
+
+    <span class="k">let</span> <span class="n">singleton</span> <span class="n">x</span> <span class="o">=</span> <span class="nc">Node</span> <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="nc">Leaf</span><span class="o">,</span> <span class="nc">Leaf</span><span class="o">)</span>
+
+    <span class="k">let</span> <span class="n">empty</span> <span class="o">=</span> <span class="nc">Leaf</span>
+
+    <span class="k">let</span> <span class="n">put</span> <span class="n">x</span> <span class="n">q</span> <span class="o">=</span> <span class="n">meld</span> <span class="n">q</span> <span class="o">(</span><span class="n">singleton</span> <span class="n">x</span><span class="o">)</span>
+
+    <span class="k">let</span> <span class="n">get</span> <span class="o">=</span> <span class="k">function</span>
+      <span class="o">|</span> <span class="nc">Leaf</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="nc">None</span><span class="o">,</span> <span class="nc">Leaf</span><span class="o">)</span>
+      <span class="o">|</span> <span class="nc">Node</span> <span class="o">(_,</span> <span class="n">y</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">r</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="nc">Some</span> <span class="n">y</span><span class="o">,</span> <span class="n">meld</span> <span class="n">l</span> <span class="n">r</span><span class="o">)</span>
+  <span class="k">end</span>
+
+
+<span class="k">module</span> <span class="nc">D</span> <span class="o">=</span> <span class="nc">LeftistHeapQueue</span><span class="o">(</span>
+               <span class="k">struct</span>
+                 <span class="k">type</span> <span class="n">t</span> <span class="o">=</span> <span class="kt">int</span> <span class="o">*</span> <span class="kt">int</span>
+                 <span class="k">let</span> <span class="n">priority</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+               <span class="k">end</span><span class="o">)</span>
+
+<span class="k">let</span> <span class="n">example2</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="k">rec</span> <span class="n">loop</span> <span class="n">q</span> <span class="o">=</span> <span class="k">function</span>
+    <span class="o">|</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="nn">D</span><span class="p">.</span><span class="n">put</span> <span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">)</span> <span class="n">q</span>
+    <span class="o">|</span> <span class="n">k</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="o">(</span><span class="nn">D</span><span class="p">.</span><span class="n">put</span> <span class="o">((</span><span class="mi">47</span> <span class="o">*</span> <span class="n">k</span> <span class="o">*</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">13</span><span class="o">)</span> <span class="ow">mod</span> <span class="mi">1000</span><span class="o">,</span> <span class="n">k</span><span class="o">)</span> <span class="n">q</span><span class="o">)</span> <span class="o">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span>
+  <span class="k">in</span>
+  <span class="n">loop</span> <span class="nn">D</span><span class="p">.</span><span class="n">empty</span> <span class="mi">300000</span>
+
+<span class="k">let</span> <span class="k">rec</span> <span class="n">to_list</span> <span class="n">q</span> <span class="o">=</span>
+  <span class="k">match</span> <span class="nn">D</span><span class="p">.</span><span class="n">get</span> <span class="n">q</span> <span class="k">with</span>
+  <span class="o">|</span> <span class="o">(</span><span class="nc">None</span><span class="o">,</span> <span class="o">_)</span> <span class="o">-&gt;</span> <span class="bp">[]</span>
+  <span class="o">|</span> <span class="o">(</span><span class="nc">Some</span> <span class="n">x</span><span class="o">,</span> <span class="n">q</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">::</span> <span class="n">to_list</span> <span class="n">q</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3><span class="section-number">8.6.2. </span>Implementacija v Javi<a class="headerlink" href="08-abstrakcija.html#id2" title="Povezava na naslov">¶</a></h3>
+<p>Oglejmo si še implementacijo v Javi. V tem jeziku je bolj naravno narediti vrste
+kot objekte, ki se spreminjajo. Torej spremenimo specifikacijo.</p>
+<p>Signatura:</p>
+<ul class="simple">
+<li><p>podatkovni tip <code class="docutils literal notranslate"><span class="pre">Element</span></code></p></li>
+<li><p>metoda <code class="docutils literal notranslate"><span class="pre">priority</span> <span class="pre">:</span> <span class="pre">element</span> <span class="pre">→</span> <span class="pre">int</span></code></p></li>
+<li><p>podatkovni tip <code class="docutils literal notranslate"><span class="pre">queue</span></code></p></li>
+<li><p>operacija <code class="docutils literal notranslate"><span class="pre">empty</span> <span class="pre">:</span> <span class="pre">unit</span> <span class="pre">→</span> <span class="pre">queue</span></code></p></li>
+<li><p>operacija <code class="docutils literal notranslate"><span class="pre">is_empty</span> <span class="pre">:</span> <span class="pre">queue</span> <span class="pre">→</span> <span class="pre">bool</span></code></p></li>
+<li><p>operacija <code class="docutils literal notranslate"><span class="pre">put</span> <span class="pre">:</span> <span class="pre">element</span> <span class="pre">→</span> <span class="pre">queue</span> <span class="pre">→</span> <span class="pre">unit</span></code></p></li>
+<li><p>operacija <code class="docutils literal notranslate"><span class="pre">get</span> <span class="pre">:</span> <span class="pre">queue</span> <span class="pre">→</span> <span class="pre">element</span> <span class="pre">option</span></code></p></li>
+</ul>
+<p>Zahteve so podobne kot prej, le da operacije <code class="docutils literal notranslate"><span class="pre">empty</span></code>, <code class="docutils literal notranslate"><span class="pre">put</span></code> in <code class="docutils literal notranslate"><span class="pre">get</span></code> delujejo
+nekoliko drugače:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">empty</span> <span class="pre">()</span></code> vrne nov primerek (objekt) prazne vrste</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">put</span> <span class="pre">x</span> <span class="pre">q</span></code> vstavi <code class="docutils literal notranslate"><span class="pre">x</span></code> v vrsti <code class="docutils literal notranslate"><span class="pre">q</span></code> in s tem <em>spremeni</em> <code class="docutils literal notranslate"><span class="pre">q</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get</span> <span class="pre">q</span></code> vrne prvi <code class="docutils literal notranslate"><span class="pre">x</span></code> v vrsti <code class="docutils literal notranslate"><span class="pre">q</span></code> in s tem <em>spremeni</em> <code class="docutils literal notranslate"><span class="pre">q</span></code></p></li>
+</ul>
+<p>Zgornjo specifikacijo predelamo v dva vmesnika. Prvi je vmesnik za razrede, ki imajo metodo <code class="docutils literal notranslate"><span class="pre">priority</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Priority</span> <span class="p">{</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">priority</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Vmesnik <code class="docutils literal notranslate"><span class="pre">PriorityQueue</span></code> pa podaja specifikacijo za prioritetno vrsto:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="n">Element</span> <span class="kd">extends</span> <span class="n">Priority</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Element</span><span class="o">&gt;</span> <span class="nf">emptyQueue</span><span class="p">();</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">();</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">put</span><span class="p">(</span><span class="n">Element</span> <span class="n">x</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="n">Element</span> <span class="nf">get</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Še primer implementacije prioritetnih vrst s seznami:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.util.LinkedList</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListQueue</span><span class="o">&lt;</span><span class="n">Element</span> <span class="kd">extends</span> <span class="n">Priority</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Element</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Element</span><span class="o">&gt;</span> <span class="n">elements</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">ListQueue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Element</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">elements</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">put</span><span class="p">(</span><span class="n">Element</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">Element</span> <span class="n">y</span> <span class="p">:</span> <span class="n">elements</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="na">priority</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">.</span><span class="na">priority</span><span class="p">())</span> <span class="p">{</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">elements</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Element</span> <span class="nf">get</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">elements</span><span class="p">.</span><span class="na">removeFirst</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Element</span><span class="o">&gt;</span> <span class="nf">emptyQueue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">ListQueue</span><span class="o">&lt;</span><span class="n">Element</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="primer-mnozice">
+<h2><span class="section-number">8.7. </span>Primer: množice<a class="headerlink" href="08-abstrakcija.html#primer-mnozice" title="Povezava na naslov">¶</a></h2>
+<p>Na vajah boste na dva načina implementirali končne množice, opisane z naslednjo signaturo:
+signaturo.</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="n">order</span> <span class="o">=</span> <span class="nc">Less</span> <span class="o">|</span> <span class="nc">Equal</span> <span class="o">|</span> <span class="nc">Greater</span>
+
+<span class="k">module</span> <span class="k">type</span> <span class="nc">SET</span> <span class="o">=</span>
+<span class="k">sig</span>
+    <span class="k">type</span> <span class="n">element</span>
+    <span class="k">val</span> <span class="n">cmp</span> <span class="o">:</span> <span class="n">element</span> <span class="o">-&gt;</span> <span class="n">element</span> <span class="o">-&gt;</span> <span class="n">order</span>
+    <span class="k">type</span> <span class="n">set</span>
+    <span class="k">val</span> <span class="n">empty</span> <span class="o">:</span> <span class="n">set</span>
+    <span class="k">val</span> <span class="n">member</span> <span class="o">:</span> <span class="n">element</span> <span class="o">-&gt;</span> <span class="n">set</span> <span class="o">-&gt;</span> <span class="kt">bool</span>
+    <span class="k">val</span> <span class="n">add</span> <span class="o">:</span> <span class="n">element</span> <span class="o">-&gt;</span> <span class="n">set</span> <span class="o">-&gt;</span> <span class="n">set</span>
+    <span class="k">val</span> <span class="n">remove</span> <span class="o">:</span> <span class="n">element</span> <span class="o">-&gt;</span> <span class="n">set</span> <span class="o">-&gt;</span> <span class="n">set</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./08-abstrakcija"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../07-izpeljava-tipov/07-izpeljava-tipov.html" title="nazaj page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">nazaj</p>
+            <p class="prev-next-title"><span class="section-number">7. </span>Izpeljava tipov</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../09-logicno-programiranje/09-logicno-programiranje.html" title="naprej page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">naprej</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Logično programiranje</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Avtor Andrej Bauer<br/>
+    
+        &copy; avtorske pravice 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

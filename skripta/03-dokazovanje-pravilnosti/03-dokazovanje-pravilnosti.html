@@ -1,0 +1,828 @@
+
+<!DOCTYPE html>
+
+<html lang="sl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Dokazovanje pravilnosti programov &#8212; Principi programskih jezikov</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css%3Fdigest=c3fdc42140077d1ad13ad2f1588a4309.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Abecedni seznam" href="../genindex.html" />
+    <link rel="search" title="Išči" href="../search.html" />
+    <link rel="next" title="4. λ-račun" href="../04-lambda-racun/04-lambda-racun.html" />
+    <link rel="prev" title="2. Ukazni programski jezik" href="../02-ukazni-programski-jezik/02-ukazni-programski-jezik.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="sl">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Principi programskih jezikov</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Poiščite to knjigo ..." aria-label="Poiščite to knjigo ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-uvod.html">
+   Uvod
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-aritmeticni-izrazi/01-aritmeticni-izrazi.html">
+   1. O programskih jezikih in aritmetičnih izrazih
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-ukazni-programski-jezik/02-ukazni-programski-jezik.html">
+   2. Ukazni programski jezik
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="03-dokazovanje-pravilnosti.html#">
+   3. Dokazovanje pravilnosti programov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-lambda-racun/04-lambda-racun.html">
+   4. λ-račun
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-deklarativno-programiranje/05-deklarativno-programiranje.html">
+   5. Deklarativno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-rekurzija/06-rekurzija.html">
+   6. Rekurzija in rekurzivni tipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07-izpeljava-tipov/07-izpeljava-tipov.html">
+   7. Izpeljava tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08-abstrakcija/08-abstrakcija.html">
+   8. Specifikacija, implementacija, abstrakcija
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09-logicno-programiranje/09-logicno-programiranje.html">
+   9. Logično programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10-programiranje-z-omejitvami/10-programiranje-z-omejitvami.html">
+   10. Logično programiranje z omejitvami
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11-podtipi/11-podtipi.html">
+   11. Podtipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12-objektno-programiranje/12-objektno-programiranje.html">
+   12. Objektno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-haskell-in-razredi-tipov/14-haskell-in-razredi-tipov.html">
+   13. Haskell in razredi tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-monade/15-monade.html">
+   14. Monade in računski učinki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-ucinki-in-prestrezniki/13-ucinki-in-prestrezniki.html">
+   15. Učinki in prestrezniki
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Preklopi navigacijo" aria-controls="site-navigation"
+                title="Preklopi navigacijo" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Prenesite to stran"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/03-dokazovanje-pravilnosti/03-dokazovanje-pravilnosti.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Prenesite izvorno datoteko" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Natisni v PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Celozaslonski način"
+        title="Celozaslonski način"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Vsebina
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#hoarova-logika">
+   3.1. Hoarova logika
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#pravila-sklepanja">
+   3.2. Pravila sklepanja
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#splosna-pravila">
+     3.2.1. Splošna pravila
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#pravilo-za-skip">
+       Pravilo za
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         skip
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#pravilo-za-pogojni-stavek">
+       Pravilo za pogojni stavek
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#pravilo-za-c1-c2">
+       Pravilo za
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         c₁
+        </span>
+        <span class="pre">
+         ;
+        </span>
+        <span class="pre">
+         c₂
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#pravilo-za-zanko-while">
+       Pravilo za zanko
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         while
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#pravilo-za-prirejanje">
+       Pravilo za prirejanje
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#popolna-pravilnost">
+     3.2.2. Popolna pravilnost
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#primeri">
+   3.3. Primeri
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Dokazovanje pravilnosti programov</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Vsebina </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#hoarova-logika">
+   3.1. Hoarova logika
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#pravila-sklepanja">
+   3.2. Pravila sklepanja
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#splosna-pravila">
+     3.2.1. Splošna pravila
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#pravilo-za-skip">
+       Pravilo za
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         skip
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#pravilo-za-pogojni-stavek">
+       Pravilo za pogojni stavek
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#pravilo-za-c1-c2">
+       Pravilo za
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         c₁
+        </span>
+        <span class="pre">
+         ;
+        </span>
+        <span class="pre">
+         c₂
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#pravilo-za-zanko-while">
+       Pravilo za zanko
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         while
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#pravilo-za-prirejanje">
+       Pravilo za prirejanje
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#popolna-pravilnost">
+     3.2.2. Popolna pravilnost
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="03-dokazovanje-pravilnosti.html#primeri">
+   3.3. Primeri
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="dokazovanje-pravilnosti-programov">
+<h1><span class="section-number">3. </span>Dokazovanje pravilnosti programov<a class="headerlink" href="03-dokazovanje-pravilnosti.html#dokazovanje-pravilnosti-programov" title="Povezava na naslov">¶</a></h1>
+<p>Kako vemo, ali program deluje pravilno? Kako vemo, kakšen program želimo sestaviti?</p>
+<p>Ločimo med <strong>specifikacijo</strong> in <strong>implementacijo</strong> programa:</p>
+<ul class="simple">
+<li><p><strong>Specifikacija</strong> je opis, kaj naj želeni program počne.</p></li>
+<li><p><strong>Implementacija</strong> je konkreten program, ki počne to, kar zahteva specifikacija.</p></li>
+</ul>
+<p>Specifikacija je lahko podana bolj ali manj natančno, v človeškem jeziku ali
+zapisana v formalnem matematičnem jeziku. Specifikacije imajo več namenov:</p>
+<ul class="simple">
+<li><p>da pridobimo opis programa, ki naj bi ga sestavili</p></li>
+<li><p>da lahko preverimo, ali je implementacija pravilna</p></li>
+<li><p>zagotovimo kompatibilnost med različnimi deli programske opreme</p></li>
+</ul>
+<p>Danes bomo spoznali “specifikacije v malem”, s katerimi povemo, kaj naj počne konkreten košček izvorne kode.
+Kasneje bomo govorili tudi o specifikaciji in implementaciji večjih programskih enot, ki zajemajo zbirko podatkovnih tipov in funkcij.</p>
+<div class="section" id="hoarova-logika">
+<h2><span class="section-number">3.1. </span>Hoarova logika<a class="headerlink" href="03-dokazovanje-pravilnosti.html#hoarova-logika" title="Povezava na naslov">¶</a></h2>
+<p>Delovanje programa bomo opisali s t.i. Hoarovo logiko, v kateri pišemo <strong>Hoarove trojice</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{ P } c { Q }
+</pre></div>
+</div>
+<p>Tu sta <code class="docutils literal notranslate"><span class="pre">P</span></code>in <code class="docutils literal notranslate"><span class="pre">Q</span></code> logični formuli in <code class="docutils literal notranslate"><span class="pre">c</span></code> ukaz. Formuli <code class="docutils literal notranslate"><span class="pre">P</span></code> pravimo <strong>predpogoj</strong> (angl.
+<em>precondition</em>), formuli <code class="docutils literal notranslate"><span class="pre">Q</span></code> pravimo <strong>končni pogoj</strong> (ang. <em>postcondition</em>).</p>
+<p>Izkaže se, da je prikladno razdeliti preverjanje pravilnosti programov na dva dela:</p>
+<ol class="simple">
+<li><p>Pod predpostavko, da se program ustavi (se ne zacikla), ali deluje pravilno?</p></li>
+<li><p>Ali se program ustavi?</p></li>
+</ol>
+<p>V ta namen uvedemo dve vrsti Hoarovih trojic:</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span>Definition </span> (Delna pravilnost)</p>
+<div class="definition-content section" id="proof-content">
+<p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">P</span> <span class="pre">}</span> <span class="pre">c</span> <span class="pre">{</span> <span class="pre">Q</span> <span class="pre">}</span></code> pomeni “<em>Če velja <code class="docutils literal notranslate"><span class="pre">P</span></code> in če bo ukaz <code class="docutils literal notranslate"><span class="pre">c</span></code> končal, potem bo veljal <code class="docutils literal notranslate"><span class="pre">Q</span></code>.</em>”</p>
+</div>
+</div><div class="proof definition admonition" id="definition-1">
+<p class="admonition-title"><span>Definition </span> (Popolna pravilnost)</p>
+<div class="definition-content section" id="proof-content">
+<p><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">P</span> <span class="pre">]</span> <span class="pre">c</span> <span class="pre">[</span> <span class="pre">Q</span> <span class="pre">]</span></code> pomeni: “<em>Če velja <code class="docutils literal notranslate"><span class="pre">P</span></code>, potem se bo <code class="docutils literal notranslate"><span class="pre">c</span></code> končal in veljal bo <code class="docutils literal notranslate"><span class="pre">Q</span></code>.</em>”</p>
+</div>
+</div><p>Zapomnimo si: delna pravilnost ne zagotavlja, da se bo <code class="docutils literal notranslate"><span class="pre">c</span></code> končal, popolna pravilnost to
+zagotavlja.</p>
+<p>Kaj lahko počnemo s specifikacijami?
+Če imam dano specifikacijo, lahko poiščemo program, ki ji ustreza.</p>
+<div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span>Example </span></p>
+<div class="example-content section" id="proof-content">
+<p>Poiščite program <code class="docutils literal notranslate"><span class="pre">c</span></code> zamenja vrednosti spremenljivk <code class="docutils literal notranslate"><span class="pre">x</span></code> in <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{ x = m ∧ y = n } c { x = n ∧ y = m }
+</pre></div>
+</div>
+<p>Tu predpostavimo, da sta <code class="docutils literal notranslate"><span class="pre">m</span></code> in <code class="docutils literal notranslate"><span class="pre">n</span></code> <strong>duhova</strong> (angl. ghost variable), se pravi
+spremenljivki, ki se ne pojavljata v <code class="docutils literal notranslate"><span class="pre">c</span></code>.</p>
+</div>
+</div><div class="proof example admonition" id="example-3">
+<p class="admonition-title"><span>Example </span></p>
+<div class="example-content section" id="proof-content">
+<p>Poiščite program <code class="docutils literal notranslate"><span class="pre">c</span></code>, ki uredi <code class="docutils literal notranslate"><span class="pre">x</span></code> in <code class="docutils literal notranslate"><span class="pre">y</span></code> po velikosti:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{ true } c { x ≤ y }
+</pre></div>
+</div>
+<p>Ali zgornja specifikacija res pravi, da je treba urediti <code class="docutils literal notranslate"><span class="pre">x</span></code> in <code class="docutils literal notranslate"><span class="pre">y</span></code> po velikosti?
+Ne, saj ji na primer zadošča program</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x := 0 ; y := 1
+</pre></div>
+</div>
+<p>Verjetno smo hoteli v resnici tole, kjer sta <code class="docutils literal notranslate"><span class="pre">m</span></code> in <code class="docutils literal notranslate"><span class="pre">n</span></code> duhova:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{ x = m ∧ y = n } c { x = min(m, n) ∧ y = max(m, n) }
+</pre></div>
+</div>
+</div>
+</div><p>Ko delamo s Hoarovo logiko, običajno pišemo pogoje in kodo navpično, da lahko med vrstice
+vrivamo pogoje.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{ x = m ∧ y = n }
+c
+{ x = min(m, n) ∧ y = max(m, n) }
+</pre></div>
+</div>
+<p>Seveda potrebujemo nekakšna pravila sklepanja.</p>
+</div>
+<div class="section" id="pravila-sklepanja">
+<h2><span class="section-number">3.2. </span>Pravila sklepanja<a class="headerlink" href="03-dokazovanje-pravilnosti.html#pravila-sklepanja" title="Povezava na naslov">¶</a></h2>
+<p>Za Hoarovo logiko veljajo naslednja pravila sklepanja.</p>
+<div class="section" id="splosna-pravila">
+<h3><span class="section-number">3.2.1. </span>Splošna pravila<a class="headerlink" href="03-dokazovanje-pravilnosti.html#splosna-pravila" title="Povezava na naslov">¶</a></h3>
+<p>Vedno smemo uporabiti veljavno logično in matematično sklepanje, na primer:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>P&#39; ⇒ P    { P } c { Q }      Q ⇒ Q&#39;
+——————————————————————————————————–
+          { P&#39; } c { Q&#39; }
+
+
+{ P₁ } c { Q₁ }     { P₂ } c { Q₂ }
+——————————————————————————————————–
+     { P₁ ∧ P₂ } c { Q₁ ∧ Q₂ }
+</pre></div>
+</div>
+<p>Naj bodo <code class="docutils literal notranslate"><span class="pre">FV(P)</span></code> vse spremenljivke, ki se pojavljajo v formuli <code class="docutils literal notranslate"><span class="pre">P</span></code> (free variables)
+in <code class="docutils literal notranslate"><span class="pre">FA(c)</span></code> vse spremenljivke, ki jih <code class="docutils literal notranslate"><span class="pre">c</span></code> nastavlja (assigned variables). Na primer:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>FV(x ≤ y ∨ x &gt; 0) = {x, y}
+
+FA(if x &lt; y then x := y + 3 else skip end) = { x }
+</pre></div>
+</div>
+<p>Velja pravilo:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>FV(P) ∩ FA(c) = ∅
+—————————————————
+  { P } c { P }
+</pre></div>
+</div>
+<p>To pravilo pove, da ukaz <code class="docutils literal notranslate"><span class="pre">c</span></code> ne vpliva na izjavo <code class="docutils literal notranslate"><span class="pre">P</span></code>, če nimata skupnih spremenljivk. Tako pravilo ne bi veljalo v programskem jeziku s kazalci, saj bo lahko <code class="docutils literal notranslate"><span class="pre">c</span></code> spreminjal vrednosti, ki so dosegljive iz <code class="docutils literal notranslate"><span class="pre">P</span></code>, čeprav jih <code class="docutils literal notranslate"><span class="pre">P</span></code> ne omenja.</p>
+<div class="section" id="pravilo-za-skip">
+<h4>Pravilo za <code class="docutils literal notranslate"><span class="pre">skip</span></code><a class="headerlink" href="03-dokazovanje-pravilnosti.html#pravilo-za-skip" title="Povezava na naslov">¶</a></h4>
+<p>Ukaz <code class="docutils literal notranslate"><span class="pre">skip</span></code> nima nikakršnega učinka na veljavnost izjave:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>———————————————–
+{ P } skip { P }
+</pre></div>
+</div>
+</div>
+<div class="section" id="pravilo-za-pogojni-stavek">
+<h4>Pravilo za pogojni stavek<a class="headerlink" href="03-dokazovanje-pravilnosti.html#pravilo-za-pogojni-stavek" title="Povezava na naslov">¶</a></h4>
+<p>Pri pogojnem stavku obravnavamo dva primera, enega za <code class="docutils literal notranslate"><span class="pre">then</span></code> in drugega za <code class="docutils literal notranslate"><span class="pre">else</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{ P ∧ b } c₁ { Q }       { P ∧ ¬b } c₂ { Q }
+———————————————————————————————————————————–
+    { P } if b then c₁ else c₂ end { Q }
+</pre></div>
+</div>
+</div>
+<div class="section" id="pravilo-za-c1-c2">
+<h4>Pravilo za <code class="docutils literal notranslate"><span class="pre">c₁</span> <span class="pre">;</span> <span class="pre">c₂</span></code><a class="headerlink" href="03-dokazovanje-pravilnosti.html#pravilo-za-c1-c2" title="Povezava na naslov">¶</a></h4>
+<p>Pravilo za <code class="docutils literal notranslate"><span class="pre">;</span></code> veriži končni pogoj prvega ukaza s predpogojem drugega:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{ P } c₁ { Q }      { Q } c₂ { R }
+—————————————————————————————————–
+       { P } c₁ ; c₂ { R }
+</pre></div>
+</div>
+</div>
+<div class="section" id="pravilo-za-zanko-while">
+<h4>Pravilo za zanko <code class="docutils literal notranslate"><span class="pre">while</span></code><a class="headerlink" href="03-dokazovanje-pravilnosti.html#pravilo-za-zanko-while" title="Povezava na naslov">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>        { P ∧ b } c { P }
+—————————————————-————————————————–
+{ P } while b do c done { ¬ b ∧ P }
+</pre></div>
+</div>
+<p>Formuli <code class="docutils literal notranslate"><span class="pre">P</span></code> pravimo <em>invarianta</em> zanke <code class="docutils literal notranslate"><span class="pre">while</span></code>. Izmed vseh pravil, je tega najtežje uporabljati, ker je treba imeti nekaj izkušenj, da najdemo ustrezni <code class="docutils literal notranslate"><span class="pre">P</span></code>.</p>
+</div>
+<div class="section" id="pravilo-za-prirejanje">
+<h4>Pravilo za prirejanje<a class="headerlink" href="03-dokazovanje-pravilnosti.html#pravilo-za-prirejanje" title="Povezava na naslov">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>————————————————————————–
+{ P[x ↦ e] } x := e { P }
+</pre></div>
+</div>
+<p>Zapis <code class="docutils literal notranslate"><span class="pre">P[x</span> <span class="pre">↦</span> <span class="pre">e]</span></code> pomeni “v izjavi <code class="docutils literal notranslate"><span class="pre">P</span></code> zamenjaj <code class="docutils literal notranslate"><span class="pre">x</span></code> z <code class="docutils literal notranslate"><span class="pre">e</span></code>”.</p>
+</div>
+</div>
+<div class="section" id="popolna-pravilnost">
+<h3><span class="section-number">3.2.2. </span>Popolna pravilnost<a class="headerlink" href="03-dokazovanje-pravilnosti.html#popolna-pravilnost" title="Povezava na naslov">¶</a></h3>
+<p>Vsa zgornja pravila, razen dveh, lahko predelamo v popolno pravilnost, na primer:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[ P ∧ b ] c₁ [ Q ]       [ P ∧ ¬b ] c₂ [ Q ]
+———————————————————————————————————————————–
+    [ P ] if b then c₁ else c₂ end [ Q ]
+</pre></div>
+</div>
+<p>Prva izjema je pravilo</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>FV(P) ∩ FA(c) = ∅
+—————————————————
+  { P } c { P }
+</pre></div>
+</div>
+<p>ki ga predelamo takole</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>FV(P) ∩ FA(c) = ∅    [ R ] c [ Q ]
+——————————————————————————————————
+      [ R ∧ P ] c [ Q ∧ P ]
+</pre></div>
+</div>
+<p>(Opomba: pravilo</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>FV(P) ∩ FA(c) = ∅
+—————————————————
+  [ P ] c [ P ]
+</pre></div>
+</div>
+<p><em>ni</em> veljavno. Če bi bilo, bi lahko dokazali</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[ x &gt; 0 ] while true do skip done [x &gt; 0]
+</pre></div>
+</div>
+<p>kar pa ne velja.)</p>
+<p>Pri zanki <code class="docutils literal notranslate"><span class="pre">while</span></code> zagotovimo, da se bo končala, tako da poiščemo količino, ki se
+zmanjšuje, a se ne more zmanjševati v nedogled. Na primer, to je lahko celoštevilska
+pozitivna vrednost.</p>
+<div class="admonition warning">
+<p class="admonition-title">Opozorilo</p>
+<p>Realna pozitivna vrednost se lahko zmanjšuje v nedogled:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0.1 &gt; 0.01 &gt; 0.001 &gt; 0.0001 &gt; ...
+</pre></div>
+</div>
+<p>Tudi celoštevilska vrednost se lahko zmanjšuje v nedogled:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>2 &gt; 1 &gt; 0 &gt; -1 &gt; -3 &gt; -5 &gt; -7 &gt; ....
+</pre></div>
+</div>
+</div>
+<p>Pravilo za popolno pravilnost <code class="docutils literal notranslate"><span class="pre">while</span></code> se glasi:</p>
+<p>Naj bo <code class="docutils literal notranslate"><span class="pre">e</span></code> količina, ki se ne more v nedogled zmanjševati (na primer naravno število):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> [ P ∧ b ∧ e = z ] c [P ∧ e &lt; z ]        z ∉ FV(c)
+ ————————————————————————————————————————————————
+      [ P ] while b do c done [ ¬ b ∧ P ]
+</pre></div>
+</div>
+<p>V tem pravilu je <code class="docutils literal notranslate"><span class="pre">z</span></code> duh, kar formalno napišemo kot <code class="docutils literal notranslate"><span class="pre">z</span> <span class="pre">∉</span> <span class="pre">FV(c)</span></code>.
+Kako pa ta pravila v praksi uporabljamo? Poglejmo nekaj primerov.</p>
+</div>
+</div>
+<div class="section" id="primeri">
+<h2><span class="section-number">3.3. </span>Primeri<a class="headerlink" href="03-dokazovanje-pravilnosti.html#primeri" title="Povezava na naslov">¶</a></h2>
+<div class="proof example admonition" id="example-4">
+<p class="admonition-title"><span>Example </span></p>
+<div class="example-content section" id="proof-content">
+<p>Dokaži pravilnost programa:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{ x ≤ 7 }
+x := x + 3
+{ x ≤ 10 }
+</pre></div>
+</div>
+</div>
+</div><div class="proof example admonition" id="example-5">
+<p class="admonition-title"><span>Example </span></p>
+<div class="example-content section" id="proof-content">
+<p>Zapiši s Hoarovo logiko:</p>
+<ol class="simple">
+<li><p>Program <code class="docutils literal notranslate"><span class="pre">c</span></code> se ne ustavi.</p></li>
+<li><p>Program <code class="docutils literal notranslate"><span class="pre">c</span></code> se ustavi.</p></li>
+</ol>
+</div>
+</div><div class="proof example admonition" id="example-6">
+<p class="admonition-title"><span>Example </span></p>
+<div class="example-content section" id="proof-content">
+<p>Dokaži pravilnost programa, kjer predpostavimo, da v spremenljivkah hranimo realna števila (da ni težav z deljenjem z 2):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{ x ≤ y }
+s := (x + y) / 2
+{ x ≤ s ≤ y }
+</pre></div>
+</div>
+</div>
+</div><div class="proof example admonition" id="example-7">
+<p class="admonition-title"><span>Example </span></p>
+<div class="example-content section" id="proof-content">
+<p>Dogovor: namesto <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">∧</span> <span class="pre">Q</span></code> pišemo tudi <code class="docutils literal notranslate"><span class="pre">P,</span> <span class="pre">Q</span></code></p>
+<p>Dokaži pravilnost programa:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[ b ≥ 0 ]
+i := 0 ;
+p := 1 ;
+while i &lt; b do
+   p := p * a ;
+   i := i + 1
+done
+[ p = a ^ b ]
+</pre></div>
+</div>
+<p>Rešitev:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{ b ≥ 0 }
+i := 0 ;
+{ b ≥ 0, i = 0 }
+p := 1 ;
+{ b ≥ 0, i = 0, p = 1 } # logično sklepamo, je zelo easy
+{ p = a ^ i, i ≤ b }
+while i &lt; b do
+   { i &lt; b, p = a ^ i, i ≤ b }
+   # iz p = a^i sledi p·a = a^(i+1)
+   # iz i &lt; b sledi i+1 &lt; b+1 sledi i+1 ≤ b (ker i, b celi števili)
+   { p · a = a ^ (i + 1), (i + 1) ≤ b }
+   p := p * a ;
+   { p = a ^ (i + 1), (i + 1) ≤ b }
+   i := i + 1
+   { p = a ^ i, i ≤ b }
+done
+{ i ≥ b, p = a ^ i, i ≤ b } # očitno
+{ i = b, p = a ^ i } # očitno
+{ p = a ^ b }
+</pre></div>
+</div>
+<p>Popolna pravilnost: zmanjšuje se celoštevilska količina <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">=</span> <span class="pre">b</span> <span class="pre">-</span> <span class="pre">i</span> <span class="pre">≥</span> <span class="pre">0</span></code>.
+Imamo invarianto <code class="docutils literal notranslate"><span class="pre">Q</span> <span class="pre">≡</span> <span class="pre">(p</span> <span class="pre">=</span> <span class="pre">a</span> <span class="pre">^</span> <span class="pre">i</span> <span class="pre">∧</span> <span class="pre">i</span> <span class="pre">≤</span> <span class="pre">b)</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>while i &lt; b do
+   [ Q, i &lt; b, b - i = z ]
+   [ i &lt; b, b - i = z ]
+   p := p * a ;
+   [ i &lt; b, b - i = z ]
+   ⇒
+   [ b - i = z ]
+   ⇔
+   [ b = z + i ]
+   ⇒
+   [ b &lt; z + i + 1 ]
+   ⇔ 
+   [ b - i - 1 &lt; z ]
+   ⇔
+   [ b - (i+1) &lt; z ]
+   i := i + 1
+   [ b - i &lt; z ]
+done
+</pre></div>
+</div>
+</div>
+</div><div class="proof example admonition" id="example-8">
+<p class="admonition-title"><span>Example </span></p>
+<div class="example-content section" id="proof-content">
+<p>Dokaži pravilnost programa:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[x = m ∧ y = n]
+if y &lt; x then
+   x := x + y ;
+   y := x - y ;
+   x := x - y
+else
+   skip
+end
+[ x = min(m, n) ∧ y = max(m, n) ]
+</pre></div>
+</div>
+<p>Rešitev:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[x = m ∧ y = n]
+if y &lt; x then
+   [ y &lt; x, x = m ∧ y = n]
+   [ n &lt; m, x = m ∧ y = n]
+   [ y = n = min(m, n) ∧ x = m = max(m, n) ]
+   [ (x+y)-((x+y)-y) = min(m, n) ∧ ((x+y)-y) = max(m, n) ]
+   x := x + y ;
+   [ x-(x-y) = min(m, n) ∧ (x-y) = max(m, n) ]
+   y := x - y ;
+   [ x-y = min(m, n) ∧ y = max(m, n) ]
+   x := x - y
+   [ x = min(m, n) ∧ y = max(m, n) ]
+else
+   [x ≤ y, x = m ∧ y = n]
+   [m ≤ n, x = m ∧ y = n]
+   skip
+   [ m ≤ n, x = m ∧ y = n ] # očitno sledi
+   [ x = min(m, n) ∧ y = max(m, n) ]
+end
+[ x = min(m, n) ∧ y = max(m, n) ]
+</pre></div>
+</div>
+</div>
+</div></div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./03-dokazovanje-pravilnosti"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../02-ukazni-programski-jezik/02-ukazni-programski-jezik.html" title="nazaj page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">nazaj</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Ukazni programski jezik</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../04-lambda-racun/04-lambda-racun.html" title="naprej page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">naprej</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>λ-račun</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Avtor Andrej Bauer<br/>
+    
+        &copy; avtorske pravice 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

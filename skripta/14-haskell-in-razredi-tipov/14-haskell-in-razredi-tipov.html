@@ -1,0 +1,852 @@
+
+<!DOCTYPE html>
+
+<html lang="sl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>13. Haskell in razredi tipov &#8212; Principi programskih jezikov</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css%3Fdigest=c3fdc42140077d1ad13ad2f1588a4309.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Abecedni seznam" href="../genindex.html" />
+    <link rel="search" title="Išči" href="../search.html" />
+    <link rel="next" title="14. Monade in računski učinki" href="../15-monade/15-monade.html" />
+    <link rel="prev" title="12. Objektno programiranje" href="../12-objektno-programiranje/12-objektno-programiranje.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="sl">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Principi programskih jezikov</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Poiščite to knjigo ..." aria-label="Poiščite to knjigo ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-uvod.html">
+   Uvod
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-aritmeticni-izrazi/01-aritmeticni-izrazi.html">
+   1. O programskih jezikih in aritmetičnih izrazih
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-ukazni-programski-jezik/02-ukazni-programski-jezik.html">
+   2. Ukazni programski jezik
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-dokazovanje-pravilnosti/03-dokazovanje-pravilnosti.html">
+   3. Dokazovanje pravilnosti programov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-lambda-racun/04-lambda-racun.html">
+   4. λ-račun
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-deklarativno-programiranje/05-deklarativno-programiranje.html">
+   5. Deklarativno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-rekurzija/06-rekurzija.html">
+   6. Rekurzija in rekurzivni tipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07-izpeljava-tipov/07-izpeljava-tipov.html">
+   7. Izpeljava tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08-abstrakcija/08-abstrakcija.html">
+   8. Specifikacija, implementacija, abstrakcija
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09-logicno-programiranje/09-logicno-programiranje.html">
+   9. Logično programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10-programiranje-z-omejitvami/10-programiranje-z-omejitvami.html">
+   10. Logično programiranje z omejitvami
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11-podtipi/11-podtipi.html">
+   11. Podtipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12-objektno-programiranje/12-objektno-programiranje.html">
+   12. Objektno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="14-haskell-in-razredi-tipov.html#">
+   13. Haskell in razredi tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-monade/15-monade.html">
+   14. Monade in računski učinki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-ucinki-in-prestrezniki/13-ucinki-in-prestrezniki.html">
+   15. Učinki in prestrezniki
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Preklopi navigacijo" aria-controls="site-navigation"
+                title="Preklopi navigacijo" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Prenesite to stran"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/14-haskell-in-razredi-tipov/14-haskell-in-razredi-tipov.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Prenesite izvorno datoteko" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Natisni v PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Celozaslonski način"
+        title="Celozaslonski način"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Vsebina
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#osnovno-o-haskellu">
+   13.1. Osnovno o Haskellu
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#konkretna-sintaksa">
+     13.1.1. Konkretna sintaksa
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#zamikanje">
+       Zamikanje
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#imena">
+       Imena
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#definicije">
+       Definicije
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#lokalne-definicije">
+       Lokalne definicije
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#seznami">
+       Seznami
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#funkcije">
+       Funkcije
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#izraz-case">
+       Izraz
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         case
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#tipi">
+     13.1.2. Tipi
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#osnovni-konstruktorji-tipov">
+       Osnovni konstruktorji tipov
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#definicije-tipov">
+       Definicije tipov
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#primer-avl-drevesa">
+     13.1.3. Primer: AVL drevesa
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#razredi-tipov">
+   13.2. Razredi tipov
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#razredi-tipov-v-standardni-knjiznici">
+     13.2.1. Razredi tipov v standardni knjižnici
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Haskell in razredi tipov</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Vsebina </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#osnovno-o-haskellu">
+   13.1. Osnovno o Haskellu
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#konkretna-sintaksa">
+     13.1.1. Konkretna sintaksa
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#zamikanje">
+       Zamikanje
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#imena">
+       Imena
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#definicije">
+       Definicije
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#lokalne-definicije">
+       Lokalne definicije
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#seznami">
+       Seznami
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#funkcije">
+       Funkcije
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#izraz-case">
+       Izraz
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         case
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#tipi">
+     13.1.2. Tipi
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#osnovni-konstruktorji-tipov">
+       Osnovni konstruktorji tipov
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#definicije-tipov">
+       Definicije tipov
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#primer-avl-drevesa">
+     13.1.3. Primer: AVL drevesa
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#razredi-tipov">
+   13.2. Razredi tipov
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="14-haskell-in-razredi-tipov.html#razredi-tipov-v-standardni-knjiznici">
+     13.2.1. Razredi tipov v standardni knjižnici
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="haskell-in-razredi-tipov">
+<h1><span class="section-number">13. </span>Haskell in razredi tipov<a class="headerlink" href="14-haskell-in-razredi-tipov.html#haskell-in-razredi-tipov" title="Povezava na naslov">¶</a></h1>
+<p>Danes bomo spoznali programski jezik <a class="reference external" href="https://www.haskell.org">Haskell</a> in razrede tipov
+(angl. type classes), ki so še en način za organizacijo kode in funkcionalnosti. Haskell
+je deklarativni jezik, ki se odlikuje po tem, da je tudi <strong>čist</strong> (angl. pure), kar
+pomeni, da v osnovi nima računskih učinkov (stanje, I/O, izjeme). O računskih učinkih in o
+tem, kako so implementirani z monadami, bomo govorili naslednjič.</p>
+<p>Haskell lahko opredelimo kot programski jezik, ki je:</p>
+<ul class="simple">
+<li><p>deklarativni jezik z leno evaluacijo</p></li>
+<li><p>je funkcijski jezik: funkcije so vrednosti</p></li>
+<li><p>ima koinduktivne tipe in zapise</p></li>
+<li><p>ima parametrični polimorfizem in izpeljavo tipov</p></li>
+<li><p>čist jezik: vsi računski učinki (stanje, I/O, izjeme) so eksplicitno zavedeni v tipu izraza</p></li>
+<li><p>ima razrede tipov</p></li>
+</ul>
+<div class="section" id="osnovno-o-haskellu">
+<h2><span class="section-number">13.1. </span>Osnovno o Haskellu<a class="headerlink" href="14-haskell-in-razredi-tipov.html#osnovno-o-haskellu" title="Povezava na naslov">¶</a></h2>
+<p>Mnoge koncepte, ki nastopaj v programskem jeziku Haskell, že poznamo. Danes bomo spoznali</p>
+<div class="section" id="konkretna-sintaksa">
+<h3><span class="section-number">13.1.1. </span>Konkretna sintaksa<a class="headerlink" href="14-haskell-in-razredi-tipov.html#konkretna-sintaksa" title="Povezava na naslov">¶</a></h3>
+<div class="section" id="zamikanje">
+<h4>Zamikanje<a class="headerlink" href="14-haskell-in-razredi-tipov.html#zamikanje" title="Povezava na naslov">¶</a></h4>
+<p>V Haskellu je treba kodo pravilno zamikati, podobno kot v Pythonu. V nekaterih primerih se
+lahko zamikanju izognemo z uporabo alternativne sintakse <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">...</span> <span class="pre">;</span> <span class="pre">...</span> <span class="pre">;</span> <span class="pre">...</span> <span class="pre">}</span></code>. Primer
+bomo videli kasneje.</p>
+</div>
+<div class="section" id="imena">
+<h4>Imena<a class="headerlink" href="14-haskell-in-razredi-tipov.html#imena" title="Povezava na naslov">¶</a></h4>
+<ul class="simple">
+<li><p>Imena spremenljivk se pišejo z malo začetnico: <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, …</p></li>
+<li><p>Imena tipov se pišejo z veliko začetnico: <code class="docutils literal notranslate"><span class="pre">Int</span></code>, <code class="docutils literal notranslate"><span class="pre">Bool</span></code>, <code class="docutils literal notranslate"><span class="pre">Char</span></code>, …</p></li>
+<li><p>Parametri v polimorfnih tipih se pišejo z malo začetnico: <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code>, …</p></li>
+<li><p>Imena konstruktorjev algebraičnih tipov se pišejo z veliko</p></li>
+</ul>
+</div>
+<div class="section" id="definicije">
+<h4>Definicije<a class="headerlink" href="14-haskell-in-razredi-tipov.html#definicije" title="Povezava na naslov">¶</a></h4>
+<p>Vrednost <code class="docutils literal notranslate"><span class="pre">t</span></code> tipa <code class="docutils literal notranslate"><span class="pre">A</span></code> zapišemo</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="nf">t</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">A</span><span class="w"></span>
+<span class="nf">t</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">definicija</span><span class="o">-</span><span class="n">t</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Pozor: zapis <code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">::</span> <span class="pre">A</span></code> pomeni »<code class="docutils literal notranslate"><span class="pre">t</span></code> ima tipa <code class="docutils literal notranslate"><span class="pre">A</span></code>« zapis <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">::</span> <span class="pre">ℓ</span></code> pa pomeni seznam z glavo <code class="docutils literal notranslate"><span class="pre">x</span></code> in repom <code class="docutils literal notranslate"><span class="pre">ℓ</span></code> (ravno obratno kot v OCamlu).</p>
+<p>Definicija ima lahko tudi več vrstic, na primer:</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="nf">f</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">Int</span><span class="w"></span>
+<span class="nf">f</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="nf">f</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="nf">f</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Definicije so lahko rekurzivne.</p>
+<p>Tip v definiciji ni treba podati in smemo zapisati samo</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="nf">t</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">defincija</span><span class="o">-</span><span class="n">t</span><span class="w"></span>
+</pre></div>
+</div>
+<p>V tem primeru bo Haskell izpeljal tip <code class="docutils literal notranslate"><span class="pre">t</span></code>. Vendar pa je v Haskellu navada, da se zapiše tip vrednosti, ki jo definiramo.</p>
+</div>
+<div class="section" id="lokalne-definicije">
+<h4>Lokalne definicije<a class="headerlink" href="14-haskell-in-razredi-tipov.html#lokalne-definicije" title="Povezava na naslov">¶</a></h4>
+<p>Lokalno definicijo zapišemo</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="kr">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">e₁</span><span class="w"></span>
+<span class="kr">in</span><span class="w"></span>
+<span class="w">  </span><span class="n">e₂</span><span class="w"></span>
+</pre></div>
+</div>
+<p>ali</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="nf">e₂</span><span class="w"> </span><span class="kr">where</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">e₁</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Določilu <code class="docutils literal notranslate"><span class="pre">where</span></code> lahko sledi več definicij:</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="nf">e₁</span><span class="w"> </span><span class="kr">where</span><span class="w"></span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">e₂</span><span class="w"></span>
+<span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">e₃</span><span class="w"></span>
+<span class="w">  </span><span class="n">z</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">e₄</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="seznami">
+<h4>Seznami<a class="headerlink" href="14-haskell-in-razredi-tipov.html#seznami" title="Povezava na naslov">¶</a></h4>
+<p>Prazen seznam zapišemo z <code class="docutils literal notranslate"><span class="pre">[]</span></code>, stik glave <code class="docutils literal notranslate"><span class="pre">x</span></code> z repom <code class="docutils literal notranslate"><span class="pre">ℓ</span></code> zapišemo <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">:</span> <span class="pre">ℓ</span></code>,
+elemente lahko tudi naštejemo z <code class="docutils literal notranslate"><span class="pre">[x₁,</span> <span class="pre">x₂,</span> <span class="pre">...,</span> <span class="pre">xᵢ]</span></code>.</p>
+<p>Seznam števil od <code class="docutils literal notranslate"><span class="pre">1</span></code> do <code class="docutils literal notranslate"><span class="pre">n</span></code> zapišemo <code class="docutils literal notranslate"><span class="pre">[1..n]</span></code> in podobno za interval <code class="docutils literal notranslate"><span class="pre">[a..b]</span></code>.</p>
+<p>Haskell ima <a class="reference external" href="https://wiki.haskell.org/List_comprehension">izpeljane sezname</a> (angl. list comprehension), podobno kot Python:</p>
+<ul class="simple">
+<li><p>matematika: <code class="docutils literal notranslate"><span class="pre">{f(x)</span> <span class="pre">|</span> <span class="pre">x</span> <span class="pre">∈</span> <span class="pre">A}</span></code> je množica elementov <code class="docutils literal notranslate"><span class="pre">f(x)</span></code>, kjer je <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">∈</span> <span class="pre">A</span></code></p></li>
+<li><p>Python <code class="docutils literal notranslate"><span class="pre">[f(x)</span> <span class="pre">for</span> <span class="pre">x</span> <span class="pre">in</span> <span class="pre">ℓ]</span></code> je seznam elementov <code class="docutils literal notranslate"><span class="pre">f(x)</span></code>, kjer <code class="docutils literal notranslate"><span class="pre">x</span></code> preteče seznam <code class="docutils literal notranslate"><span class="pre">ℓ</span></code></p></li>
+<li><p>Haskell <code class="docutils literal notranslate"><span class="pre">[f</span> <span class="pre">x</span> <span class="pre">|</span> <span class="pre">x</span> <span class="pre">&lt;-</span> <span class="pre">ℓ]</span></code> je seznam elementov <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">x</span></code>, kjer <code class="docutils literal notranslate"><span class="pre">x</span></code> preteče seznam <code class="docutils literal notranslate"><span class="pre">ℓ</span></code></p></li>
+</ul>
+<p>Podrobnosti o izpeljanih seznamih si preberite na zgornji povezavi.</p>
+</div>
+<div class="section" id="funkcije">
+<h4>Funkcije<a class="headerlink" href="14-haskell-in-razredi-tipov.html#funkcije" title="Povezava na naslov">¶</a></h4>
+<p>Funkcijo <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">↦</span> <span class="pre">e</span></code> zapišemo kot <code class="docutils literal notranslate"><span class="pre">\</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">e</span></code>, kar nas spominja na <code class="docutils literal notranslate"><span class="pre">λ</span> <span class="pre">x</span> <span class="pre">.</span> <span class="pre">e</span></code>.</p>
+<p><strong>Naloga:</strong> Zakaj se ta programski jezik imenuje Haskell?</p>
+</div>
+<div class="section" id="izraz-case">
+<h4>Izraz <code class="docutils literal notranslate"><span class="pre">case</span></code><a class="headerlink" href="14-haskell-in-razredi-tipov.html#izraz-case" title="Povezava na naslov">¶</a></h4>
+<p>Izraz</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="kr">case</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="kr">of</span><span class="w"></span>
+<span class="w">  </span><span class="n">p₁</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">e₁</span><span class="w"></span>
+<span class="w">  </span><span class="n">p₂</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">e₂</span><span class="w"></span>
+<span class="w">  </span><span class="o">...</span><span class="w"></span>
+<span class="w">  </span><span class="n">pⱼ</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">eⱼ</span><span class="w"></span>
+</pre></div>
+</div>
+<p>primerja <code class="docutils literal notranslate"><span class="pre">e</span></code> z vzorci <code class="docutils literal notranslate"><span class="pre">p₁,</span> <span class="pre">...,</span> <span class="pre">pⱼ</span></code>. Vrednost izraza je enaka <code class="docutils literal notranslate"><span class="pre">eᵢ</span></code>, kjer je <code class="docutils literal notranslate"><span class="pre">pᵢ</span></code> prvi
+vzorec, ki se ujema. Torej je <code class="docutils literal notranslate"><span class="pre">case</span></code> podoben izrazu <code class="docutils literal notranslate"><span class="pre">match</span></code> iz OCaml.</p>
+<div class="admonition warning">
+<p class="admonition-title">Opozorilo</p>
+<p>OCaml opozori na manjkajoče primere v <code class="docutils literal notranslate"><span class="pre">match</span></code>, Haskell tega ne počne.</p>
+</div>
+<p>Primeri morajo biti pravilno zamaknjeni, lahko pa uporabimo tudi sintakso</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="kr">case</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="kr">of</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">p₁</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">e_1</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">pⱼ</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">eⱼ</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>ki ne zahteva zamikanja. V Haskellu velja navada, da raje zamikamo kodo, kot da bi uporabljali <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code>.</p>
+</div>
+</div>
+<div class="section" id="tipi">
+<h3><span class="section-number">13.1.2. </span>Tipi<a class="headerlink" href="14-haskell-in-razredi-tipov.html#tipi" title="Povezava na naslov">¶</a></h3>
+<p>Imena tipov pišemo z velikimi črkami</p>
+<div class="section" id="osnovni-konstruktorji-tipov">
+<h4>Osnovni konstruktorji tipov<a class="headerlink" href="14-haskell-in-razredi-tipov.html#osnovni-konstruktorji-tipov" title="Povezava na naslov">¶</a></h4>
+<ul class="simple">
+<li><p>Osnovni tipi so <code class="docutils literal notranslate"><span class="pre">Int</span></code>, <code class="docutils literal notranslate"><span class="pre">Char</span></code>, <code class="docutils literal notranslate"><span class="pre">Bool</span></code>, …</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-&gt;</span> <span class="pre">b</span></code> je tip funkcij iz <code class="docutils literal notranslate"><span class="pre">a</span></code> v <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code> je produktni tip, ki ga v Ocamlu pišemo <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">*</span> <span class="pre">b</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[a]</span></code> je tip seznamov elementov tipa <code class="docutils literal notranslate"><span class="pre">a</span></code>, v OCamlu <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">list</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="definicije-tipov">
+<h4>Definicije tipov<a class="headerlink" href="14-haskell-in-razredi-tipov.html#definicije-tipov" title="Povezava na naslov">¶</a></h4>
+<p>Haskell poznam definicije tipov</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="kr">type</span><span class="w"> </span><span class="kt">T</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="o">...</span><span class="w"></span>
+</pre></div>
+</div>
+<p>in definicije koinduktivnih algebraičnih tipov</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="kr">data</span><span class="w"> </span><span class="kt">T</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="o">...</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Definicija <code class="docutils literal notranslate"><span class="pre">type</span></code> uvaja okrajšavo, <code class="docutils literal notranslate"><span class="pre">data</span></code> pa nov podatkovni tip.</p>
+<p>(Tipe lahko definiramo tudi z <code class="docutils literal notranslate"><span class="pre">newtype</span></code>, ki ga ta trenutek ne bomo obravnavali.)</p>
+<p>Na primer, sezname lahko definiramo takole:</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="kr">data</span><span class="w"> </span><span class="kt">List</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">=</span><span class="w"></span>
+<span class="w">    </span><span class="kt">Nil</span><span class="w"></span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">Cons</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">List</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Tip <code class="docutils literal notranslate"><span class="pre">Maybe</span></code> je definiran z</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="kr">data</span><span class="w"> </span><span class="kt">Maybe</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">=</span><span class="w"></span>
+<span class="w">    </span><span class="kt">Nothing</span><span class="w"></span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">Just</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To je pravzaprav tip <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">option</span></code> iz OCaml.</p>
+</div>
+</div>
+<div class="section" id="primer-avl-drevesa">
+<h3><span class="section-number">13.1.3. </span>Primer: AVL drevesa<a class="headerlink" href="14-haskell-in-razredi-tipov.html#primer-avl-drevesa" title="Povezava na naslov">¶</a></h3>
+<p>Več podrobnosti bomo spoznali tako, da bomo iz OCaml prepisali implementacijo AVL dreves v Haskell:</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="c1">-- AVL drevesa v Haskellu</span><span class="w"></span>
+
+<span class="kr">module</span><span class="w"> </span><span class="nn">Avl</span><span class="w"> </span><span class="kr">where</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">-- višino drevesa merimo s celim številom</span><span class="w"></span>
+<span class="w">  </span><span class="kr">type</span><span class="w"> </span><span class="kt">Height</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">Integer</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">-- koinduktivni podatkovni tip AVL dreves</span><span class="w"></span>
+<span class="w">  </span><span class="kr">data</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">=</span><span class="w"></span>
+<span class="w">      </span><span class="kt">Empty</span><span class="w"></span>
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="kt">Node</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="kt">Height</span><span class="w"> </span><span class="p">(</span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kr">deriving</span><span class="w"> </span><span class="kt">Show</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">-- primer drevesa</span><span class="w"></span>
+<span class="w">  </span><span class="n">t</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="kt">Integer</span><span class="w"></span>
+<span class="w">  </span><span class="n">t</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">Node</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="w">      </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">       </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="kt">Empty</span><span class="p">)</span><span class="w"></span>
+<span class="w">       </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="kt">Empty</span><span class="p">))</span><span class="w"></span>
+<span class="w">      </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="kt">Empty</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">height</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">Height</span><span class="w"></span>
+<span class="w">  </span><span class="n">height</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">  </span><span class="n">height</span><span class="w"> </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="kr">_</span><span class="p">)</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">h</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">leaf</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">  </span><span class="n">leaf</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">Node</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="kt">Empty</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">-- pametni konstruktor, ki poskrbi za višino</span><span class="w"></span>
+<span class="w">  </span><span class="n">node</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">  </span><span class="n">node</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">Node</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="p">(</span><span class="n">height</span><span class="w"> </span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">height</span><span class="w"> </span><span class="n">r</span><span class="p">))</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="n">r</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">-- drevo t zapisano s pamentim konstruktorjem</span><span class="w"></span>
+<span class="w">  </span><span class="n">t&#39;</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="kt">Integer</span><span class="w"></span>
+<span class="w">  </span><span class="n">t&#39;</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="kt">Empty</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="kt">Empty</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="kt">Empty</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">-- drevo t zapisano še bolje</span><span class="w"></span>
+<span class="w">  </span><span class="n">t&#39;&#39;</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="kt">Integer</span><span class="w"></span>
+<span class="w">  </span><span class="n">t&#39;&#39;</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="n">leaf</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="n">leaf</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="n">leaf</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">-- seznam elementov v drevesu</span><span class="w"></span>
+<span class="w">  </span><span class="n">toList</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="n">toList</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">[]</span><span class="w"></span>
+<span class="w">  </span><span class="n">toList</span><span class="w"> </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">toList</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="n">toList</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">search</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">Ord</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">=&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">Bool</span><span class="w"></span>
+<span class="w">  </span><span class="n">search</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">False</span><span class="w"></span>
+<span class="w">  </span><span class="n">search</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="ow">=</span><span class="w"></span>
+<span class="w">      </span><span class="kr">case</span><span class="w"> </span><span class="n">compare</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="kr">of</span><span class="w"></span>
+<span class="w">        </span><span class="kt">EQ</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">True</span><span class="w"></span>
+<span class="w">        </span><span class="kt">LT</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">search</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">l</span><span class="w"></span>
+<span class="w">        </span><span class="kt">GT</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">search</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">r</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">test1</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">search</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">test2</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">search</span><span class="w"> </span><span class="mi">42</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">rotateLeft</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">  </span><span class="n">rotateLeft</span><span class="w"> </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">c</span><span class="p">))</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="n">c</span><span class="w"></span>
+<span class="w">  </span><span class="n">rotateLeft</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">rotateRight</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">  </span><span class="n">rotateRight</span><span class="w"> </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">rotateRight</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">imbalance</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">Integer</span><span class="w"></span>
+<span class="w">  </span><span class="n">imbalance</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">  </span><span class="n">imbalance</span><span class="w"> </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="n">r</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">balance</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">  </span><span class="n">balance</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">Empty</span><span class="w"></span>
+<span class="w">  </span><span class="n">balance</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="n">r</span><span class="p">))</span><span class="w"> </span><span class="ow">=</span><span class="w"></span>
+<span class="w">      </span><span class="kr">case</span><span class="w"> </span><span class="n">imbalance</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="kr">of</span><span class="w"></span>
+<span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w">  </span><span class="kr">case</span><span class="w"> </span><span class="n">imbalance</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="kr">of</span><span class="w"></span>
+<span class="w">                </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">rotateRight</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="n">rotateLeft</span><span class="w"> </span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="kr">_</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w">  </span><span class="n">rotateRight</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
+<span class="w">        </span><span class="o">-</span><span class="mi">2</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kr">case</span><span class="w"> </span><span class="n">imbalance</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="kr">of</span><span class="w"></span>
+<span class="w">                </span><span class="mi">1</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">rotateLeft</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="p">(</span><span class="n">rotateRight</span><span class="w"> </span><span class="n">r</span><span class="p">))</span><span class="w"></span>
+<span class="w">                </span><span class="kr">_</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">rotateLeft</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
+<span class="w">        </span><span class="kr">_</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">add</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">Ord</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">=&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">  </span><span class="n">add</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">leaf</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="w">  </span><span class="n">add</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="n">r</span><span class="p">))</span><span class="w"> </span><span class="ow">=</span><span class="w"></span>
+<span class="w">      </span><span class="kr">case</span><span class="w"> </span><span class="n">compare</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="kr">of</span><span class="w"></span>
+<span class="w">        </span><span class="kt">EQ</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
+<span class="w">        </span><span class="kt">LT</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">(</span><span class="n">add</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="kt">GT</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="p">(</span><span class="n">add</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">r</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">remove</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">Ord</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">=&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">AVLTree</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">  </span><span class="n">remove</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">Empty</span><span class="w"></span>
+<span class="w">  </span><span class="n">remove</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="ow">=</span><span class="w"></span>
+<span class="w">      </span><span class="kr">let</span><span class="w"> </span><span class="n">removeSuccessor</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="ne">error</span><span class="w"> </span><span class="s">&quot;impossible&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="n">removeSuccessor</span><span class="w"> </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="kt">Empty</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="n">removeSuccessor</span><span class="w"> </span><span class="p">(</span><span class="kt">Node</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="p">(</span><span class="n">balance</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">l&#39;</span><span class="w"> </span><span class="n">r</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="kr">where</span><span class="w"> </span><span class="p">(</span><span class="n">l&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">removeSuccessor</span><span class="w"> </span><span class="n">l</span><span class="w"></span>
+<span class="w">      </span><span class="kr">in</span><span class="w"></span>
+<span class="w">        </span><span class="kr">case</span><span class="w"> </span><span class="n">compare</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="kr">of</span><span class="w"></span>
+<span class="w">          </span><span class="kt">LT</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">(</span><span class="n">remove</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="kt">GT</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="p">(</span><span class="n">remove</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">r</span><span class="p">))</span><span class="w"></span>
+<span class="w">          </span><span class="kt">EQ</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kr">case</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="kr">of</span><span class="w"></span>
+<span class="w">                  </span><span class="p">(</span><span class="kr">_</span><span class="p">,</span><span class="w"> </span><span class="kt">Empty</span><span class="p">)</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">l</span><span class="w"></span>
+<span class="w">                  </span><span class="p">(</span><span class="kt">Empty</span><span class="p">,</span><span class="w"> </span><span class="kr">_</span><span class="p">)</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">r</span><span class="w"></span>
+<span class="w">                  </span><span class="kr">_</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="n">y&#39;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="n">r&#39;</span><span class="p">)</span><span class="w"> </span><span class="kr">where</span><span class="w"> </span><span class="p">(</span><span class="n">r&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">y&#39;</span><span class="p">)</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">removeSuccessor</span><span class="w"> </span><span class="n">r</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="razredi-tipov">
+<h2><span class="section-number">13.2. </span>Razredi tipov<a class="headerlink" href="14-haskell-in-razredi-tipov.html#razredi-tipov" title="Povezava na naslov">¶</a></h2>
+<p>Razrede tipov bomo razložili v živo na predavanjih s primerom:</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Ideja: podatki imajo neko velikost</span><span class="w"></span>
+<span class="c1">-- Funkcionalnost: tipi, katerih vrednosti imajo &quot;velikost&quot;</span><span class="w"></span>
+
+<span class="c1">-- Razred, ki opisuje tiste tipe a, ki so opremljeni s funkcijo &quot;size&quot;, ki slika v Int</span><span class="w"></span>
+<span class="kr">class</span><span class="w"> </span><span class="kt">Sized</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="kr">where</span><span class="w"></span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">Int</span><span class="w"></span>
+
+<span class="c1">-- Funkcija, ki vrne velikost svojega argumenta, povečana za 3</span><span class="w"></span>
+<span class="nf">f</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">Sized</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">=&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kt">Int</span><span class="w"></span>
+<span class="nf">f</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+
+<span class="c1">-- Booli so veliki 1 bit</span><span class="w"></span>
+<span class="kr">instance</span><span class="w"> </span><span class="kt">Sized</span><span class="w"> </span><span class="kt">Bool</span><span class="w"> </span><span class="kr">where</span><span class="w"></span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="kt">True</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="kt">False</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="c1">-- Chari imajo velikost 8 bitov</span><span class="w"></span>
+<span class="kr">instance</span><span class="w"> </span><span class="kt">Sized</span><span class="w"> </span><span class="kt">Char</span><span class="w"> </span><span class="kr">where</span><span class="w"></span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="mi">8</span><span class="w"></span>
+
+<span class="c1">-- Inti so veliki 64 bitov</span><span class="w"></span>
+<span class="kr">instance</span><span class="w"> </span><span class="kt">Sized</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="kr">where</span><span class="w"></span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="mi">64</span><span class="w"></span>
+
+<span class="c1">-- Velikost seznamov</span><span class="w"></span>
+<span class="kr">instance</span><span class="w"> </span><span class="kt">Sized</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">=&gt;</span><span class="w"> </span><span class="kt">Sized</span><span class="w"> </span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="w"> </span><span class="kr">where</span><span class="w"></span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="kt">[]</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="n">xs</span><span class="p">)</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="n">xs</span><span class="w"></span>
+
+<span class="c1">-- Velikost parov</span><span class="w"></span>
+<span class="kr">instance</span><span class="w"> </span><span class="p">(</span><span class="kt">Sized</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">Sized</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="ow">=&gt;</span><span class="w"> </span><span class="kt">Sized</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="kr">where</span><span class="w"></span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="n">y</span><span class="w"></span>
+
+<span class="c1">-- Primeri</span><span class="w"></span>
+
+<span class="c1">-- V Haskellu so nizi seznami znakov, se pravi [Char], zato Haskell iz zgornjih</span><span class="w"></span>
+<span class="c1">-- instanc izpelje velikost niza kot 8 * dolžina niza.</span><span class="w"></span>
+<span class="nf">demo1</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="s">&quot;This string contains forty-two characters.&quot;</span><span class="w"></span>
+
+<span class="c1">-- Če napišemo samo 14, dobimo tip Num a =&gt; a, če pa napišemo 14 :: Int,</span><span class="w"></span>
+<span class="c1">-- Haskell prislimo, da ima 14 tip Int. (Če bi napisali 14 :: Float, bi</span><span class="w"></span>
+<span class="c1">-- ga prisilil, da bi imel tip Float).</span><span class="w"></span>
+<span class="nf">demo2</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="p">[(</span><span class="mi">14</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">Int</span><span class="p">),</span><span class="w"> </span><span class="mi">15</span><span class="p">]</span><span class="w"></span>
+
+<span class="nf">demo3</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">False</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">Int</span><span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="section" id="razredi-tipov-v-standardni-knjiznici">
+<h3><span class="section-number">13.2.1. </span>Razredi tipov v standardni knjižnici<a class="headerlink" href="14-haskell-in-razredi-tipov.html#razredi-tipov-v-standardni-knjiznici" title="Povezava na naslov">¶</a></h3>
+<p>Ogledali si bomo nekatere najbolj uporabne razrede v standardni knjižnici:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://hackage.haskell.org/package/base-4.12.0.0/docs/Data-Ord.html"><code class="docutils literal notranslate"><span class="pre">Ord</span></code></a></p></li>
+<li><p><a class="reference external" href="https://hackage.haskell.org/package/base-4.12.0.0/docs/Data-Eq.html"><code class="docutils literal notranslate"><span class="pre">Eq</span></code></a></p></li>
+<li><p><a class="reference external" href="https://hackage.haskell.org/package/base-4.12.0.0/docs/Text-Show.html"><code class="docutils literal notranslate"><span class="pre">Show</span></code></a></p></li>
+<li><p><a class="reference external" href="https://hackage.haskell.org/package/base-4.14.0.0/docs/Prelude.html#g:7">Numerični razredi</a></p></li>
+<li><p><a class="reference external" href="https://hackage.haskell.org/package/base-4.9.0.0/docs/Data-Monoid.html"><code class="docutils literal notranslate"><span class="pre">Monoid</span></code></a></p></li>
+<li><p><a class="reference external" href="https://hackage.haskell.org/package/base-4.14.0.0/docs/Data-Functor.html"><code class="docutils literal notranslate"><span class="pre">Functor</span></code></a></p></li>
+<li><p><a class="reference external" href="https://hackage.haskell.org/package/base-4.14.0.0/docs/Control-Applicative.html"><code class="docutils literal notranslate"><span class="pre">Applicative</span></code></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./14-haskell-in-razredi-tipov"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../12-objektno-programiranje/12-objektno-programiranje.html" title="nazaj page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">nazaj</p>
+            <p class="prev-next-title"><span class="section-number">12. </span>Objektno programiranje</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../15-monade/15-monade.html" title="naprej page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">naprej</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Monade in računski učinki</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Avtor Andrej Bauer<br/>
+    
+        &copy; avtorske pravice 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

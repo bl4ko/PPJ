@@ -1,0 +1,668 @@
+
+<!DOCTYPE html>
+
+<html lang="sl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>15. Učinki in prestrezniki &#8212; Principi programskih jezikov</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css%3Fdigest=c3fdc42140077d1ad13ad2f1588a4309.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Abecedni seznam" href="../genindex.html" />
+    <link rel="search" title="Išči" href="../search.html" />
+    <link rel="prev" title="14. Monade in računski učinki" href="../15-monade/15-monade.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="sl">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Principi programskih jezikov</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Poiščite to knjigo ..." aria-label="Poiščite to knjigo ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-uvod.html">
+   Uvod
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-aritmeticni-izrazi/01-aritmeticni-izrazi.html">
+   1. O programskih jezikih in aritmetičnih izrazih
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-ukazni-programski-jezik/02-ukazni-programski-jezik.html">
+   2. Ukazni programski jezik
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-dokazovanje-pravilnosti/03-dokazovanje-pravilnosti.html">
+   3. Dokazovanje pravilnosti programov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-lambda-racun/04-lambda-racun.html">
+   4. λ-račun
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-deklarativno-programiranje/05-deklarativno-programiranje.html">
+   5. Deklarativno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-rekurzija/06-rekurzija.html">
+   6. Rekurzija in rekurzivni tipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07-izpeljava-tipov/07-izpeljava-tipov.html">
+   7. Izpeljava tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08-abstrakcija/08-abstrakcija.html">
+   8. Specifikacija, implementacija, abstrakcija
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09-logicno-programiranje/09-logicno-programiranje.html">
+   9. Logično programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10-programiranje-z-omejitvami/10-programiranje-z-omejitvami.html">
+   10. Logično programiranje z omejitvami
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11-podtipi/11-podtipi.html">
+   11. Podtipi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12-objektno-programiranje/12-objektno-programiranje.html">
+   12. Objektno programiranje
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-haskell-in-razredi-tipov/14-haskell-in-razredi-tipov.html">
+   13. Haskell in razredi tipov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-monade/15-monade.html">
+   14. Monade in računski učinki
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="13-ucinki-in-prestrezniki.html#">
+   15. Učinki in prestrezniki
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Preklopi navigacijo" aria-controls="site-navigation"
+                title="Preklopi navigacijo" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Prenesite to stran"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/13-ucinki-in-prestrezniki/13-ucinki-in-prestrezniki.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Prenesite izvorno datoteko" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Natisni v PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Celozaslonski način"
+        title="Celozaslonski način"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Vsebina
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#racunski-ucinki-so-operacije">
+   15.1. Računski učinki so operacije
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#drevo-izracuna">
+   15.2. Drevo izračuna
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#prestrezniki">
+   15.3. Prestrezniki
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#eff">
+   15.4. Eff
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#sintaksa-eff">
+     15.4.1. Sintaksa Eff
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#kako-deklariramo-nove-operacije">
+     15.4.2. Kako deklariramo nove operacije
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#kako-pisemo-prestreznike">
+     15.4.3. Kako pišemo prestreznike
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#primeri-prestreznikov">
+   15.5. Primeri prestreznikov
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Učinki in prestrezniki</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Vsebina </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#racunski-ucinki-so-operacije">
+   15.1. Računski učinki so operacije
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#drevo-izracuna">
+   15.2. Drevo izračuna
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#prestrezniki">
+   15.3. Prestrezniki
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#eff">
+   15.4. Eff
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#sintaksa-eff">
+     15.4.1. Sintaksa Eff
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#kako-deklariramo-nove-operacije">
+     15.4.2. Kako deklariramo nove operacije
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#kako-pisemo-prestreznike">
+     15.4.3. Kako pišemo prestreznike
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="13-ucinki-in-prestrezniki.html#primeri-prestreznikov">
+   15.5. Primeri prestreznikov
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="ucinki-in-prestrezniki">
+<h1><span class="section-number">15. </span>Učinki in prestrezniki<a class="headerlink" href="13-ucinki-in-prestrezniki.html#ucinki-in-prestrezniki" title="Povezava na naslov">¶</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Pomembno</p>
+<p>Tega poglavja v akademskem letu 2022/23 nismo obravnavali, kar pa ne pomeni,
+da vam ne bo koristilo, če ga boste prebrali.</p>
+</div>
+<p>Okoli leta 1985 je Eugenio Moggi iz Genove odkril, da lahko računske učinke
+obravnavamo z monadami, ki se uporabljajo v Haskellu za računske učinke. V
+začetku tega tisočletja sta Gordon Plotkin in John Power iz Edinburgha
+ugotovila, da lahko večino računskih učinkov predstavita z <em>algebrajskimi
+operacijami</em>. Kasneje sta Gordon Plotkin in njegov doktorski študent Matija
+Pretnar odkrila še <em>prestreznike</em>. Nekaj let za tem sta Andrej Bauer in Matija
+Pretnar iz Ljubljane ustvarila Eff, prvi programski jezik zasnovan na teoriji
+algebrajskih učinkov in prestreznikov. Kmalu so se pojavile knjižnice za
+prestreznike, nadgradnje programskih jezikov in novi jeziki, ki so uporabljali
+prestreznike. Aprila 2018 smo bili na delovnem srečanju , kjer smo se s
+predstavniki večjih podjetjih (Facebook, Google, Microsoft) pogovarjali o
+vključitvi prestreznikov v njihove tehnološke rešitve, kot je na primer
+<a class="reference external" href="https://webassembly.org">WebAssembly</a> (naslednik Javascript).</p>
+<p>Pa si poglejmo, zakaj so algebrajski učinki in prestrezniki tako zanimivi.</p>
+<div class="section" id="racunski-ucinki-so-operacije">
+<h2><span class="section-number">15.1. </span>Računski učinki so operacije<a class="headerlink" href="13-ucinki-in-prestrezniki.html#racunski-ucinki-so-operacije" title="Povezava na naslov">¶</a></h2>
+<p>Računski učinki se v programskem jeziku pojavijo kot <strong>operacije</strong>, ki se jih
+obravnava drugače kot običajno računanje, saj imajo <strong>učinek</strong>. Na primer:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">print</span></code> je operacija, katere učinek je izpis na izhodno enoto (zaslon)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input</span></code> je operacija, katere učinek je branje s vhodne enote (tipkovnica)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exit</span></code> je operacija, ki prekine izvajanje programa</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">write</span></code> je operacija, ki spremeni stanje pomnilnika</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read</span></code> je operacija, ki vrne trenutno stanje pomnilnika</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">toss</span></code> je operacija, ki vrne naključni bit</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spawn</span></code> je operacija, ki sproži izvajanje novega vzporednega vlakna</p></li>
+</ul>
+<p>Vsem operacijam je skupno to, da <em>začasno prekinejo</em> izvajanje programa,
+opravijo svoj računski učinek, nato pa nadaljujejo z izvajanjem programa (ali pa
+ne, na primer <code class="docutils literal notranslate"><span class="pre">exit</span></code>). Nekatere operacije nadaljevanju programa tudi vrneta
+<em>rezultat</em> (<code class="docutils literal notranslate"><span class="pre">input</span></code> in <code class="docutils literal notranslate"><span class="pre">read</span></code>).</p>
+<p>Poglejmo na primer naslednji program (napisan v kvazi-OCaml):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1  print &quot;Ime: &quot; ;
+2  let ime = input () in
+3  print &quot;Primek: &quot; ;
+4  let priimek = input () in
+5  let s = ime ^ &quot; &quot; ^ priimek ^ &quot; je bimbo.&quot; in
+6  print s
+</pre></div>
+</div>
+<p>V programu je pet operacij (trikrat <code class="docutils literal notranslate"><span class="pre">print</span></code> in dvakrat <code class="docutils literal notranslate"><span class="pre">input</span></code>). Operacija
+<code class="docutils literal notranslate"><span class="pre">print</span></code> v 3. vrstici ima za nadaljevanje vrstice 4–5, ki od <code class="docutils literal notranslate"><span class="pre">print</span></code> ne dobijo
+rezultata (pravzaprav ga, le da je to enota <code class="docutils literal notranslate"><span class="pre">()</span></code>, ki jo ignoriramo).</p>
+<p>Operacija <code class="docutils literal notranslate"><span class="pre">input</span></code> v 4. vrstici je bolj zanimiva. Za nadaljevanje ima</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>4  let priimek = □ in
+5  let s = ime ^ &quot; &quot; ^ priimek ^ &quot; je bimbo.&quot; in
+6  print s
+</pre></div>
+</div>
+<p>kjer smo z <code class="docutils literal notranslate"><span class="pre">□</span></code> označili „luknjo“, v katero je treba vstaviti rezultat, ki ga
+vrne <code class="docutils literal notranslate"><span class="pre">read</span></code> (namreč niz, ki ga prebere s tipkovnice). Lahko si mislimo, da je
+nadaljevanje neke vrste funkcija, ki sprejme rezultat operacije <code class="docutils literal notranslate"><span class="pre">read</span></code> in
+nadaljuje izračun:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fun x -&gt;
+   let priimek = x in
+   let s = ime ^ &quot; &quot; ^ priimek ^ &quot; je bimbo.&quot; in
+   print s
+</pre></div>
+</div>
+<p>Nadaljevanju izračuna pravimo tudi <strong>kontinuacija</strong> (angl. continuation).</p>
+</div>
+<div class="section" id="drevo-izracuna">
+<h2><span class="section-number">15.2. </span>Drevo izračuna<a class="headerlink" href="13-ucinki-in-prestrezniki.html#drevo-izracuna" title="Povezava na naslov">¶</a></h2>
+<p>Potek programa in njegove učinke lahko predstavimo z <strong>drevesom izračuna</strong>:</p>
+<ul class="simple">
+<li><p>listi drevesa so končni rezultati</p></li>
+<li><p>vozlišča so operacije</p></li>
+<li><p>poddrevesa so izračuni, ki jih dobimo, ko se operacija zaključi in se program nadaljuje.
+Za vsak rezultat, ki ga lahko vrne operacija, dobimo eno poddrevo.</p></li>
+</ul>
+<p>Narišimo nekaj dreves izračuna.</p>
+<div class="admonition-primer admonition">
+<p class="admonition-title">Primer</p>
+<p>Narišimo računsko drevo programa</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print &quot;Hello&quot; ;
+let x = input () in
+print x ;
+print x ;
+length x
+</pre></div>
+</div>
+<p>Drevo (pri <code class="docutils literal notranslate"><span class="pre">input</span></code> bi morali imeti po eno poddrevo za vsak niz, torej neskončno
+poddreves, prikazana so samo tri):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>              print &quot;Hello&quot;
+                   |
+                   |
+                input ()
+           /       |      \
+     &quot;foo&quot;/   &quot;bar&quot;|       \&quot;quux&quot;
+         /         |        \
+   print &quot;foo&quot;  print &quot;bar&quot;  print &quot;quux&quot;
+        |          |            |
+        |          |            |
+   print &quot;foo&quot;  print &quot;bar&quot;  print &quot;quux&quot;
+        |          |            |
+        |          |            |
+        3          3            4
+</pre></div>
+</div>
+</div>
+<div class="admonition-primer admonition">
+<p class="admonition-title">Primer</p>
+<p>Denimo, da imamo operacijo <code class="docutils literal notranslate"><span class="pre">toss</span></code>, ki vrne naključni bit.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>if toss () then
+  if toss () then
+    3
+  else
+    4
+else
+    5
+</pre></div>
+</div>
+<p>Drevo:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                    toss ()
+                    /    \
+               true/      \false
+                  /        \
+               toss ()      5
+               /   \
+          true/     \false
+             /       \
+            3         4
+</pre></div>
+</div>
+</div>
+<div class="admonition-primer admonition">
+<p class="admonition-title">Primer</p>
+<p>Denimo, da imamo operacijo <code class="docutils literal notranslate"><span class="pre">exit</span></code>, ki prekine izvajanje programa:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>if toss () then
+   exit ()
+else
+   42
+</pre></div>
+</div>
+<p>Drevo:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                  toss ()
+                  /     \
+             true/       \false
+                /         \
+             exit ()      42
+</pre></div>
+</div>
+</div>
+<p>Drevo izračuna nam da pregled nad <em>možnimi poteki izvajanja</em> programa. Dejansko
+se bo izvedla le ena veja v drevesu, katera pa to bo, je odvisno od rezultatov,
+ki jih vračajo operacije.</p>
+</div>
+<div class="section" id="prestrezniki">
+<h2><span class="section-number">15.3. </span>Prestrezniki<a class="headerlink" href="13-ucinki-in-prestrezniki.html#prestrezniki" title="Povezava na naslov">¶</a></h2>
+<p><strong>Prestrezniki</strong> so nov programski konstrukt, ki sta ga iznašla Gordon Plotkin
+in Matija Pretnar. So posplošitev prestreznikov izjem, ki jih poznajo standardni
+programski jeziki.</p>
+<p>Če na program gledamo kot na drevo izračuna, se nam porodi ideja, da bi lahko
+tako drevo transformirali na zanimive načine. Na primer, vse pojavitve ene
+operacije bi lahko zamenjali z drugo. Lahko bi tudi izvedli več kot eno vejo
+drevesa, ali pa kar preiskali celotno drevo.</p>
+<p>Seveda pa se moramo lotiti takih transformacij v izvajanju programa na
+strukturiran in pregleden način, kar omogočajo prestrezniki.</p>
+<p>S prestreznikom povemo, kako obdelamo drevo izračuna in sicer:</p>
+<ol class="simple">
+<li><p>Kaj naredimo z listi (končnimi rezultati izračuna)</p></li>
+<li><p>Kaj naredimo z operacijami</p></li>
+</ol>
+<p>Pri tem se operacije obdelajo rekurzivno. Prestreznik je pravzaprav neke vrste
+<code class="docutils literal notranslate"><span class="pre">fold</span></code> na drevesu izračuna.</p>
+</div>
+<div class="section" id="eff">
+<h2><span class="section-number">15.4. </span>Eff<a class="headerlink" href="13-ucinki-in-prestrezniki.html#eff" title="Povezava na naslov">¶</a></h2>
+<p>Programski jezik <a class="reference external" href="https://www.eff-lang.org">Eff</a> sta ustvarila Andrej Bauer in
+Matija Pretnar. Je eksperimentalni programski jezik, s katerim sta pokazala,
+kako lahko uporabljamo operacije in prestreznike kot programske konstrukte.
+Programski jezik je vplival na razvoj nekaterih drugih jezikov in knjižnic za
+programiranje s programskimi učinki.</p>
+<p>V Eff so operacije in prestrezniki prvovrstne vrednosti. Se pravi, da lahko
+programer definira nove operacije in prestreznike, lahko pa seveda prestreza tudi
+vgrajene operacije.</p>
+<div class="section" id="sintaksa-eff">
+<h3><span class="section-number">15.4.1. </span>Sintaksa Eff<a class="headerlink" href="13-ucinki-in-prestrezniki.html#sintaksa-eff" title="Povezava na naslov">¶</a></h3>
+<p>Sintaksa Eff je zelo podobna sintaksi programskega jezika OCaml.</p>
+</div>
+<div class="section" id="kako-deklariramo-nove-operacije">
+<h3><span class="section-number">15.4.2. </span>Kako deklariramo nove operacije<a class="headerlink" href="13-ucinki-in-prestrezniki.html#kako-deklariramo-nove-operacije" title="Povezava na naslov">¶</a></h3>
+<p>Novo operacijo <code class="docutils literal notranslate"><span class="pre">Op</span></code> definiramo z določilom</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>effect Op : a -&gt; b
+</pre></div>
+</div>
+<p>pri čemer je <code class="docutils literal notranslate"><span class="pre">a</span></code> tip <em>argumenta</em>, ki ga sprejme <code class="docutils literal notranslate"><span class="pre">Op</span></code> in <code class="docutils literal notranslate"><span class="pre">b</span></code> tip rezultata, ki ga
+vrne <code class="docutils literal notranslate"><span class="pre">Op</span></code>. Primeri iz standardne knjižnice Eff:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>effect Print : string -&gt; unit
+
+effect Read : unit -&gt; string
+
+effect Raise : string -&gt; empty
+</pre></div>
+</div>
+<p>Operacija <code class="docutils literal notranslate"><span class="pre">Raise</span></code> vrača rezultat tipa <code class="docutils literal notranslate"><span class="pre">empty</span></code>, ki nima vrednosti. To pomeni, da
+sploh ne more nadaljevati izvajanja programa, saj mu ne more podati rezultata.
+Torej je to <strong>izjema</strong>.</p>
+<p>Operacijo sprožimo s <code class="docutils literal notranslate"><span class="pre">perform</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>perform (Print &quot;Hello, world!&quot;)
+
+perform (Raise &quot;file not found&quot;)
+</pre></div>
+</div>
+</div>
+<div class="section" id="kako-pisemo-prestreznike">
+<h3><span class="section-number">15.4.3. </span>Kako pišemo prestreznike<a class="headerlink" href="13-ucinki-in-prestrezniki.html#kako-pisemo-prestreznike" title="Povezava na naslov">¶</a></h3>
+<p>Prestreznik (angl. handler) definiramo takole:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>handler
+| res -&gt; c
+| effect (Op₁ arg) k -&gt; c₁
+| effect (Op₂ arg) k -&gt; c₂
+| ...
+</pre></div>
+</div>
+<p>kar preberemo takole:</p>
+<ul class="simple">
+<li><p>rezultat <code class="docutils literal notranslate"><span class="pre">res</span></code> se preslika v izračun <code class="docutils literal notranslate"><span class="pre">c</span></code> (ki se lahko sklicuje na <code class="docutils literal notranslate"><span class="pre">res</span></code>)</p></li>
+<li><p>operacija <code class="docutils literal notranslate"><span class="pre">Opᵢ</span></code> se preslika v izračun <code class="docutils literal notranslate"><span class="pre">cᵢ</span></code>, pri čemer je <code class="docutils literal notranslate"><span class="pre">arg</span></code> argument, ki ga
+je dobila operacija in <code class="docutils literal notranslate"><span class="pre">k</span></code> nadaljevanje (funkcija, ki ji podamo rezultat
+operacije).</p></li>
+</ul>
+<p>Če definiramo prestreznik <code class="docutils literal notranslate"><span class="pre">h</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>let h = handler ...
+</pre></div>
+</div>
+<p>ga lahko uporabimo takole:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>with h handle
+  c
+</pre></div>
+</div>
+<p>Prestreznik lahko zapišemo tudi neposredno in z njim nadzorujemo izračun <code class="docutils literal notranslate"><span class="pre">c</span></code> takole:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>handle
+  c
+with
+| res -&gt; c
+| effect (Op₁ arg) k -&gt; c₁
+| effect (Op₂ arg) k -&gt; c₂
+| ...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="primeri-prestreznikov">
+<h2><span class="section-number">15.5. </span>Primeri prestreznikov<a class="headerlink" href="13-ucinki-in-prestrezniki.html#primeri-prestreznikov" title="Povezava na naslov">¶</a></h2>
+<p>Ogledali si bomo primere s spletne strani, kjer lahko preizkusimo Eff. Ti
+nakazujejo le nekaj preprostih možnosti, kaj vse lahko naredimo. Še več primerov
+najdete <a class="reference external" href="https://github.com/matijapretnar/eff/tree/master/examples">v izvorni kodi za Eff</a>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./13-ucinki-in-prestrezniki"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../15-monade/15-monade.html" title="nazaj page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">nazaj</p>
+            <p class="prev-next-title"><span class="section-number">14. </span>Monade in računski učinki</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Avtor Andrej Bauer<br/>
+    
+        &copy; avtorske pravice 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
