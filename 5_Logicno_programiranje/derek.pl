@@ -639,3 +639,5 @@ put(FChar).
 
 % Get length of the string
 atom_length('Derek',X).
+
+
